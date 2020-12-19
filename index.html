@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>前田の家計簿アプリ</title>
+  <!-- destyle -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@2.0.2/destyle.css">
+  <!-- materialize icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <!-- materializecss -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- animatecss -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <!-- chartjs css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.css">
+  <!-- my original stylesheet -->
+  <link rel="stylesheet" href="assets/styles/stylesheet.css">
+
+  <!-- jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- chartjs -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+  <!-- materializejs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+  <!-- easypiechart js vanilla version -->
+  <script src="./assets/scripts/official_easypiechart.js"></script>
+  <!-- my original materialize jquery js -->
+  <script src="./assets/scripts/original_materialize.js" defer></script>
+  <!-- my original js -->
+  <script src="index.js" defer type="module"></script>
+  <!-- my original chart js -->
+  <script src="./assets/scripts/original_chart.js" defer></script>
+  <!-- my original easy-pie-chart js -->
+  <script src="./assets/scripts/original_easypiechart.js" defer></script>
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo left">家計簿</a>
+      <ul id="nav-mobile" class="right">
+        <li><a href="#enter">入力カード</a></li>
+        <li><a href="#analysis">レポート</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="amber lighten-2" id="enter">
+    <div class="row">
+      <div class="col s12">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title center-align">入力カード</span>
+            <div class="input-field">
+              <input type="text" class="datepicker" placeholder="" id="spent_date">
+              <label for="spent_date">日付</label>
+            </div>
+            <div class="input-field">
+              <input type="number" pattern="\d*" placeholder="" id="howmuch">
+              <label for="howmuch">金額</label>
+            </div>
+            <div class="input-field">
+              <input type="text" placeholder="" id="purpose">
+              <label for="purpose">用途</label>
+            </div>
+            <div class="input-field">
+              <select>
+                <option value="" disabled selected>カテゴリーを選択</option>
+                <option value="1">食費</option>
+                <option value="2">交通費</option>
+                <option value="3">日用品</option>
+              </select>
+              <label>カテゴリー</label>
+            </div>
+            <a class="waves-effect waves-light btn">データを追加</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="analysis" id="analysis">
+    <div class="row">
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s3"><a href="#year_analysis">年間レポート</a></li>
+          <li class="tab col s3"><a href="#month_analysis">月間レポート</a></li>
+          <li class="tab col s3"><a href="#week_analysis">週刊レポート</a></li>
+          <li class="tab col s3"><a href="#day_analysis">日</a></li>
+        </ul>
+      </div>
+      <div id="year_analysis" class="col s12">
+        <canvas id="year_doughnut" width="400" height="400"></canvas>
+      </div>
+      <div id="month_analysis" class="col s12">
+        <canvas id="month_doughnut" width="400" height="400"></canvas>
+      </div>
+      <div id="week_analysis" class="col s12">
+        <canvas id="week_doughnut" width="400" height="400"></canvas>
+      </div>
+      <div id="day_analysis" class="col s12">
+        <canvas id="day_doughnut" width="400" height="400"></canvas>
+      </div>
+    </div>
+  </div>
+  <footer class="page-footer">
+    <div class="container">
+      <a href="./documentation/index.html">このアプリの説明書</a>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        © 2021 Designed by Otsuka in Tokyo.
+      </div>
+    </div>
+</body>
+
+</html>
