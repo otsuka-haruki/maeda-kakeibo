@@ -15,3 +15,7 @@ html {
 .relative {
   position: relative;
 }
+
+.datepicker-table tbody td {
+  text-align: center;
+}

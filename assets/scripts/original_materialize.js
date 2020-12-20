@@ -1,7 +1,5 @@
 $(document).ready(function() {
-  $('.tabs').tabs({
-    'swipeable': true
-  });
+  $('.tabs').tabs();
 
   $('.sidenav').sidenav();
 
