@@ -32,6 +32,8 @@
   <script src="./assets/scripts/original_materialize.js" defer></script>
   <!-- my original js -->
   <script src="./index.js" defer></script>
+  <!-- selection fixed on iPhone -->
+  <script type="text/javascript" src="./assets/scripts/select_fixed.js" defer></script>
   <!-- my original chart js -->
   <script src="./assets/scripts/original_chart.js" defer></script>
   <!-- my original easy-pie-chart js -->
@@ -56,10 +58,10 @@
             <span class="card-title center-align">入力カード</span>
             <div class="switch">
               <label>
-                収入
-                <input type="checkbox">
-                <span class="lever"></span>
                 支出
+                <input type="checkbox" name="out-or-in">
+                <span class="lever"></span>
+                収入
               </label>
             </div>
             <div class="input-field">
@@ -74,13 +76,13 @@
               <input type="text" id="purpose">
               <label for="purpose">用途</label>
             </div>
-            <div class="input-field">
+            <div class="input-field" id="category">
               <select>
                 <option value="" disabled selected>カテゴリーを選択</option>
-                <option value="1">食費</option>
-                <option value="2">衣服</option>
-                <option value="3">日用品</option>
-                <option value="4">交際費</option>
+                <option value="1" id="first-value">食費</option>
+                <option value="2" id="second-value">衣服</option>
+                <option value="3" id="third-value">日用品</option>
+                <option value="4" id="forth-value">交際費</option>
                 <option value="5">光熱費</option>
                 <option value="6">交通費</option>
               </select>
