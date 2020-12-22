@@ -16,6 +16,10 @@ class App {
 
 new App();
 
-document.querySelectorAll('.tab').addEventListener('click', () => {
-  new CreateChart();
-});
+const tabLis = document.querySelectorAll('.tab');
+
+for (let i = 0; i < tabLis.length; i++) {
+  tabLis[i].addEventListener('click', () => {
+    new CreateChart();
+  });
+}
