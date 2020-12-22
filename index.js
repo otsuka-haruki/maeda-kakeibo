@@ -15,3 +15,7 @@ class App {
 // firing app
 
 new App();
+
+document.querySelectorAll('.tab').addEventListener('click', () => {
+  new CreateChart();
+});
