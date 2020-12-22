@@ -65,19 +65,19 @@
               </label>
             </div>
             <div class="input-field">
-              <input type="text" class="datepicker" id="spent_date">
+              <input type="text" class="datepicker" id="input-card__date">
               <label for="spent_date">日付</label>
             </div>
             <div class="input-field">
-              <input type="number" pattern="\d*" id="howmuch">
+              <input type="number" pattern="\d*" id="input-card__how-much">
               <label for="howmuch">金額</label>
             </div>
             <div class="input-field">
-              <input type="text" id="purpose">
+              <input type="text" id="input-card__things">
               <label for="purpose">用途</label>
             </div>
-            <div class="input-field" id="category">
-              <select>
+            <div class="input-field" id="input-card__category">
+              <select id="input-card__category-select">
                 <option value="" disabled selected>カテゴリーを選択</option>
                 <option value="1" id="first-value">食費</option>
                 <option value="2" id="second-value">衣服</option>
@@ -88,8 +88,8 @@
               </select>
               <label>カテゴリー</label>
             </div>
-            <div class="input-field">
-              <select>
+            <div class="input-field" id="input-card__how-to-pay">
+              <select id="input-card__how-to-pay-select">
                 <option value="" disabled selected>カテゴリーを選択</option>
                 <option value="1">現金</option>
                 <option value="2">クレジットカード</option>
@@ -100,7 +100,7 @@
               </select>
               <label>支払い手段</label>
             </div>
-            <a class="waves-effect waves-light btn" id="add_data">データを追加</a>
+            <a class="waves-effect waves-light btn" id="input-card__add-btn">データを追加</a>
           </div>
         </div>
       </div>
@@ -123,7 +123,7 @@
         <h5 class="center-align">収入<span>￥1000</span></h5>
         <h5 class="center-align">支出<span>￥2450</span></h5>
         <canvas id="day_doughnut" width="400" height="400"></canvas>
-        <table class="centered">
+        <table class="centered" id="analysis-today__table">
           <thead>
             <tr>
               <th>カテゴリー</th>
@@ -134,62 +134,62 @@
           </thead>
           <tbody>
             <tr>
-              <td>食費</td>
-              <td>カフェ</td>
-              <td>350</td>
-              <td>スタバカード</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
             </tr>
             <tr>
-              <td>交通費</td>
-              <td>渋谷行く</td>
-              <td>126</td>
-              <td>Suica</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
             </tr>
             <tr>
-              <td>日用品</td>
-              <td>家具</td>
-              <td>1200</td>
-              <td>現金</td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
-              <td>食費</td>
-              <td>カフェ</td>
-              <td>350</td>
-              <td>スタバカード</td>
-            </tr>
-            <tr>
-              <td>交通費</td>
-              <td>渋谷行く</td>
-              <td>126</td>
-              <td>Suica</td>
-            </tr>
-            <tr>
-              <td>日用品</td>
-              <td>家具</td>
-              <td>1200</td>
-              <td>現金</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
             </tr>
           </tbody>
           <tbody>
             <tr>
-              <td>食費</td>
-              <td>カフェ</td>
-              <td>350</td>
-              <td>スタバカード</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
             </tr>
             <tr>
-              <td>交通費</td>
-              <td>渋谷行く</td>
-              <td>126</td>
-              <td>Suica</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
             </tr>
             <tr>
-              <td>日用品</td>
-              <td>家具</td>
-              <td>1200</td>
-              <td>現金</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+            </tr>
+            <tr>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+            </tr>
+            <tr>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
             </tr>
           </tbody>
         </table>
