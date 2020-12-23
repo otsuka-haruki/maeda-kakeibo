@@ -45,8 +45,8 @@ export class InputCard {
 
       const inputValueArray = [isSwitchChecked, dateValue, howMuchValue, thingsValue, categoryValue, howToPayValue];
       localStorage.setItem('array1', inputValueArray);
+      M.toast({html: 'データを追加しました！', displayLength: 3000, classes: 'toast-success'});
       new FetchData();
-      console.log();
     });
   }
 
