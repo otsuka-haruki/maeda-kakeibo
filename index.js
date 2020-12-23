@@ -1,14 +1,18 @@
 'use strict';
 
+import { OriginalMaterializeInitialize } from './assets/scripts/OriginalMaterializeInitialize.js';
 import { InputCard } from './assets/scripts/InputCard.js';
 import { FetchData } from './assets/scripts/database/FetchData.js';
 import { CreateChart } from './assets/scripts/charts/original_chart.js';
+import { MaterializeSelectFixed } from './assets/scripts/libraries/MaterializeSelectFixed.js';
 
 class App {
   constructor() {
+    OriginalMaterializeInitialize();
     new InputCard();
     new FetchData();
     new CreateChart();
+    MaterializeSelectFixed();
   }
 }
 
