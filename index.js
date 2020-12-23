@@ -3,7 +3,7 @@
 import { OriginalMaterializeInitialize } from './assets/scripts/OriginalMaterializeInitialize.js';
 import { InputCard } from './assets/scripts/InputCard.js';
 import { FetchData } from './assets/scripts/database/FetchData.js';
-import { CreateChart } from './assets/scripts/charts/original_chart.js';
+import * as drawChart from './assets/scripts/charts/original_chart.js';
 import { MaterializeSelectFixed } from './assets/scripts/libraries/MaterializeSelectFixed.js';
 
 class App {
@@ -11,8 +11,10 @@ class App {
     OriginalMaterializeInitialize();
     new InputCard();
     new FetchData();
-    new CreateChart();
+    drawChart.chartInitialize();
+    drawChart.drawChartDayDoughnut();
     MaterializeSelectFixed();
+
   }
 }
 
@@ -27,3 +29,16 @@ for (let i = 0; i < options.length; i++) {
   const value = valueArray[i];
   options[i].setAttribute('value', value);
 }
+
+const tabs = document.querySelectorAll('.tabs li');
+tabs[1].addEventListener('click', () => {
+  drawChart.drawChartWeekBar();
+  drawChart.drawChartWeekDoughnut();
+});
+tabs[2].addEventListener('click', () => {
+  drawChart.drawChartMonthDoughnutIn();
+  drawChart.drawChartMonthDoughnutOut();
+})
+tabs[3].addEventListener('click', () => {
+  drawChart.drawChartYearDoughnut();
+});
