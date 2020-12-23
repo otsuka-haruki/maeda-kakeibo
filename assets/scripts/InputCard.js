@@ -18,6 +18,9 @@ export class InputCard {
 
     const datepickerInput = document.getElementById('input-card__date');
     datepickerInput.value = `${thisYear}/${thisMonth}/${todayDate}`;
+
+    const datepickerLabel = document.getElementById('input-card__datepicker-label');
+    datepickerLabel.classList.add('active');
   }
 
   addEventToAddBtn() {
@@ -106,7 +109,6 @@ export class InputCard {
   }
 
   clearInputValue() {
-
     $('#input-card__how-much').val('');
     $('#input-card__how-much').next().removeClass('active');
     $('#input-card__things').val('');
@@ -115,6 +117,5 @@ export class InputCard {
     $('#input-card__category-select').formSelect();
     $('#input-card__how-to-pay-select').prop('selectedIndex', 0);
     $('#input-card__how-to-pay-select').formSelect();
-
   }
 }

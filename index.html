@@ -30,8 +30,6 @@
   <script src="./assets/scripts/libraries/official_easypiechart.js"></script>
   <!-- my original js -->
   <script src="./index.js" defer type="module"></script>
-  <!-- selection fixed on iPhone -->
-  <!-- <script type="text/javascript" src="./assets/scripts/libraries/official_materialize_select_fixed.js" defer></script> -->
 </head>
 
 <body>
@@ -60,7 +58,7 @@
             </div>
             <div class="input-field">
               <input type="text" class="datepicker" id="input-card__date">
-              <label for="spent_date">日付</label>
+              <label for="spent_date" id="input-card__datepicker-label">日付</label>
             </div>
             <div class="input-field">
               <input type="number" pattern="\d*" id="input-card__how-much">
