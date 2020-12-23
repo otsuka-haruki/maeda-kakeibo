@@ -18,7 +18,7 @@
   <!-- font awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
   <!-- my original stylesheet -->
-  <link rel="stylesheet" href="assets/styles/stylesheet.min.css">
+  <link rel="stylesheet" href="./assets/styles/stylesheet.min.css">
 
   <!-- jquery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -33,7 +33,7 @@
   <!-- my original js -->
   <script src="./index.js" defer type="module"></script>
   <!-- selection fixed on iPhone -->
-  <script type="text/javascript" src="./assets/scripts/libraries/official_select_fixed.js" defer></script>
+  <script type="text/javascript" src="./assets/scripts/libraries/official_materialize_select_fixed.js" defer></script>
 </head>
 
 <body>
@@ -76,12 +76,15 @@
             <div class="input-field" id="input-card__category">
               <select id="input-card__category-select">
                 <option value="" disabled selected>カテゴリーを選択</option>
-                <option value="食費" id="first-value">食費</option>
-                <option value="2" id="second-value">衣服</option>
-                <option value="3" id="third-value">日用品</option>
-                <option value="4" id="forth-value">交際費</option>
-                <option value="5">光熱費</option>
-                <option value="6">交通費</option>
+                <option>食費</option>
+                <option>衣服</option>
+                <option>日用品</option>
+                <option>交際費</option>
+                <option>光熱費</option>
+                <option>交通費</option>
+                <optgroup label="設定">
+                  <option>新しいカテゴリーを追加</option>
+                </optgroup>
               </select>
               <label>カテゴリー</label>
             </div>
@@ -89,12 +92,15 @@
             <div class="input-field" id="input-card__how-to-pay">
               <select id="input-card__how-to-pay-select">
                 <option value="" disabled selected>カテゴリーを選択</option>
-                <option value="1">現金</option>
-                <option value="2">クレジットカード</option>
-                <option value="3">Suica</option>
-                <option value="4">学食パス</option>
-                <option value="5">Paypay</option>
-                <option value="6">LinePay</option>
+                <option>現金</option>
+                <option>クレジットカード</option>
+                <option>Suica</option>
+                <option>学食パス</option>
+                <option>Paypay</option>
+                <option>LinePay</option>
+                <optgroup label="設定">
+                  <option>新しい支払い手段を追加</option>
+                </optgroup>
               </select>
               <label>支払い手段</label>
             </div>
