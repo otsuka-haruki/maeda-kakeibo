@@ -34,8 +34,6 @@
   <script src="./index.js" defer type="module"></script>
   <!-- selection fixed on iPhone -->
   <script type="text/javascript" src="./assets/scripts/libraries/official_select_fixed.js" defer></script>
-  <!-- my original easy-pie-chart js -->
-  <script src="./assets/scripts/original_easypiechart.js" defer></script>
 </head>
 
 <body>
@@ -71,13 +69,14 @@
               <label for="howmuch">金額</label>
             </div>
             <div class="input-field">
-              <input type="text" id="input-card__things">
+              <input type="text" id="input-card__things" data-length="15" class="input--charactor-counter">
               <label for="purpose">用途</label>
             </div>
+            <!-- TODO: カテゴリーを追加できるようにする。 -->
             <div class="input-field" id="input-card__category">
               <select id="input-card__category-select">
                 <option value="" disabled selected>カテゴリーを選択</option>
-                <option value="1" id="first-value">食費</option>
+                <option value="食費" id="first-value">食費</option>
                 <option value="2" id="second-value">衣服</option>
                 <option value="3" id="third-value">日用品</option>
                 <option value="4" id="forth-value">交際費</option>
@@ -86,6 +85,7 @@
               </select>
               <label>カテゴリー</label>
             </div>
+            <!-- TODO: 支払い手段を追加できるようにする。 -->
             <div class="input-field" id="input-card__how-to-pay">
               <select id="input-card__how-to-pay-select">
                 <option value="" disabled selected>カテゴリーを選択</option>
@@ -117,6 +117,7 @@
           <li class="tab col s3"><a href="#year_analysis">年間</a></li>
         </ul>
       </div>
+      <!-- TODO: 今日の収支、カテゴリー別、テーブルを完成させる。 -->
       <div id="day_analysis" class="col s12">
         <h5 class="center-align">収入<span>￥1000</span></h5>
         <h5 class="center-align">支出<span>￥2450</span></h5>

@@ -1,8 +1,8 @@
 'use strict';
 
-import { InputCard } from './assets/scripts/input_card.js';
-import { FetchData } from './assets/scripts/FetchData.js';
-import { CreateChart } from './assets/scripts/original_chart.js';
+import { InputCard } from './assets/scripts/InputCard.js';
+import { FetchData } from './assets/scripts/database/FetchData.js';
+import { CreateChart } from './assets/scripts/charts/original_chart.js';
 
 class App {
   constructor() {

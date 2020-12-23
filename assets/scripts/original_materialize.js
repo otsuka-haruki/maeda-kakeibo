@@ -41,4 +41,5 @@ $(document).ready(function() {
   });
   M.updateTextFields();
   $('select').formSelect();
+  $('input.input--charactor-counter').characterCounter();
 });

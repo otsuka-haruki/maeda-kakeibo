@@ -8,7 +8,7 @@ export class FetchData {
   fetchTodayTable() {
     const lsData = localStorage.getItem('array1');
     const todayArray = lsData.split(',');
-    
+
     const analysisTodayTableData = document.querySelectorAll('#analysis-today__table tbody tr td');
 
     const categoryValue = this.convertNumberIntoCategoryValue(+todayArray[4]);
