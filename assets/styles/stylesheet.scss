@@ -13,14 +13,10 @@ html {
 }
 
 nav {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 100;
-}
-
-.datepicker-table tbody td {
-  text-align: center;
 }
 
 .datepicker-footer {
