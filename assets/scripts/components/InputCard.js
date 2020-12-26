@@ -10,14 +10,16 @@ export class InputCard {
     this.setTodayAsDefaultAtDatepicker();
     this.initializeCategorySelectOptions();
     this.initializeHowtopaySelectOptions();
-    this.addEventToAddBtn();
+    this.addEventListenerToCardAddBtn();
 
-    this.settingModal();
+    this.initializeSettingModal();
+    this.addEventListenerToModalAddOptionsButton();
+    this.addEventListenerToModalAddButton();
   }
 
   test() {
-    const testCategoryArray = ['食費', '衣服', '日用品', '交際費', '光熱費', '交通費'];
-    localStorage.setItem('user_category_options', testCategoryArray);
+    // const testCategoryArray = ['食費', '衣服', '日用品', '交際費', '光熱費', '交通費'];
+    // localStorage.setItem('user_category_options', testCategoryArray);
     const testHowtopayArray = ['現金', 'クレカ', 'LinePay', 'PayPay', '商品券'];
     localStorage.setItem('user_howtopay_options', testHowtopayArray);
   }
@@ -63,7 +65,7 @@ export class InputCard {
     }
   }
 
-  addEventToAddBtn() {
+  addEventListenerToCardAddBtn() {
     const addBtn = document.getElementById('input-card__add-btn');
     addBtn.addEventListener('click', () => {
       let isSwitchChecked = false;
@@ -100,7 +102,7 @@ export class InputCard {
     });
   }
 
-  settingModal() {
+  initializeSettingModal() {
     const userCategoryOptions = localStorage.getItem('user_category_options');
     const userCategoryOptionsArray = userCategoryOptions.split(',');
 
@@ -112,11 +114,46 @@ export class InputCard {
       container.append(clone);
     }
 
-    const testButton = document.getElementById('test-button');
-    testButton.addEventListener('click', event => {
-      const template = document.getElementById('test-input');
+  }
+
+  addEventListenerToModalAddOptionsButton() {
+    const addCategoryButton = document.getElementById('input-card__setting-modal__button-add-category');
+    addCategoryButton.addEventListener('click', event => {
+      const template = document.getElementById('input-card__setting-modal__template-input-category');
       const clone = template.content.cloneNode(true);
-      event.target.parentElement.append(clone);
+      const container = document.getElementById('input-card__setting-modal__form-category');
+      container.append(clone);
+      const inputDiv = document.getElementById('input-card__setting-modal__div-input-category');
+      const input = inputDiv.querySelector('input');
+
+      addCategoryButton.innerHTML = '<i class="fas fa-check"></i>';
+
+      if (input.value.trim()) {
+        const inputValue = document.getElementById('input-card__setting-modal__input-add-category').value.trim();
+        const container = document.querySelector('#input-card__setting-modal__form-category  .input-field');
+        const template = document.getElementById('input-card__setting-modal__template-checkbox');
+        const clone = template.content.cloneNode(true);
+        clone.querySelector('span').textContent = inputValue;
+        container.before(clone);
+
+        inputDiv.remove();
+      }
+    });
+  }
+
+  addEventListenerToModalAddButton() {
+    const addButton = document.getElementById('input-card__setting-modal__button-decide');
+    addButton.addEventListener('click', () => {
+      const checkboxOptions = document.getElementById('input-card__setting-modal__form-category').querySelectorAll('label input');
+      const checkedOptionsArray = [];
+      for (let i = 0; i < checkboxOptions.length; i++) {
+        if (checkboxOptions[i].checked) {
+          const checkedOptionsName = checkboxOptions[i].nextElementSibling.textContent;
+          checkedOptionsArray.push(checkedOptionsName);
+        }
+      }
+      localStorage.setItem('user_category_options', checkedOptionsArray);
+      setTimeout(location.reload(), 500);
     });
   }
 

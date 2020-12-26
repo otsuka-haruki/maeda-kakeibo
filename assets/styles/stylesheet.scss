@@ -4,6 +4,14 @@ html {
   font-family: 'Roboto', 'Yu-Gothic', sans-serif;
 }
 
+body {
+  overflow-x: hidden;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
@@ -12,8 +20,12 @@ html {
   position: relative;
 }
 
+.margin-top-bottom-10px {
+  margin: 10px 0;
+}
+
 .datepicker-table {
-  
+
     td {
       text-align: center;
     }
