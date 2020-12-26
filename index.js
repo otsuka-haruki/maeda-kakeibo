@@ -14,7 +14,6 @@ class App {
     drawChart.chartInitialize();
     drawChart.drawChartDayDoughnut();
     MaterializeSelectFixed();
-
   }
 }
 
