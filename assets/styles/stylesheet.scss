@@ -9,6 +9,10 @@ body {
   overflow-x: hidden;
 }
 
+canvas {
+  max-width: 100%;
+}
+
 .font-bold {
   font-weight: bold;
 }

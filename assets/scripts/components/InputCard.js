@@ -18,10 +18,16 @@ export class InputCard {
   }
 
   test() {
-    // const testCategoryArray = ['食費', '衣服', '日用品', '交際費', '光熱費', '交通費'];
-    // localStorage.setItem('user_category_options', testCategoryArray);
-    const testHowtopayArray = ['現金', 'クレカ', 'LinePay', 'PayPay', '商品券'];
-    localStorage.setItem('user_howtopay_options', testHowtopayArray);
+    const hasCategory = localStorage.getItem('user_category_options');
+    if (!hasCategory) {
+      const testCategoryArray = ['食費', '衣服', '日用品', '交際費', '光熱費', '交通費'];
+      localStorage.setItem('user_category_options', testCategoryArray);
+    }
+    const hasHowtopay = localStorage.getItem('user_howtopay_options');
+    if (!hasHowtopay) {
+      const testHowtopayArray = ['現金', 'クレカ', 'LinePay', 'PayPay', '商品券'];
+      localStorage.setItem('user_howtopay_options', testHowtopayArray);  
+    }
   }
 
   setTodayAsDefaultAtDatepicker() {

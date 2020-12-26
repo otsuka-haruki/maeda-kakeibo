@@ -13,7 +13,6 @@ export function OriginalMaterializeInitialize() {
       }
     });
     $('select').formSelect();
-
     $('input.input--charactor-counter').characterCounter();
   });
 }
