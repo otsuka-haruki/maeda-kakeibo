@@ -1,9 +1,7 @@
 export function OriginalMaterializeInitialize() {
   $(document).ready(function() {
+    $('.modal').modal();
     $('.tabs').tabs();
-
-    // $('.sidenav').sidenav();
-
     $('.datepicker').datepicker({
       'autoClose': true,
       'format': 'yyyy/mm/dd',

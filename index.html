@@ -72,15 +72,9 @@
             <div class="input-field" id="input-card__category">
               <select id="input-card__category-select">
                 <option value="" disabled selected>カテゴリーを選択</option>
-                <option>食費</option>
-                <option>衣服</option>
-                <option>日用品</option>
-                <option>交際費</option>
-                <option>光熱費</option>
-                <option>交通費</option>
-                <optgroup label="設定">
-                  <option>新しいカテゴリーを追加</option>
-                </optgroup>
+                <template id="input-card__template-category-option">
+                  <option></option>
+                </template>
               </select>
               <label>カテゴリー</label>
             </div>
@@ -88,19 +82,14 @@
             <div class="input-field" id="input-card__how-to-pay">
               <select id="input-card__how-to-pay-select">
                 <option value="" disabled selected>カテゴリーを選択</option>
-                <option>現金</option>
-                <option>クレジットカード</option>
-                <option>Suica</option>
-                <option>学食パス</option>
-                <option>Paypay</option>
-                <option>LinePay</option>
-                <optgroup label="設定">
-                  <option>新しい支払い手段を追加</option>
-                </optgroup>
+                <template id="input-card__template-howtopay-option">
+                  <option></option>
+                </template>
               </select>
               <label>支払い手段</label>
             </div>
             <a class="waves-effect waves-light btn" id="input-card__add-btn">データを追加</a>
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal__input-card--settings"><i class="fas fa-sliders-h"></i></a>
           </div>
         </div>
       </div>
@@ -249,6 +238,37 @@
         © 2021 Designed by Otsuka in Tokyo.
       </div>
     </div>
+  </footer>
+
+  <!-- modals -->
+
+  <div id="modal__input-card--settings" class="modal">
+    <div class="modal-content">
+      <h4>設定</h4>
+      <p>カテゴリーと支払い手段の設定ができます。</p>
+      <form id="input-card__setting-modal__form-category">
+        <template id="input-card__setting-modal__template-checkbox">
+          <p>
+            <label>
+              <input type="checkbox" checked="checked" />
+              <span></span>
+            </label>
+          </p>
+        </template>
+      </form>
+      <template id="test-input">
+        <div class="input-field col s6">
+          <input id="input-card__setting-modal__input-add-category" type="text" class="validate">
+          <label for="input-card__setting-modal__input-add-category">新しいカテゴリー</label>
+        </div>
+      </template>
+      <a href="#!" class="waves-effect waves-green btn" id="test-button">Add</a>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn">Done</a>
+    </div>
+  </div>
+
 </body>
 
 </html>

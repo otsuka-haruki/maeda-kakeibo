@@ -2,12 +2,24 @@
 
 import {
   FetchData
-} from './database/FetchData.js';
+} from '../database/FetchData.js';
 
 export class InputCard {
   constructor() {
+    this.test();
     this.setTodayAsDefaultAtDatepicker();
+    this.initializeCategorySelectOptions();
+    this.initializeHowtopaySelectOptions();
     this.addEventToAddBtn();
+
+    this.settingModal();
+  }
+
+  test() {
+    const testCategoryArray = ['食費', '衣服', '日用品', '交際費', '光熱費', '交通費'];
+    localStorage.setItem('user_category_options', testCategoryArray);
+    const testHowtopayArray = ['現金', 'クレカ', 'LinePay', 'PayPay', '商品券'];
+    localStorage.setItem('user_howtopay_options', testHowtopayArray);
   }
 
   setTodayAsDefaultAtDatepicker() {
@@ -21,6 +33,34 @@ export class InputCard {
 
     const datepickerLabel = document.getElementById('input-card__datepicker-label');
     datepickerLabel.classList.add('active');
+  }
+
+  initializeCategorySelectOptions() {
+    const userCategoryOptions = localStorage.getItem('user_category_options');
+    const userCategoryOptionsArray = userCategoryOptions.split(',');
+
+    const selectContainer = document.querySelector('#input-card__category-select');
+    for (let i = 0; i < userCategoryOptionsArray.length; i++) {
+      const template = document.getElementById('input-card__template-category-option');
+      const clone = template.content.cloneNode(true);
+      clone.querySelector('option').textContent = userCategoryOptionsArray[i];
+      clone.querySelector('option').setAttribute('value', userCategoryOptionsArray[i]);
+      selectContainer.append(clone);
+    }
+  }
+
+  initializeHowtopaySelectOptions() {
+    const userHowtopayOptions = localStorage.getItem('user_howtopay_options');
+    const userHowtopayOptionsArray = userHowtopayOptions.split(',');
+
+    const selectContainer = document.querySelector('#input-card__how-to-pay-select');
+    for (let i = 0; i < userHowtopayOptionsArray.length; i++) {
+      const template = document.getElementById('input-card__template-category-option');
+      const clone = template.content.cloneNode(true);
+      clone.querySelector('option').textContent = userHowtopayOptionsArray[i];
+      clone.querySelector('option').setAttribute('value', userHowtopayOptionsArray[i]);
+      selectContainer.append(clone);
+    }
   }
 
   addEventToAddBtn() {
@@ -57,6 +97,26 @@ export class InputCard {
       });
       new FetchData();
       this.clearInputValue();
+    });
+  }
+
+  settingModal() {
+    const userCategoryOptions = localStorage.getItem('user_category_options');
+    const userCategoryOptionsArray = userCategoryOptions.split(',');
+
+    for (let i = 0; i < userCategoryOptionsArray.length; i++) {
+      const container = document.getElementById('input-card__setting-modal__form-category');
+      const template = document.getElementById('input-card__setting-modal__template-checkbox');
+      const clone = template.content.cloneNode(true);
+      clone.querySelector('span').textContent = userCategoryOptionsArray[i];
+      container.append(clone);
+    }
+
+    const testButton = document.getElementById('test-button');
+    testButton.addEventListener('click', event => {
+      const template = document.getElementById('test-input');
+      const clone = template.content.cloneNode(true);
+      event.target.parentElement.append(clone);
     });
   }
 
