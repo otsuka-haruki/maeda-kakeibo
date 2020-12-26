@@ -2,7 +2,7 @@ export function OriginalMaterializeInitialize() {
   $(document).ready(function() {
     $('.tabs').tabs();
 
-    $('.sidenav').sidenav();
+    // $('.sidenav').sidenav();
 
     $('.datepicker').datepicker({
       'autoClose': true,

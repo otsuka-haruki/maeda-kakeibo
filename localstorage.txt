@@ -1,0 +1,33 @@
+general
+
+  options of category added by user = ['食費', '日用品', '交際費', '交通費'...];
+  options of way of paying added by user = ['現金', 'クレカ', 'Suica', 'LinePay'...];
+
+today
+
+  [] (yesterday)
+  each amount of input categories today = [1000, 0];
+  each amount of output categories today = [2000, 1400, 4300, 3400];
+
+  today howmuch = [320, 1200, 540, 660...];
+  today things = ['コンビニ夜飯', '部屋着', '昼ごはん', 'スタバ'...];
+  today category = ['食費', '日用品', '食費', '交際費'...];
+  today howtopay = ['Paypay', '現金', '学食パス', 'スタバカード'...];
+
+week
+
+  category this week so far = [12000, 3000, 5000, 1500];
+  category last week = [21000, 5500, 7400, 3000];
+
+month
+
+  category this month so far = [12000, 3000, 5000, 1500];
+  category January = [60000, 20000, 12000, 7000];
+  category February = [60000, 20000, 12000, 7000];
+  category March = [60000, 20000, 12000, 7000];
+  category April = [60000, 20000, 12000, 7000];
+
+year
+
+  category this year so far = [500000, 100000, 70000, 60000];
+  category last year = [700000, 300000, 150000, 100000];
