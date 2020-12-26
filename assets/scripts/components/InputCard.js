@@ -153,7 +153,7 @@ export class InputCard {
         }
       }
       localStorage.setItem('user_category_options', checkedOptionsArray);
-      setTimeout(location.reload(), 500);
+      setTimeout(location.reload(true), 500);
     });
   }
 
