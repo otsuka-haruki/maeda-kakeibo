@@ -6,28 +6,31 @@ import {
 
 export class InputCard {
   constructor() {
-    this.test();
+    this.initializeInputCardContent();
+    this.initializeSettingModal();
+  }
+
+  initializeInputCardContent() {
     this.setTodayAsDefaultAtDatepicker();
     this.initializeCategorySelectOptions();
     this.initializeHowtopaySelectOptions();
     this.addEventListenerToCardAddBtn();
-
-    this.initializeSettingModal();
-    this.addEventListenerToModalAddOptionsButton();
-    this.addEventListenerToModalAddButton();
   }
 
-  test() {
-    const hasCategory = localStorage.getItem('user_category_options');
-    if (!hasCategory) {
-      const testCategoryArray = ['食費', '日用品', '交通費', '光熱費'];
-      localStorage.setItem('user_category_options', testCategoryArray);
+  initializeSettingModal() {
+    const userCategoryOptions = localStorage.getItem('user_category_options');
+    const userCategoryOptionsArray = userCategoryOptions.split(',');
+
+    for (let i = 0; i < userCategoryOptionsArray.length; i++) {
+      const container = document.getElementById('input-card__setting-modal__form-category');
+      const template = document.getElementById('input-card__setting-modal__template-checkbox');
+      const clone = template.content.cloneNode(true);
+      clone.querySelector('span').textContent = userCategoryOptionsArray[i];
+      container.append(clone);
     }
-    const hasHowtopay = localStorage.getItem('user_howtopay_options');
-    if (!hasHowtopay) {
-      const testHowtopayArray = ['現金', 'クレジットカード', 'Paypay', 'Linepay'];
-      localStorage.setItem('user_howtopay_options', testHowtopayArray);
-    }
+
+    this.addEventListenerToModalAddOptionsButton();
+    this.addEventListenerToModalAddButton();
   }
 
   setTodayAsDefaultAtDatepicker() {
@@ -44,6 +47,12 @@ export class InputCard {
   }
 
   initializeCategorySelectOptions() {
+    const hasCategory = localStorage.getItem('user_category_options');
+    if (!hasCategory) {
+      const testCategoryArray = ['食費', '日用品', '交通費', '光熱費'];
+      localStorage.setItem('user_category_options', testCategoryArray);
+    }
+
     const userCategoryOptions = localStorage.getItem('user_category_options');
     const userCategoryOptionsArray = userCategoryOptions.split(',');
 
@@ -58,6 +67,12 @@ export class InputCard {
   }
 
   initializeHowtopaySelectOptions() {
+    const hasHowtopay = localStorage.getItem('user_howtopay_options');
+    if (!hasHowtopay) {
+      const testHowtopayArray = ['現金', 'クレジットカード', 'Paypay', 'Linepay'];
+      localStorage.setItem('user_howtopay_options', testHowtopayArray);
+    }
+
     const userHowtopayOptions = localStorage.getItem('user_howtopay_options');
     const userHowtopayOptionsArray = userHowtopayOptions.split(',');
 
@@ -108,20 +123,6 @@ export class InputCard {
     });
   }
 
-  initializeSettingModal() {
-    const userCategoryOptions = localStorage.getItem('user_category_options');
-    const userCategoryOptionsArray = userCategoryOptions.split(',');
-
-    for (let i = 0; i < userCategoryOptionsArray.length; i++) {
-      const container = document.getElementById('input-card__setting-modal__form-category');
-      const template = document.getElementById('input-card__setting-modal__template-checkbox');
-      const clone = template.content.cloneNode(true);
-      clone.querySelector('span').textContent = userCategoryOptionsArray[i];
-      container.append(clone);
-    }
-
-  }
-
   addEventListenerToModalAddOptionsButton() {
     const addCategoryButton = document.getElementById('input-card__setting-modal__button-add-category');
     addCategoryButton.addEventListener('click', event => {
@@ -158,27 +159,15 @@ export class InputCard {
           checkedOptionsArray.push(checkedOptionsName);
         }
       }
-      // test below seems to be working
 
       const reloadFunction = location.reload(true);
-
       const isFinished = new Promise(resolve => {
         localStorage.setItem('user_category_options', checkedOptionsArray);
         resolve(reloadFunction);
       });
-
       isFinished.then(functionName => {
         functionName();
       });
-
-      // test above seems to be working
-
-      // original below can be removed ?
-
-      // localStorage.setItem('user_category_options', checkedOptionsArray);
-      // setTimeout(location.reload(true), 500);
-
-      // original above can be removed ?
     });
   }
 
