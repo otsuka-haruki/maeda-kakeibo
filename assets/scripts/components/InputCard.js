@@ -20,13 +20,13 @@ export class InputCard {
   test() {
     const hasCategory = localStorage.getItem('user_category_options');
     if (!hasCategory) {
-      const testCategoryArray = ['食費', '衣服', '日用品', '交際費', '光熱費', '交通費'];
+      const testCategoryArray = ['食費', '日用品', '交通費', '光熱費'];
       localStorage.setItem('user_category_options', testCategoryArray);
     }
     const hasHowtopay = localStorage.getItem('user_howtopay_options');
     if (!hasHowtopay) {
-      const testHowtopayArray = ['現金', 'クレカ', 'LinePay', 'PayPay', '商品券'];
-      localStorage.setItem('user_howtopay_options', testHowtopayArray);  
+      const testHowtopayArray = ['現金', 'クレジットカード', 'Paypay', 'Linepay'];
+      localStorage.setItem('user_howtopay_options', testHowtopayArray);
     }
   }
 
@@ -158,8 +158,27 @@ export class InputCard {
           checkedOptionsArray.push(checkedOptionsName);
         }
       }
-      localStorage.setItem('user_category_options', checkedOptionsArray);
-      setTimeout(location.reload(true), 500);
+      // test below seems to be working
+
+      const reloadFunction = location.reload(true);
+
+      const isFinished = new Promise(resolve => {
+        localStorage.setItem('user_category_options', checkedOptionsArray);
+        resolve(reloadFunction);
+      });
+
+      isFinished.then(functionName => {
+        functionName();
+      });
+
+      // test above seems to be working
+
+      // original below can be removed ?
+
+      // localStorage.setItem('user_category_options', checkedOptionsArray);
+      // setTimeout(location.reload(true), 500);
+
+      // original above can be removed ?
     });
   }
 

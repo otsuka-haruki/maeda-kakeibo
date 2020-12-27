@@ -8,7 +8,6 @@ export class FetchData {
   fetchTodayTable() {
     const lsData = localStorage.getItem('array1');
     if (!lsData) {
-      console.log('yeah');
       return;
     }
     const todayArray = lsData.split(',');
