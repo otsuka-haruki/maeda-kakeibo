@@ -5,7 +5,7 @@ general
 
 today
 
-  [] (yesterday)
+  [] (yesterday);
   each amount of input categories today = [1000, 0];
   each amount of output categories today = [2000, 1400, 4300, 3400];
 

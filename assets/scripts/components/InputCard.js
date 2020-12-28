@@ -116,7 +116,7 @@ export class InputCard {
       M.toast({
         html: 'データを追加しました！',
         displayLength: 3000,
-        classes: 'toast-success'
+        classes: 'toast-success toast-pop'
       });
       new FetchData();
       this.clearInputValue();
