@@ -14,7 +14,7 @@
   <!-- chartjs css -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.css">
   <!-- font awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous"> -->
   <!-- my original stylesheet -->
   <link rel="stylesheet" href="./assets/styles/stylesheet.min.css">
 
@@ -31,6 +31,19 @@
 </head>
 
 <body>
+  <div class="loading-container">
+    <div class="atom-spinner">
+      <div class="spinner-inner">
+        <div class="spinner-line"></div>
+        <div class="spinner-line"></div>
+        <div class="spinner-line"></div>
+        <!--Chrome renders little circles malformed :(-->
+        <div class="spinner-circle">
+          &#9679;
+        </div>
+      </div>
+    </div>
+  </div>
   <nav>
     <div class="nav-wrapper animate__animated animate__rubberBand">
       <a href="#" class="brand-logo">家計簿</a>
@@ -83,7 +96,7 @@
               <label>支払い手段</label>
             </div>
             <a class="waves-effect waves-light btn" id="input-card__add-btn">データを追加</a>
-            <a class="waves-effect waves-light btn modal-trigger" href="#modal__input-card--settings"><i class="fas fa-sliders-h"></i></a>
+            <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal__input-card--settings"><i class="fas fa-sliders-h"></i></a> -->
           </div>
         </div>
       </div>

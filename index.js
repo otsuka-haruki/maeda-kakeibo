@@ -35,3 +35,8 @@ tabs[2].addEventListener('click', () => {
 tabs[3].addEventListener('click', () => {
   drawChart.drawChartYearDoughnut();
 });
+
+window.onload = function() {
+  const spinner = document.querySelector('.loading-container');
+  spinner.classList.add('loaded');
+};
