@@ -17,21 +17,7 @@ export class InputCard {
     this.addEventListenerToCardAddBtn();
   }
 
-  initializeSettingModal() {
-    const userCategoryOptions = localStorage.getItem('user_category_options');
-    const userCategoryOptionsArray = userCategoryOptions.split(',');
-
-    for (let i = 0; i < userCategoryOptionsArray.length; i++) {
-      const container = document.getElementById('input-card__setting-modal__form-category');
-      const template = document.getElementById('input-card__setting-modal__template-checkbox');
-      const clone = template.content.cloneNode(true);
-      clone.querySelector('span').textContent = userCategoryOptionsArray[i];
-      container.append(clone);
-    }
-
-    this.addEventListenerToModalAddOptionsButton();
-    this.addEventListenerToModalAddButton();
-  }
+  // initializing input card content below
 
   setTodayAsDefaultAtDatepicker() {
     const date = new Date();
@@ -123,6 +109,43 @@ export class InputCard {
     });
   }
 
+  // initializing input card content above
+
+  // initializing setting modal content below
+
+  initializeSettingModal() {
+    this.printUserCategoryOptions();
+    this.printUserHowtopayOptions();
+    this.addEventListenerToModalAddOptionsButton();
+    this.addEventListenerToModalAddButton();
+  }
+
+  printUserCategoryOptions() {
+    const userCategoryOptions = localStorage.getItem('user_category_options');
+    const userCategoryOptionsArray = userCategoryOptions.split(',');
+
+    for (let i = 0; i < userCategoryOptionsArray.length; i++) {
+      const container = document.getElementById('input-card__setting-modal__form-category');
+      const template = document.getElementById('input-card__setting-modal__template-checkbox-category');
+      const clone = template.content.cloneNode(true);
+      clone.querySelector('span').textContent = userCategoryOptionsArray[i];
+      container.append(clone);
+    }
+  }
+
+  printUserHowtopayOptions() {
+    const userHowtopayOptions = localStorage.getItem('user_howtopay_options');
+    const userHowtopayOptionsArray = userHowtopayOptions.split(',');
+
+    for (let i = 0; i < userHowtopayOptionsArray.length; i++) {
+      const container = document.getElementById('input-card__setting-modal__form-howtopay');
+      const template = document.getElementById('input-card__setting-modal__template-checkbox-howtopay');
+      const clone = template.content.cloneNode(true);
+      clone.querySelector('span').textContent = userHowtopayOptionsArray[i];
+      container.append(clone);
+    }
+  }
+
   addEventListenerToModalAddOptionsButton() {
     const addCategoryButton = document.getElementById('input-card__setting-modal__button-add-category');
     addCategoryButton.addEventListener('click', event => {
@@ -133,7 +156,7 @@ export class InputCard {
       const inputDiv = document.getElementById('input-card__setting-modal__div-input-category');
       const input = inputDiv.querySelector('input');
 
-      addCategoryButton.innerHTML = '<i class="fas fa-check"></i>';
+      addCategoryButton.textContent = '決定';
 
       if (input.value.trim()) {
         const inputValue = document.getElementById('input-card__setting-modal__input-add-category').value.trim();

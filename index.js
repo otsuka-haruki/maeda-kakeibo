@@ -36,7 +36,13 @@ tabs[3].addEventListener('click', () => {
   drawChart.drawChartYearDoughnut();
 });
 
-window.onload = function() {
-  const spinner = document.querySelector('.loading-container');
-  spinner.classList.add('loaded');
-};
+const tds = document.querySelectorAll('td');
+for (const td of tds) {
+  td.addEventListener('copy', () => {
+    M.toast({
+      html: 'コピーしました',
+      displayLength: 3000,
+      classes: 'toast-success toast-pop'
+    });
+  })
+}

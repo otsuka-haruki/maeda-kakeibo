@@ -31,12 +31,6 @@
 </head>
 
 <body>
-  <div class="loading-container">
-    <div class="half-circle-spinner">
-      <div class="circle circle-1"></div>
-      <div class="circle circle-2"></div>
-    </div>
-  </div>
   <nav>
     <div class="nav-wrapper animate__animated animate__rubberBand">
       <a href="#" class="brand-logo">家計簿</a>
@@ -89,7 +83,7 @@
               <label>支払い手段</label>
             </div>
             <a class="waves-effect waves-light btn" id="input-card__add-btn">データを追加</a>
-            <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal__input-card--settings"><i class="fas fa-sliders-h"></i></a> -->
+            <a class="waves-effect waves-light btn modal-trigger" href="#modal__input-card--settings">設定</a>
           </div>
         </div>
       </div>
@@ -248,7 +242,7 @@
       <p class="margin-top-bottom-10px">カテゴリーと支払い手段の設定ができます。</p>
       <form id="input-card__setting-modal__form-category">
         <h6 class="font-bold">・カテゴリーのオプション</h6>
-        <template id="input-card__setting-modal__template-checkbox">
+        <template id="input-card__setting-modal__template-checkbox-category">
           <p class="margin-top-bottom-10px">
             <label>
               <input type="checkbox" checked="checked" />
@@ -263,10 +257,28 @@
           </div>
         </template>
       </form>
-      <a href="#!" class="waves-effect waves-green btn" id="input-card__setting-modal__button-add-category"><i class="fas fa-plus"></i></a>
+      <form id="input-card__setting-modal__form-howtopay">
+        <h6 class="font-bold">・支払い方法のオプション</h6>
+        <template id="input-card__setting-modal__template-checkbox-howtopay">
+          <p class="margin-top-bottom-10px">
+            <label>
+              <input type="checkbox" checked="checked" />
+              <span></span>
+            </label>
+          </p>
+        </template>
+        <template id="input-card__setting-modal__template-input-category">
+          <div class="input-field" id="input-card__setting-modal__div-input-category">
+            <input id="input-card__setting-modal__input-add-category" type="text" class="validate">
+            <label for="input-card__setting-modal__input-add-category">新しいカテゴリー</label>
+          </div>
+        </template>
+      </form>
+      <a href="#!" class="waves-effect waves-green btn" id="input-card__setting-modal__button-add-category">入力</a>
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn" id="input-card__setting-modal__button-decide">Done</a>
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">取り消し</a>
+      <a href="#!" class="modal-close waves-effect waves-green btn" id="input-card__setting-modal__button-decide">完了</a>
     </div>
   </div>
 
