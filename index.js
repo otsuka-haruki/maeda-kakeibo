@@ -46,3 +46,13 @@ for (const td of tds) {
     });
   })
 }
+
+const wasUserOptionsChanged = localStorage.getItem('was_user_options_changed');
+if (wasUserOptionsChanged === 'true') {
+  M.toast({
+    html: 'カテゴリーと支払い手段の選択肢が更新されました！',
+    displayLength: 3000,
+    classes: 'toast-success toast-pop'
+  });
+  localStorage.setItem('was_user_options_changed', false);
+}

@@ -148,6 +148,8 @@ export class InputCard {
 
   addEventListenerToModalAddOptionsButton() {
     const addCategoryButton = document.getElementById('input-card__setting-modal__button-add-category');
+    const addHowtopayButton = document.getElementById('input-card__setting-modal__button-add-howtopay');
+
     addCategoryButton.addEventListener('click', event => {
       const template = document.getElementById('input-card__setting-modal__template-input-category');
       const clone = template.content.cloneNode(true);
@@ -161,7 +163,29 @@ export class InputCard {
       if (input.value.trim()) {
         const inputValue = document.getElementById('input-card__setting-modal__input-add-category').value.trim();
         const container = document.querySelector('#input-card__setting-modal__form-category  .input-field');
-        const template = document.getElementById('input-card__setting-modal__template-checkbox');
+        const template = document.getElementById('input-card__setting-modal__template-checkbox-category');
+        const clone = template.content.cloneNode(true);
+        clone.querySelector('span').textContent = inputValue;
+        container.before(clone);
+
+        inputDiv.remove();
+      }
+    });
+
+    addHowtopayButton.addEventListener('click', event => {
+      const template = document.getElementById('input-card__setting-modal__template-input-howtopay');
+      const clone = template.content.cloneNode(true);
+      const container = document.getElementById('input-card__setting-modal__form-howtopay');
+      container.append(clone);
+      const inputDiv = document.getElementById('input-card__setting-modal__div-input-howtopay');
+      const input = inputDiv.querySelector('input');
+
+      addHowtopayButton.textContent = '決定';
+
+      if (input.value.trim()) {
+        const inputValue = document.getElementById('input-card__setting-modal__input-add-howtopay').value.trim();
+        const container = document.querySelector('#input-card__setting-modal__form-howtopay  .input-field');
+        const template = document.getElementById('input-card__setting-modal__template-checkbox-howtopay');
         const clone = template.content.cloneNode(true);
         clone.querySelector('span').textContent = inputValue;
         container.before(clone);
@@ -174,18 +198,31 @@ export class InputCard {
   addEventListenerToModalAddButton() {
     const addButton = document.getElementById('input-card__setting-modal__button-decide');
     addButton.addEventListener('click', () => {
-      const checkboxOptions = document.getElementById('input-card__setting-modal__form-category').querySelectorAll('label input');
-      const checkedOptionsArray = [];
-      for (let i = 0; i < checkboxOptions.length; i++) {
-        if (checkboxOptions[i].checked) {
-          const checkedOptionsName = checkboxOptions[i].nextElementSibling.textContent;
-          checkedOptionsArray.push(checkedOptionsName);
+      const checkboxCategoryOptions = document.getElementById('input-card__setting-modal__form-category').querySelectorAll('label input');
+      const checkedCategoryOptionsArray = [];
+      for (let i = 0; i < checkboxCategoryOptions.length; i++) {
+        if (checkboxCategoryOptions[i].checked) {
+          const checkedOptionsName = checkboxCategoryOptions[i].nextElementSibling.textContent;
+          checkedCategoryOptionsArray.push(checkedOptionsName);
         }
       }
 
-      const reloadFunction = location.reload(true);
+      const checkboxHowtopayOptions = document.getElementById('input-card__setting-modal__form-howtopay').querySelectorAll('label input');
+      const checkedHowtopayOptionsArray = [];
+      for (let i = 0; i < checkboxHowtopayOptions.length; i++) {
+        if (checkboxHowtopayOptions[i].checked) {
+          const checkedOptionsName = checkboxHowtopayOptions[i].nextElementSibling.textContent;
+          checkedHowtopayOptionsArray.push(checkedOptionsName);
+        }
+      }
+
+      function reloadFunction() {
+        location.reload(true);
+      };
       const isFinished = new Promise(resolve => {
-        localStorage.setItem('user_category_options', checkedOptionsArray);
+        localStorage.setItem('user_category_options', checkedCategoryOptionsArray);
+        localStorage.setItem('user_howtopay_options', checkedHowtopayOptionsArray);
+        localStorage.setItem('was_user_options_changed', true);
         resolve(reloadFunction);
       });
       isFinished.then(functionName => {
