@@ -97,16 +97,75 @@ export class InputCard {
         return;
       }
 
-      const inputValueArray = [isSwitchChecked, dateValue, howMuchValue, thingsValue, categoryValue, howToPayValue];
-      localStorage.setItem('array1', inputValueArray);
+      const todaySwitchLS = localStorage.getItem('today_switch_array');
+      if (todaySwitchLS) {
+        const todaySwitchArray = todaySwitchLS.split(',');
+        todaySwitchArray.push(isSwitchChecked);
+        localStorage.setItem('today_switch_array', todaySwitchArray);
+      } else {
+        localStorage.setItem('today_switch_array', isSwitchChecked);
+      }
+
+      const todayDateLS = localStorage.getItem('today_date_array');
+      if (todayDateLS) {
+        const todayDateArray = todayDateLS.split(',');
+        todayDateArray.push(dateValue);
+        localStorage.setItem('today_date_array', todayDateArray);
+      } else {
+        localStorage.setItem('today_date_array', dateValue);
+      }
+
+      const todayHowmuchLS = localStorage.getItem('today_howmuch_array');
+      if (todayHowmuchLS) {
+        const todayHowmuchArray = todayHowmuchLS.split(',');
+        todayHowmuchArray.push(howMuchValue);
+        localStorage.setItem('today_howmuch_array', todayHowmuchArray);
+      } else {
+        localStorage.setItem('today_howmuch_array', howMuchValue);
+      }
+
+      const todayThingsLS = localStorage.getItem('today_things_array');
+      if (todayThingsLS) {
+        const todayThingsArray = todayThingsLS.split(',');
+        todayThingsArray.push(thingsValue);
+        localStorage.setItem('today_things_array', todayThingsArray);
+      } else {
+        localStorage.setItem('today_things_array', thingsValue);
+      }
+
+      const todayCategoryLS = localStorage.getItem('today_category_array');
+      if (todayCategoryLS) {
+        const todayCategoryArray = todayCategoryLS.split(',');
+        todayCategoryArray.push(categoryValue);
+        localStorage.setItem('today_category_array', todayCategoryArray);
+      } else {
+        localStorage.setItem('today_category_array', categoryValue);
+      }
+
+      const todayHowtopayLS = localStorage.getItem('today_howtopay_array');
+      if (todayHowtopayLS) {
+        const todayHowtopayArray = todayHowtopayLS.split(',');
+        todayHowtopayArray.push(howToPayValue);
+        localStorage.setItem('today_howtopay_array', todayHowtopayArray);
+      } else {
+        localStorage.setItem('today_howtopay_array', howToPayValue);
+      }
+
+      localStorage.setItem('was_new_table_added', true);
+      setTimeout(() => {
+        location.reload(true)
+      }, 500);
+    });
+
+    const wasNewTableAdded = localStorage.getItem('was_new_table_added');
+    if (wasNewTableAdded === 'true') {
       M.toast({
         html: 'データを追加しました！',
         displayLength: 3000,
         classes: 'toast-success toast-pop'
       });
-      new FetchData();
-      this.clearInputValue();
-    });
+      localStorage.setItem('was_new_table_added', false);
+    }
   }
 
   // initializing input card content above
@@ -229,6 +288,16 @@ export class InputCard {
         functionName();
       });
     });
+
+    const wasUserOptionsChanged = localStorage.getItem('was_user_options_changed');
+    if (wasUserOptionsChanged === 'true') {
+      M.toast({
+        html: 'カテゴリーと支払い手段の選択肢が更新されました！',
+        displayLength: 5000,
+        classes: 'toast-success toast-pop'
+      });
+      localStorage.setItem('was_user_options_changed', false);
+    }
   }
 
   validateInputContent(howMuchValue, thingsValue, categoryValue, howToPayValue) {
