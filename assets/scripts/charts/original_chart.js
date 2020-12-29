@@ -2,7 +2,7 @@
 
 export function chartInitialize() {
     Chart.defaults.global.elements.point.backgroundColor = 'transparent';
-    Chart.defaults.global.elements.line.borderCapStyle = "round";
+    Chart.defaults.global.elements.line.borderCapStyle = 'round';
 }
 
 export function drawChartYearDoughnut() {
@@ -94,8 +94,8 @@ export function drawChartWeekBar() {
       datasets: [{
         label: '支出',
         data: [1200, 3400, 2345, 3200, 1540, 1870, 2360],
-        backgroundColor: "#ffe082",
-        borderColor: "rgba(255,213,79,1)",
+        backgroundColor: '#ffe082',
+        borderColor: 'rgba(255,213,79,1)',
       }]
     },
     options: {

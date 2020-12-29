@@ -1,9 +1,5 @@
 'use strict';
 
-import {
-  FetchData
-} from '../database/FetchData.js';
-
 export class InputCard {
   constructor() {
     this.initializeInputCardContent();
@@ -277,7 +273,7 @@ export class InputCard {
 
       function reloadFunction() {
         location.reload(true);
-      };
+      }
       const isFinished = new Promise(resolve => {
         localStorage.setItem('user_category_options', checkedCategoryOptionsArray);
         localStorage.setItem('user_howtopay_options', checkedHowtopayOptionsArray);
