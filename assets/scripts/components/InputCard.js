@@ -21,10 +21,10 @@ export class InputCard {
     const thisMonth = +date.getMonth() + 1;
     const thisYear = date.getFullYear();
 
-    const datepickerInput = document.getElementById('input-card__date');
+    const datepickerInput = document.getElementById('input-card__input--date');
     datepickerInput.value = `${thisYear}/${thisMonth}/${todayDate}`;
 
-    const datepickerLabel = document.getElementById('input-card__datepicker-label');
+    const datepickerLabel = document.getElementById('input-card__input--date__label');
     datepickerLabel.classList.add('active');
   }
 
