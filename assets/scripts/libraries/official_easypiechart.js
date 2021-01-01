@@ -199,7 +199,7 @@ const CanvasRenderer = function(el, options) {
 	this.animate = function(from, to) {
 		const startTime = Date.now();
 		options.onStart(from, to);
-		var animation = function() {
+		const animation = function() {
 			const process = Math.min(Date.now() - startTime, options.animate.duration);
 			const currentValue = options.easing(this, process, from, to - from, options.animate.duration);
 			this.draw(currentValue);
