@@ -82,10 +82,10 @@ export class InputCard {
         isSwitchChecked = true;
       }
 
-      const howToPaySelect = document.getElementById('input-card__how-to-pay-select');
-      const howToPaySelectInstance = M.FormSelect.getInstance(howToPaySelect);
       const categorySelect = document.getElementById('input-card__category-select');
       const categorySelectInstance = M.FormSelect.getInstance(categorySelect);
+      const howToPaySelect = document.getElementById('input-card__how-to-pay-select');
+      const howToPaySelectInstance = M.FormSelect.getInstance(howToPaySelect);
 
       const dateValue = document.getElementById('input-card__input--date').value;
       const howMuchValue = document.getElementById('input-card__input--how-much').value;

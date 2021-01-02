@@ -18,12 +18,20 @@ canvas {
   font-weight: bold;
 }
 
-.overflow-hidden {
-  overflow: hidden;
+.margin-bottom-0 {
+  margin-bottom: 0;
+}
+
+.display-none {
+  display: none;
 }
 
 .relative {
   position: relative;
+}
+
+.flex {
+  display: flex;
 }
 
 .margin-center {
@@ -59,6 +67,10 @@ canvas {
 
 .toast-success {
   background-color: #2196f3;
+}
+
+.card-content__half {
+  width: 50%;
 }
 
 // test below

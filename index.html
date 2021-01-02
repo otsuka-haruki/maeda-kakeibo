@@ -1,3 +1,5 @@
+<!-- 1470 1/2 -->
+
 <!DOCTYPE html>
 <html>
 
@@ -26,7 +28,7 @@
     </div>
   </nav>
   <div class="amber lighten-2" id="input-card">
-    <div class="row">
+    <div class="row margin-bottom-0">
       <div class="col s12">
         <div class="card">
           <div class="card-content">
@@ -51,7 +53,6 @@
               <input type="text" id="input-card__things" data-length="15" class="input--charactor-counter">
               <label for="purpose">用途</label>
             </div>
-            <!-- TODO: カテゴリーを追加できるようにする。 -->
             <div class="input-field" id="input-card__category">
               <select id="input-card__category-select">
                 <option value="" disabled selected>カテゴリーを選択</option>
@@ -61,7 +62,6 @@
               </select>
               <label>カテゴリー</label>
             </div>
-            <!-- TODO: 支払い手段を追加できるようにする。 -->
             <div class="input-field" id="input-card__how-to-pay">
               <select id="input-card__how-to-pay-select">
                 <option value="" disabled selected>カテゴリーを選択</option>
@@ -79,53 +79,64 @@
     </div>
   </div>
 
-  <!-- analysis -->
+  <!-- report -->
 
-  <div class="report" id="report">
-    <div class="row">
-      <div class="col s12">
-        <ul class="tabs">
-          <li class="tab col s3"><a href="#day-report">今日</a></li>
-          <li class="tab col s3"><a href="#week_analysis">週間</a></li>
-          <li class="tab col s3"><a href="#month_analysis">月間</a></li>
-          <li class="tab col s3"><a href="#year_analysis">年間</a></li>
-        </ul>
+  <div class="row" id="report">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a href="#day-report">今日</a></li>
+        <li class="tab col s3"><a href="#week_analysis">週間</a></li>
+        <li class="tab col s3"><a href="#month_analysis">月間</a></li>
+        <li class="tab col s3"><a href="#year_analysis">年間</a></li>
+      </ul>
+    </div>
+    <!-- TODO: 今日の収支、カテゴリー別、テーブルを完成させる。 -->
+    <div id="day-report" class="col s12 teal lighten-3">
+      <div class="input-field center-align margin-center width-40percent">
+        <select>
+          <option value="1" selected>今日</option>
+          <option value="2">昨日</option>
+        </select>
       </div>
-      <!-- TODO: 今日の収支、カテゴリー別、テーブルを完成させる。 -->
-      <div id="day-report" class="col s12">
-        <div class="input-field center-align margin-center width-40percent">
-          <select>
-            <option value="1" selected>今日</option>
-            <option value="2">昨日</option>
-          </select>
+      <div id="report__day__today">
+        <div class="card">
+          <div class="card-content">
+            <h5 class="center-align">収入 ￥<span id="day-report__span-out"></span></h5>
+            <h5 class="center-align">支出 ￥<span id="day-report__span-in">0</span></h5>
+          </div>
         </div>
-        <div class="report__day__today">
-          <h5 class="center-align">収入 ￥<span id="day-report__span-out"></span></h5>
-          <h5 class="center-align">支出 ￥<span id="day-report__span-in">0</span></h5>
-          <canvas id="day_doughnut_out" width="300" height="300"></canvas>
-          <canvas id="day_doughnut_in" width="300" height="300"></canvas>
-          <table class="centered" id="analysis-today__table">
-            <thead>
-              <tr>
-                <th>カテゴリー</th>
-                <th>用途</th>
-                <th>金額</th>
-                <th>支払い方法</th>
-              </tr>
-            </thead>
-            <template id="analysis__today__template-table-tbody">
-              <tbody>
+        <div class="card display-none">
+          <div class="card-content">
+            <canvas id="day_doughnut_out" width="300" height="300"></canvas>
+            <canvas id="day_doughnut_in" width="300" height="300"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <table class="centered" id="analysis-today__table">
+              <thead>
                 <tr>
-                  <td>--</td>
-                  <td>--</td>
-                  <td>--</td>
-                  <td>--</td>
+                  <th>カテゴリー</th>
+                  <th>用途</th>
+                  <th>金額</th>
+                  <th>支払い方法</th>
                 </tr>
-              </tbody>
-            </template>
-          </table>
+              </thead>
+              <template id="analysis__today__template-table-tbody">
+                <tbody>
+                  <tr>
+                    <td>--</td>
+                    <td>--</td>
+                    <td>--</td>
+                    <td>--</td>
+                  </tr>
+                </tbody>
+              </template>
+            </table>
+          </div>
         </div>
-        <!-- <div class="report__day__yesterday">
+      </div>
+      <!-- <div class="report__day__yesterday">
           <h5 class="center-align">収入 ￥<span id="report__day__yesterday__span-out"></span></h5>
           <h5 class="center-align">支出 ￥<span id="report__day__yesterday__span-in">0</span></h5>
           <canvas id="day_doughnut_out" width="300" height="300"></canvas>
@@ -152,45 +163,45 @@
           </table>
         </div> -->
 
+    </div>
+    <div id="week_analysis" class="col s12">
+      <div class="input-field" style="width: 40%; margin: 0 auto; text-align: center;">
+        <select>
+          <option value="1" selected>今週</option>
+          <option value="2">先週</option>
+        </select>
       </div>
-      <div id="week_analysis" class="col s12">
-        <div class="input-field" style="width: 40%; margin: 0 auto; text-align: center;">
-          <select>
-            <option value="1" selected>今週</option>
-            <option value="2">先週</option>
-          </select>
-        </div>
-        <canvas id="week_bar" width="400" height="400"></canvas>
-        <canvas id="week_doughnut" width="400" height="400"></canvas>
+      <canvas id="week_bar" width="400" height="400"></canvas>
+      <canvas id="week_doughnut" width="400" height="400"></canvas>
+    </div>
+    <div id="month_analysis" class="col s12">
+      <div class="input-field" style="width: 40%; margin: 0 auto; text-align: center;">
+        <select>
+          <option value="1" selected>1月</option>
+          <option value="2">2月</option>
+          <option value="3">3月</option>
+          <option value="4">4月</option>
+          <option value="5">5月</option>
+          <option value="6">6月</option>
+          <option value="7">7月</option>
+          <option value="8">8月</option>
+          <option value="9">9月</option>
+          <option value="10">10月</option>
+          <option value="11">11月</option>
+          <option value="12">12月</option>
+        </select>
       </div>
-      <div id="month_analysis" class="col s12">
-        <div class="input-field" style="width: 40%; margin: 0 auto; text-align: center;">
-          <select>
-            <option value="1" selected>1月</option>
-            <option value="2">2月</option>
-            <option value="3">3月</option>
-            <option value="4">4月</option>
-            <option value="5">5月</option>
-            <option value="6">6月</option>
-            <option value="7">7月</option>
-            <option value="8">8月</option>
-            <option value="9">9月</option>
-            <option value="10">10月</option>
-            <option value="11">11月</option>
-            <option value="12">12月</option>
-          </select>
-        </div>
-        <h5 class="center-align">支出</h5>
-        <canvas id="month_doughnut_in" width="400" height="400"></canvas>
-        <h5 class="center-align">収入</h5>
-        <canvas id="month_doughnut_out" width="400" height="400"></canvas>
-      </div>
-      <div id="year_analysis" class="col s12">
-        <h4 class="center-align">2020年</h4>
-        <canvas id="year_doughnut" width="400" height="400"></canvas>
-      </div>
+      <h5 class="center-align">支出</h5>
+      <canvas id="month_doughnut_in" width="400" height="400"></canvas>
+      <h5 class="center-align">収入</h5>
+      <canvas id="month_doughnut_out" width="400" height="400"></canvas>
+    </div>
+    <div id="year_analysis" class="col s12">
+      <h4 class="center-align">2020年</h4>
+      <canvas id="year_doughnut" width="400" height="400"></canvas>
     </div>
   </div>
+
   <a class="waves-effect waves-light btn" id="update">1日分更新する</a>
 
   <footer class="page-footer">
