@@ -18,6 +18,17 @@ export class FetchData {
       localStorage.setItem('user_howtopay_options', ['以下、デフォルト', '自由に変更してください', '現金', 'クレジットカード', 'Paypay']);
     }
 
+    const toast = localStorage.getItem('toast_to_show');
+    if (!toast) {
+      const welcomeToastObject = {
+        bool: true,
+        message: 'ようこそ、家計簿アプリへ！',
+        className: 'toast-success toast-pop',
+      };
+      const welcomeToastJSON = JSON.stringify(welcomeToastObject);
+      localStorage.setItem('toast_to_show', welcomeToastJSON);
+    }
+
     const dateData = new Date();
     const today = dateData.getDay();
     const todayLSData = localStorage.getItem('today_date');
