@@ -29,7 +29,7 @@ today
   thigns: '夜ごはん',
   category: '食費',
   howtopay: 'クレカ',
-  }]
+  }];
 
 week
 

@@ -1,5 +1,9 @@
 'use strict';
 
+import {
+  setToastDataFunctions
+} from '../functions/setToastDataFunctions.js';
+
 export class InputCard {
   constructor() {
     this.initializeInputCardContent();
@@ -60,7 +64,7 @@ export class InputCard {
 
     const selectContainer = document.querySelector('#input-card__how-to-pay-select');
     for (let i = 0; i < userHowtopayOptionsArray.length; i++) {
-      const template = document.getElementById('input-card__template-category-option');
+      const template = document.getElementById('input-card__template-howtopay-option');
       const clone = template.content.cloneNode(true);
       clone.querySelector('option').textContent = userHowtopayOptionsArray[i];
       clone.querySelector('option').setAttribute('value', userHowtopayOptionsArray[i]);
@@ -70,6 +74,7 @@ export class InputCard {
 
   addEventListenerToCardAddBtn() {
     const addBtn = document.getElementById('input-card__add-btn');
+
     addBtn.addEventListener('click', () => {
       let isSwitchChecked = false;
       const switchBtnInput = document.querySelector('.switch input');
@@ -82,8 +87,8 @@ export class InputCard {
       const categorySelect = document.getElementById('input-card__category-select');
       const categorySelectInstance = M.FormSelect.getInstance(categorySelect);
 
-      const dateValue = document.getElementById('input-card__date').value;
-      const howMuchValue = document.getElementById('input-card__how-much').value;
+      const dateValue = document.getElementById('input-card__input--date').value;
+      const howMuchValue = document.getElementById('input-card__input--how-much').value;
       const thingsValue = document.getElementById('input-card__things').value.trim();
       const categoryValue = categorySelectInstance.getSelectedValues()[0];
       const howToPayValue = howToPaySelectInstance.getSelectedValues()[0];
@@ -93,75 +98,22 @@ export class InputCard {
         return;
       }
 
-      const todaySwitchLS = localStorage.getItem('today_switch_array');
-      if (todaySwitchLS) {
-        const todaySwitchArray = todaySwitchLS.split(',');
-        todaySwitchArray.push(isSwitchChecked);
-        localStorage.setItem('today_switch_array', todaySwitchArray);
-      } else {
-        localStorage.setItem('today_switch_array', isSwitchChecked);
-      }
+      const todayRecordObject = {
+        inOrOut: isSwitchChecked,
+        date: dateValue,
+        howMuch: howMuchValue,
+        things: thingsValue,
+        category: categoryValue,
+        howToPay: howToPayValue,
+      };
+      const todayRecordJSON = JSON.stringify(todayRecordObject);
 
-      const todayDateLS = localStorage.getItem('today_date_array');
-      if (todayDateLS) {
-        const todayDateArray = todayDateLS.split(',');
-        todayDateArray.push(dateValue);
-        localStorage.setItem('today_date_array', todayDateArray);
-      } else {
-        localStorage.setItem('today_date_array', dateValue);
-      }
-
-      const todayHowmuchLS = localStorage.getItem('today_howmuch_array');
-      if (todayHowmuchLS) {
-        const todayHowmuchArray = todayHowmuchLS.split(',');
-        todayHowmuchArray.push(howMuchValue);
-        localStorage.setItem('today_howmuch_array', todayHowmuchArray);
-      } else {
-        localStorage.setItem('today_howmuch_array', howMuchValue);
-      }
-
-      const todayThingsLS = localStorage.getItem('today_things_array');
-      if (todayThingsLS) {
-        const todayThingsArray = todayThingsLS.split(',');
-        todayThingsArray.push(thingsValue);
-        localStorage.setItem('today_things_array', todayThingsArray);
-      } else {
-        localStorage.setItem('today_things_array', thingsValue);
-      }
-
-      const todayCategoryLS = localStorage.getItem('today_category_array');
-      if (todayCategoryLS) {
-        const todayCategoryArray = todayCategoryLS.split(',');
-        todayCategoryArray.push(categoryValue);
-        localStorage.setItem('today_category_array', todayCategoryArray);
-      } else {
-        localStorage.setItem('today_category_array', categoryValue);
-      }
-
-      const todayHowtopayLS = localStorage.getItem('today_howtopay_array');
-      if (todayHowtopayLS) {
-        const todayHowtopayArray = todayHowtopayLS.split(',');
-        todayHowtopayArray.push(howToPayValue);
-        localStorage.setItem('today_howtopay_array', todayHowtopayArray);
-      } else {
-        localStorage.setItem('today_howtopay_array', howToPayValue);
-      }
-
-      localStorage.setItem('was_new_table_added', true);
-      setTimeout(() => {
-        location.reload(true)
-      }, 500);
+      let todayRecordNumber = localStorage.getItem('day_record_number');
+      localStorage.setItem(`day_record_${todayRecordNumber}`, todayRecordJSON);
+      localStorage.setItem('day_record_number', ++todayRecordNumber);
+      
+      setToastDataFunctions('true', 'データを追加しました！', 'toast-success toast-pop');
     });
-
-    const wasNewTableAdded = localStorage.getItem('was_new_table_added');
-    if (wasNewTableAdded === 'true') {
-      M.toast({
-        html: 'データを追加しました！',
-        displayLength: 3000,
-        classes: 'toast-success toast-pop'
-      });
-      localStorage.setItem('was_new_table_added', false);
-    }
   }
 
   // initializing input card content above
@@ -287,11 +239,7 @@ export class InputCard {
 
     const wasUserOptionsChanged = localStorage.getItem('was_user_options_changed');
     if (wasUserOptionsChanged === 'true') {
-      M.toast({
-        html: 'カテゴリーと支払い手段の選択肢が更新されました！',
-        displayLength: 5000,
-        classes: 'toast-success toast-pop'
-      });
+      setToastDataFunctions(true, 'カテゴリーと支払い手段の選択肢が更新されました！', 'toast-success toast-pop');
       localStorage.setItem('was_user_options_changed', false);
     }
   }

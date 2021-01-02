@@ -2,34 +2,89 @@
 
 export class FetchData {
   constructor() {
-    this.fetchTodayTable();
+    this.setDefaultValue();
+    this.dayUpdate();
+    this.showToast();
+    this.printTodayReport();
   }
 
-  fetchTodayTable() {
+  setDefaultValue() {
+    const userCategoryOptions = localStorage.getItem('user_category_options');
+    if (!userCategoryOptions) {
+      localStorage.setItem('user_category_options', ['以下、デフォルト', '自由に変更してください', '食費', '交通費', '光熱費']);
+    }
+    const userHowtopayOptions = localStorage.getItem('user_howtopay_options');
+    if (!userHowtopayOptions) {
+      localStorage.setItem('user_howtopay_options', ['以下、デフォルト', '自由に変更してください', '現金', 'クレジットカード', 'Paypay']);
+    }
 
-    const todaySwitchLS = localStorage.getItem('today_switch_array');
-    const todaySwitchArray = todaySwitchLS.split(',');
-    // const todayDateLS = localStorage.getItem('today_date_array');
-    // const todayDateArray = todayDateLS.split(',');
-    const todayHowmuchLS = localStorage.getItem('today_howmuch_array');
-    const todayHowmuchArray = todayHowmuchLS.split(',');
-    const todayThingsLS = localStorage.getItem('today_things_array');
-    const todayThingsArray = todayThingsLS.split(',');
-    const todayCategoryLS = localStorage.getItem('today_category_array');
-    const todayCategoryArray = todayCategoryLS.split(',');
-    const todayHowtopayLS = localStorage.getItem('today_howtopay_array');
-    const todayHowtopayArray = todayHowtopayLS.split(',');
+    const dateData = new Date();
+    const today = dateData.getDay();
+    const todayLSData = localStorage.getItem('today_date');
+    if (!todayLSData) {
+      localStorage.setItem('today_date', today);
+    }
 
-    for (let i = 0; i < todaySwitchArray.length; i++) {
+    const todayRecordNumber = localStorage.getItem('day_record_number');
+    if (!todayRecordNumber) {
+      localStorage.setItem('day_record_number', 0);
+    }
+
+  }
+
+  dayUpdate() {
+    const dateData = new Date();
+    const today = dateData.getDay();
+    const todayLSData = localStorage.getItem('today_date');
+    if (today == todayLSData) {
+      console.log('same day!');
+    } else {
+      console.log('day changed!');
+    }
+  }
+
+  showToast() {
+    const toastJSON = localStorage.getItem('toast_to_show');
+    const toastObject = JSON.parse(toastJSON);
+    if (toastObject.bool == 'true') {
+      M.toast({
+        html: toastObject.message,
+        displayLength: 5000,
+        classes: toastObject.className,
+      });
+      localStorage.setItem('toast_to_show', false);
+    }
+  }
+
+  printTodayReport() {
+    this.printTodayReportTable();
+    this.printTodayReportChart();
+  }
+
+  printTodayReportTable() {
+    const dayRecordNumber = localStorage.getItem('day_record_number');
+    const todayRecord = localStorage.getItem('day_record_0');
+    if (!todayRecord) {
+      return;
+    }
+
+    for (let i = 0; i < dayRecordNumber; i++) {
+      const todayRecordJSON = localStorage.getItem(`day_record_${i}`);
+      const todayRecordObject = JSON.parse(todayRecordJSON);
       const container = document.getElementById('analysis-today__table');
       const template = document.getElementById('analysis__today__template-table-tbody');
       const clone = template.content.cloneNode(true);
       const tds = clone.querySelectorAll('td');
-      tds[0].textContent = todayCategoryArray[i];
-      tds[1].textContent = todayThingsArray[i];
-      tds[2].textContent = `¥${todayHowmuchArray[i]}`;
-      tds[3].textContent = todayHowtopayArray[i];
+      tds[0].textContent = todayRecordObject.category;
+      tds[1].textContent = todayRecordObject.things;
+      tds[2].textContent = `¥${todayRecordObject.howMuch}`;
+      tds[3].textContent = todayRecordObject.howToPay;
       container.append(clone);
     }
   }
+
+  printTodayReportChart(){
+
+  }
+
 }

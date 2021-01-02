@@ -9,8 +9,8 @@ import { MaterializeSelectFixed } from './assets/scripts/libraries/MaterializeSe
 class App {
   constructor() {
     new AppInitialize();
-    new InputCard();
     new FetchData();
+    new InputCard();
     drawChart.chartInitialize();
     drawChart.drawChartDayDoughnut();
     MaterializeSelectFixed();

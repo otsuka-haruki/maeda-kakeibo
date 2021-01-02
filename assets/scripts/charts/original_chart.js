@@ -23,7 +23,6 @@ export function drawChartYearDoughnut() {
     },
     // options: options
   });
-  console.log('year chart created');
 }
 
 export function drawChartMonthDoughnutIn() {
@@ -44,7 +43,6 @@ export function drawChartMonthDoughnutIn() {
     },
     // options: options
   });
-  console.log('month doughnut created');
 }
 export function drawChartMonthDoughnutOut() {
   const month_doughnut_out = document.getElementById('month_doughnut_out');
@@ -108,7 +106,6 @@ export function drawChartWeekBar() {
       }
     }
   });
-  console.log('week bar created');
 }
 
 export function drawChartDayDoughnut() {
@@ -129,5 +126,4 @@ export function drawChartDayDoughnut() {
     },
     // options: options
   });
-  console.log('day doughnut created');
 }
