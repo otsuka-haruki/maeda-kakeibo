@@ -7,7 +7,6 @@ general
 
 today
 
-  [] (yesterday);
   each amount of input categories today = [{
   '食費': 1200,
   '日用品': 3100,

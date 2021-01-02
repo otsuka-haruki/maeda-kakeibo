@@ -108,9 +108,9 @@ export class InputCard {
       };
       const todayRecordJSON = JSON.stringify(todayRecordObject);
 
-      let todayRecordNumber = localStorage.getItem('day_record_number');
-      localStorage.setItem(`day_record_${todayRecordNumber}`, todayRecordJSON);
-      localStorage.setItem('day_record_number', ++todayRecordNumber);
+      let todayRecordNumber = localStorage.getItem('today_record_number');
+      localStorage.setItem(`today_record_${todayRecordNumber}`, todayRecordJSON);
+      localStorage.setItem('today_record_number', ++todayRecordNumber);
 
       let todayEachCatgoryHowmuch = localStorage.getItem('today_each_category_howmuch');
       todayEachCatgoryHowmuch = JSON.parse(todayEachCatgoryHowmuch);
@@ -122,7 +122,18 @@ export class InputCard {
       todayEachCatgoryHowmuch[todayRecordObject.category] = newHowmuch;
       todayEachCatgoryHowmuch = JSON.stringify(todayEachCatgoryHowmuch);
       localStorage.setItem('today_each_category_howmuch', todayEachCatgoryHowmuch);
-      
+
+      let todayEachHowtopayHowmuch = localStorage.getItem('today_each_howtopay_howmuch');
+      todayEachHowtopayHowmuch = JSON.parse(todayEachHowtopayHowmuch);
+      let oldHowmuch2 = todayEachHowtopayHowmuch[todayRecordObject.howToPay];
+      if (!oldHowmuch2) {
+        oldHowmuch2 = 0;
+      }
+      const newHowmuch2 = +oldHowmuch2 + +todayRecordObject.howMuch;
+      todayEachHowtopayHowmuch[todayRecordObject.howToPay] = newHowmuch2;
+      todayEachHowtopayHowmuch = JSON.stringify(todayEachHowtopayHowmuch);
+      localStorage.setItem('today_each_howtopay_howmuch', todayEachHowtopayHowmuch);
+
       setToastDataFunctions('true', 'データを追加しました！', 'toast-success toast-pop');
     });
   }
@@ -168,7 +179,7 @@ export class InputCard {
     const addCategoryButton = document.getElementById('input-card__setting-modal__button-add-category');
     const addHowtopayButton = document.getElementById('input-card__setting-modal__button-add-howtopay');
 
-    addCategoryButton.addEventListener('click', event => {
+    addCategoryButton.addEventListener('click', () => {
       const template = document.getElementById('input-card__setting-modal__template-input-category');
       const clone = template.content.cloneNode(true);
       const container = document.getElementById('input-card__setting-modal__form-category');
@@ -190,7 +201,7 @@ export class InputCard {
       }
     });
 
-    addHowtopayButton.addEventListener('click', event => {
+    addHowtopayButton.addEventListener('click', () => {
       const template = document.getElementById('input-card__setting-modal__template-input-howtopay');
       const clone = template.content.cloneNode(true);
       const container = document.getElementById('input-card__setting-modal__form-howtopay');
@@ -234,25 +245,11 @@ export class InputCard {
         }
       }
 
-      function reloadFunction() {
-        location.reload(true);
-      }
-      const isFinished = new Promise(resolve => {
-        localStorage.setItem('user_category_options', checkedCategoryOptionsArray);
-        localStorage.setItem('user_howtopay_options', checkedHowtopayOptionsArray);
-        localStorage.setItem('was_user_options_changed', true);
-        resolve(reloadFunction);
-      });
-      isFinished.then(functionName => {
-        functionName();
-      });
-    });
+      localStorage.setItem('user_category_options', checkedCategoryOptionsArray);
+      localStorage.setItem('user_howtopay_options', checkedHowtopayOptionsArray);
 
-    const wasUserOptionsChanged = localStorage.getItem('was_user_options_changed');
-    if (wasUserOptionsChanged === 'true') {
       setToastDataFunctions(true, 'カテゴリーと支払い手段の選択肢が更新されました！', 'toast-success toast-pop');
-      localStorage.setItem('was_user_options_changed', false);
-    }
+    });
   }
 
   validateInputContent(howMuchValue, thingsValue, categoryValue, howToPayValue) {

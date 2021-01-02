@@ -1,19 +1,26 @@
 'use strict';
 
-import { AppInitialize } from './assets/scripts/general_initialization/AppInitialize.js';
-import { InputCard } from './assets/scripts/components/InputCard.js';
-import { FetchData } from './assets/scripts/database/FetchData.js';
+import {
+  AppInitialize
+} from './assets/scripts/general_initialization/AppInitialize.js';
+import {
+  InputCard
+} from './assets/scripts/components/InputCard.js';
+import {
+  FetchData
+} from './assets/scripts/database/FetchData.js';
 import * as drawChart from './assets/scripts/charts/original_chart.js';
-import { MaterializeSelectFixed } from './assets/scripts/libraries/MaterializeSelectFixed.js';
+import {
+  DayReport
+} from './assets/scripts/components/DayReport.js';
 
 class App {
   constructor() {
     new AppInitialize();
     new FetchData();
     new InputCard();
-    drawChart.chartInitialize();
+    new DayReport();
     drawChart.drawChartDayDoughnut();
-    MaterializeSelectFixed();
   }
 }
 

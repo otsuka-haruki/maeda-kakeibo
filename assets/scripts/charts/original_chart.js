@@ -1,8 +1,8 @@
 'use strict';
 
 export function chartInitialize() {
-    Chart.defaults.global.elements.point.backgroundColor = 'transparent';
-    Chart.defaults.global.elements.line.borderCapStyle = 'round';
+  Chart.defaults.global.elements.point.backgroundColor = 'transparent';
+  Chart.defaults.global.elements.line.borderCapStyle = 'round';
 }
 
 export function drawChartYearDoughnut() {
@@ -109,31 +109,67 @@ export function drawChartWeekBar() {
 }
 
 export function drawChartDayDoughnut() {
-  const day_doughnut = document.getElementById('day_doughnut');
-  const testObject = JSON.parse(localStorage.getItem('today_each_category_howmuch'));
-  if (!testObject) {
-    return;
-  }
-  const keys = Object.keys(testObject);
-  const keyArray = [];
-  for (let i = 0; i < keys.length; i++) {
-    keyArray.push(keys[i]);
-  }
-  const values = Object.values(testObject);
-  const valueArray = [];
-  for (let i = 0; i < values.length; i++) {
-    valueArray.push(values[i]);
-  }
-  new Chart(day_doughnut, {
-    type: 'doughnut',
-    data: {
-      datasets: [{
-        data: valueArray,
-        backgroundColor: ['#f44336', '#90a4ae', '#4caf50']
-      }],
+  (function() {
+    const dayDoughnutOut = document.getElementById('day_doughnut_out');
+    const todayCategoryObject = JSON.parse(localStorage.getItem('today_each_category_howmuch'));
+    if (!todayCategoryObject) {
+      return;
+    }
+    const keys = Object.keys(todayCategoryObject);
+    const keyArray = [];
+    for (let i = 0; i < keys.length; i++) {
+      keyArray.push(keys[i]);
+    }
+    const values = Object.values(todayCategoryObject);
+    const valueArray = [];
+    for (let i = 0; i < values.length; i++) {
+      valueArray.push(values[i]);
+    }
+    // const colorArray = [];
+    // for (let i = 0; i < keys.length; i++) {
+    //   colorArray.push()
+    // }
+    new Chart(dayDoughnutOut, {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: valueArray,
+          backgroundColor: ['#f44336', '#90a4ae', '#4caf50']
+        }],
 
-      labels: keyArray,
-    },
-    // options: options
-  });
+        labels: keyArray,
+      },
+      // options: options
+    });
+  }());
+
+  (function () {
+    const dayDoughnutIn = document.getElementById('day_doughnut_in');
+    const todayHowtopayObject = JSON.parse(localStorage.getItem('today_each_howtopay_howmuch'));
+    if (!todayHowtopayObject) {
+      return;
+    }
+    const keys = Object.keys(todayHowtopayObject);
+    const keyArray = [];
+    for (let i = 0; i < keys.length; i++) {
+      keyArray.push(keys[i]);
+    }
+    const values = Object.values(todayHowtopayObject);
+    const valueArray = [];
+    for (let i = 0; i < values.length; i++) {
+      valueArray.push(values[i]);
+    }
+    new Chart(dayDoughnutIn, {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: valueArray,
+          backgroundColor: ['#f44336', '#90a4ae', '#4caf50']
+        }],
+
+        labels: keyArray,
+      },
+      // options: options
+    });
+  }());
 }

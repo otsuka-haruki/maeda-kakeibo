@@ -26,8 +26,16 @@ canvas {
   position: relative;
 }
 
+.margin-center {
+  margin: 0 auto;
+}
+
 .margin-top-bottom-10px {
   margin: 10px 0;
+}
+
+.width-40percent {
+  width: 40%;
 }
 
 .datepicker-table {

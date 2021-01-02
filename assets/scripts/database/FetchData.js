@@ -1,11 +1,12 @@
 'use strict';
 
+import { updateDate } from '../functions/updateDate.js';
+
 export class FetchData {
   constructor() {
     this.setDefaultValue();
-    this.dayUpdate();
+    updateDate();
     this.showToast();
-    this.printTodayReport();
   }
 
   setDefaultValue() {
@@ -36,9 +37,9 @@ export class FetchData {
       localStorage.setItem('today_date', today);
     }
 
-    const todayRecordNumber = localStorage.getItem('day_record_number');
+    const todayRecordNumber = localStorage.getItem('today_record_number');
     if (!todayRecordNumber) {
-      localStorage.setItem('day_record_number', 0);
+      localStorage.setItem('today_record_number', 0);
     }
 
     const todayEachCategoryHowmuchJSON = localStorage.getItem('today_each_category_howmuch');
@@ -47,18 +48,15 @@ export class FetchData {
       const testjson = JSON.stringify(testobj);
       localStorage.setItem('today_each_category_howmuch', testjson);
     }
-  }
 
-  dayUpdate() {
-    const dateData = new Date();
-    const today = dateData.getDay();
-    const todayLSData = localStorage.getItem('today_date');
-    if (today == todayLSData) {
-      console.log('same day!');
-    } else {
-      console.log('day changed!');
+    const todayEachHowtopayHowmuchJSON = localStorage.getItem('today_each_howtopay_howmuch');
+    if (!todayEachHowtopayHowmuchJSON) {
+      const testobj = {};
+      const testjson = JSON.stringify(testobj);
+      localStorage.setItem('today_each_howtopay_howmuch', testjson);
     }
   }
+
 
   showToast() {
     const toastJSON = localStorage.getItem('toast_to_show');
@@ -72,48 +70,4 @@ export class FetchData {
       localStorage.setItem('toast_to_show', false);
     }
   }
-
-  printTodayReport() {
-    this.printTodayReportTable();
-    this.printTodayReportChart();
-  }
-
-  printTodayReportTable() {
-    const dayRecordNumber = localStorage.getItem('day_record_number');
-    const todayRecord = localStorage.getItem('day_record_0');
-    if (!todayRecord) {
-      return;
-    }
-
-    for (let i = 0; i < dayRecordNumber; i++) {
-      const todayRecordJSON = localStorage.getItem(`day_record_${i}`);
-      if (!todayRecordJSON) {
-        continue;
-      }
-      const todayRecordObject = JSON.parse(todayRecordJSON);
-      const container = document.getElementById('analysis-today__table');
-      const template = document.getElementById('analysis__today__template-table-tbody');
-      const clone = template.content.cloneNode(true);
-      const tds = clone.querySelectorAll('td');
-      tds[0].textContent = todayRecordObject.category;
-      tds[1].textContent = todayRecordObject.things;
-      tds[2].textContent = `¥${todayRecordObject.howMuch}`;
-      tds[3].textContent = todayRecordObject.howToPay;
-      container.append(clone);
-    }
-  }
-
-  printTodayReportChart() {
-    const todayEachCategoryHowmuchJSON = localStorage.getItem('today_each_category_howmuch');
-    const todayEachCategoryHowmuch = JSON.parse(todayEachCategoryHowmuchJSON);
-    if (Object.keys(todayEachCategoryHowmuch).length == 0) {
-      return;
-    }
-    const todaySum = Object.values(todayEachCategoryHowmuch).reduce(function(a, b) {
-      return a + b;
-    });
-    const todayReportSpanOut = document.getElementById('day-repor__span-out');
-    todayReportSpanOut.textContent = todaySum;
-  }
-
 }
