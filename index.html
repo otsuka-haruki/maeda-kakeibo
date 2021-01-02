@@ -82,20 +82,20 @@
 
   <!-- analysis -->
 
-  <div class="analysis" id="analysis">
+  <div class="report" id="report">
     <div class="row">
       <div class="col s12">
         <ul class="tabs">
-          <li class="tab col s3"><a href="#day_analysis">今日</a></li>
+          <li class="tab col s3"><a href="#day-report">今日</a></li>
           <li class="tab col s3"><a href="#week_analysis">週間</a></li>
           <li class="tab col s3"><a href="#month_analysis">月間</a></li>
           <li class="tab col s3"><a href="#year_analysis">年間</a></li>
         </ul>
       </div>
       <!-- TODO: 今日の収支、カテゴリー別、テーブルを完成させる。 -->
-      <div id="day_analysis" class="col s12">
-        <h5 class="center-align">収入<span>￥1000</span></h5>
-        <h5 class="center-align">支出<span>￥2450</span></h5>
+      <div id="day-report" class="col s12">
+        <h5 class="center-align">収入 ￥<span id="day-repor__span-out"></span></h5>
+        <h5 class="center-align">支出 ￥<span id="day-repor__span-in">0</span></h5>
         <canvas id="day_doughnut" width="400" height="400"></canvas>
         <table class="centered" id="analysis-today__table">
           <thead>

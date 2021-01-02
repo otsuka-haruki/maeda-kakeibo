@@ -110,19 +110,29 @@ export function drawChartWeekBar() {
 
 export function drawChartDayDoughnut() {
   const day_doughnut = document.getElementById('day_doughnut');
+  const testObject = JSON.parse(localStorage.getItem('today_each_category_howmuch'));
+  if (!testObject) {
+    return;
+  }
+  const keys = Object.keys(testObject);
+  const keyArray = [];
+  for (let i = 0; i < keys.length; i++) {
+    keyArray.push(keys[i]);
+  }
+  const values = Object.values(testObject);
+  const valueArray = [];
+  for (let i = 0; i < values.length; i++) {
+    valueArray.push(values[i]);
+  }
   new Chart(day_doughnut, {
     type: 'doughnut',
     data: {
       datasets: [{
-        data: [20, 15, 10],
+        data: valueArray,
         backgroundColor: ['#f44336', '#90a4ae', '#4caf50']
       }],
 
-      labels: [
-        '食費',
-        '交通費',
-        '日用品'
-      ]
+      labels: keyArray,
     },
     // options: options
   });

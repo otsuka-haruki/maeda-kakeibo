@@ -111,6 +111,17 @@ export class InputCard {
       let todayRecordNumber = localStorage.getItem('day_record_number');
       localStorage.setItem(`day_record_${todayRecordNumber}`, todayRecordJSON);
       localStorage.setItem('day_record_number', ++todayRecordNumber);
+
+      let todayEachCatgoryHowmuch = localStorage.getItem('today_each_category_howmuch');
+      todayEachCatgoryHowmuch = JSON.parse(todayEachCatgoryHowmuch);
+      let oldHowmuch = todayEachCatgoryHowmuch[todayRecordObject.category];
+      if (!oldHowmuch) {
+        oldHowmuch = 0;
+      }
+      const newHowmuch = +oldHowmuch + +todayRecordObject.howMuch;
+      todayEachCatgoryHowmuch[todayRecordObject.category] = newHowmuch;
+      todayEachCatgoryHowmuch = JSON.stringify(todayEachCatgoryHowmuch);
+      localStorage.setItem('today_each_category_howmuch', todayEachCatgoryHowmuch);
       
       setToastDataFunctions('true', 'データを追加しました！', 'toast-success toast-pop');
     });
