@@ -29,16 +29,13 @@ class App {
 new App();
 
 // test below
-
-const tabs = document.querySelectorAll('.tabs li');
-tabs[1].addEventListener('click', () => {
-  drawChart.drawChartWeekBar();
-  drawChart.drawChartWeekDoughnut();
+const dropdownToday = document.getElementById('report__day__dropdown-today');
+const dropdownYesterday = document.getElementById('report__day__dropdown-yesterday');
+dropdownToday.addEventListener('click', () => {
+document.getElementById('report__day__today').classList.remove('display-none');
+document.getElementById('report__day__yesterday').classList.add('display-none');
 });
-tabs[2].addEventListener('click', () => {
-  drawChart.drawChartMonthDoughnutIn();
-  drawChart.drawChartMonthDoughnutOut();
+dropdownYesterday.addEventListener('click', () => {
+  document.getElementById('report__day__today').classList.add('display-none');
+  document.getElementById('report__day__yesterday').classList.remove('display-none');
 })
-tabs[3].addEventListener('click', () => {
-  drawChart.drawChartYearDoughnut();
-});

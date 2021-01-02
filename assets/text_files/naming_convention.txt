@@ -1,0 +1,11 @@
+class名、Id名ともにBEMで命名する
+大きいタグ＞小さいタグ＞固有の名前の順で命名する
+
+構造
+  ・Nav
+  ・Input Card
+  ・Report
+    ・Day
+    ・Week
+    ・Month
+    ・Year
