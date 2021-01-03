@@ -41,7 +41,7 @@ dropdownYesterday.addEventListener('click', () => {
   document.getElementById('report__day__yesterday').classList.remove('display-none');
 });
 
-alert('CSS＆JS');
+alert('CSS＆JS-2');
 
 const selectFields = $('select');
 selectFields.each(function() {
