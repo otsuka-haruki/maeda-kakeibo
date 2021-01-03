@@ -33,12 +33,22 @@ new App();
 const dropdownToday = document.getElementById('report__day__dropdown-today');
 const dropdownYesterday = document.getElementById('report__day__dropdown-yesterday');
 dropdownToday.addEventListener('click', () => {
-document.getElementById('report__day__today').classList.remove('display-none');
-document.getElementById('report__day__yesterday').classList.add('display-none');
+  document.getElementById('report__day__today').classList.remove('display-none');
+  document.getElementById('report__day__yesterday').classList.add('display-none');
 });
 dropdownYesterday.addEventListener('click', () => {
   document.getElementById('report__day__today').classList.add('display-none');
   document.getElementById('report__day__yesterday').classList.remove('display-none');
 });
 
-alert('やっぱりフォント??')
+alert('CSS＆JS');
+
+const selectFields = $('select');
+selectFields.each(function() {
+  const selectField = $(this);
+  selectField.formSelect();
+  selectField.on('change.initMaterialSelect', function() {
+    // re-init when native field changes
+    selectField.material_select();
+  });
+});
