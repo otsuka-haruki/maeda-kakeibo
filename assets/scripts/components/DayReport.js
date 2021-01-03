@@ -1,9 +1,9 @@
 export class DayReport {
   constructor() {
     this.printTodayReportTable();
-    this.printTodayReportChart();
+    this.printTodayReportSum();
     this.printYesterdayReportTable();
-    this.printYesterdayReportChart();
+    this.printYesterdayReportSum();
   }
 
   // TODO: distinguish in and out
@@ -41,6 +41,19 @@ export class DayReport {
     }
   }
 
+  printTodayReportSum() {
+    const todayEachCategoryHowmuchJSON = localStorage.getItem('today_each_category_howmuch');
+    const todayEachCategoryHowmuch = JSON.parse(todayEachCategoryHowmuchJSON);
+    if (Object.keys(todayEachCategoryHowmuch).length == 0) {
+      return;
+    }
+    const todaySum = Object.values(todayEachCategoryHowmuch).reduce(function(a, b) {
+      return a + b;
+    });
+    const todayReportSpanOut = document.getElementById('day-report__span-out');
+    todayReportSpanOut.textContent = todaySum;
+  }
+
   printYesterdayReportTable() {
     const dayRecordNumber = localStorage.getItem('yesterday_record_number');
     const yesterdayRecord = localStorage.getItem('yesterday_record_0');
@@ -66,20 +79,7 @@ export class DayReport {
     }
   }
 
-  printTodayReportChart() {
-    const todayEachCategoryHowmuchJSON = localStorage.getItem('today_each_category_howmuch');
-    const todayEachCategoryHowmuch = JSON.parse(todayEachCategoryHowmuchJSON);
-    if (Object.keys(todayEachCategoryHowmuch).length == 0) {
-      return;
-    }
-    const todaySum = Object.values(todayEachCategoryHowmuch).reduce(function(a, b) {
-      return a + b;
-    });
-    const todayReportSpanOut = document.getElementById('day-report__span-out');
-    todayReportSpanOut.textContent = todaySum;
-  }
-
-  printYesterdayReportChart() {
+  printYesterdayReportSum() {
     const yesterdayEachCategoryHowmuchJSON = localStorage.getItem('yesterday_each_category_howmuch');
     const yesterdayEachCategoryHowmuch = JSON.parse(yesterdayEachCategoryHowmuchJSON);
     if (!yesterdayEachCategoryHowmuch) {

@@ -48,4 +48,4 @@ dropdownYesterday.addEventListener('click', () => {
   document.getElementById('report__day__yesterday').classList.remove('display-none');
 });
 
-alert('font-deactivated');
+alert('browser default??')
