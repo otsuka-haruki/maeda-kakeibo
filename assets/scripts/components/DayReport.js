@@ -1,14 +1,14 @@
 export class DayReport {
   constructor() {
     this.printTodayReportTable();
-    this.printYesterdayReportTable();
     this.printTodayReportChart();
+    this.printYesterdayReportTable();
     this.printYesterdayReportChart();
   }
 
   // TODO: distinguish in and out
   // TODO: fix dropdown
-  // TODO: 
+  // TODO:
 
   printTodayReportTable() {
     const dayRecordNumber = localStorage.getItem('today_record_number');

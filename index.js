@@ -28,7 +28,7 @@ class App {
     new DayReport();
     drawChart.drawChartDayDoughnut();
     MaterializeSelectFixed();
-    fontActivate();
+    // fontActivate();
   }
 }
 
@@ -46,4 +46,6 @@ document.getElementById('report__day__yesterday').classList.add('display-none');
 dropdownYesterday.addEventListener('click', () => {
   document.getElementById('report__day__today').classList.add('display-none');
   document.getElementById('report__day__yesterday').classList.remove('display-none');
-})
+});
+
+alert('font-deactivated');
