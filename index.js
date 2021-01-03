@@ -22,13 +22,13 @@ import {
 
 class App {
   constructor() {
-    fontActivate();
     new AppInitialize();
     new FetchData();
     new InputCard();
     new DayReport();
     drawChart.drawChartDayDoughnut();
     MaterializeSelectFixed();
+    fontActivate();
   }
 }
 
