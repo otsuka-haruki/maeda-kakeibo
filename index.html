@@ -186,44 +186,118 @@
       <div id="report__week__this-week">
         <div class="card">
           <div class="card-content">
+            <span class="card-title">今週使った金額</span>
             <template id="report__week__this-week__template-canvas-week-bar-out">
-              <canvas id="week-bar-out" width="400" height="400"></canvas>
+              <canvas id="this-week-bar-out" width="400" height="400"></canvas>
             </template>
           </div>
         </div>
         <div class="card">
           <div class="card-content">
-            <template id="report__week__this-week__template-canvas-week-doughnut-out">
-              <canvas id="week-doughnut-out" width="400" height="400"></canvas>
+            <span class="card-title">カテゴリーごとに</span>
+            <template id="report__week__this-week__template-canvas-week-doughnut-out-category">
+              <canvas id="this-week-doughnut-out-category" width="400" height="400"></canvas>
             </template>
           </div>
         </div>
-        <ul class="collapsible border-0">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">支払い方法ごとに</span>
+            <template id="report__week__this-week__template-canvas-week-doughnut-out-howtopay">
+              <canvas id="this-week-doughnut-out-howtopay" width="400" height="400"></canvas>
+            </template>
+          </div>
+        </div>
+        <ul class="collapsible border-0 box-shadow-0">
           <li>
-            <div class="collapsible-header border-0">収入</div>
+            <div class="collapsible-header border-0 collapsible-header--box-shadow">収入</div>
             <div class="collapsible-body border-0 padding-0">
               <div class="card">
                 <div class="card-content">
-                  <canvas id="week-bar-in" width="400" height="400"></canvas>
+                  <span class="card-title">今週入った金額</span>
+                  <template id="report__week__this-week__template-canvas-week-bar-in">
+                    <canvas id="this-week-bar-in" width="400" height="400"></canvas>
+                  </template>
                 </div>
               </div>
               <div class="card">
                 <div class="card-content">
-                  <canvas id="week-doughnut-in" width="400" height="400"></canvas>
+                  <span class="card-title">カテゴリーごとに</span>
+                  <template id="report__week__this-week__template-canvas-week-doughnut-in-category">
+                    <canvas id="this-week-doughnut-in-category" width="400" height="400"></canvas>
+                  </template>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">支払い方法ごとに</span>
+                  <template id="report__week__this-week__template-canvas-week-doughnut-in-howtopay">
+                    <canvas id="this-week-doughnut-in-howtopay" width="400" height="400"></canvas>
+                  </template>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div id="report__week__last-week">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">先週使った金額</span>
+            <template id="report__week__last-week__template-canvas-week-bar-out">
+              <canvas id="last-week-bar-out" width="400" height="400"></canvas>
+            </template>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">カテゴリーごとに</span>
+            <template id="report__week__last-week__template-canvas-week-doughnut-out-category">
+              <canvas id="last-week-doughnut-out-category" width="400" height="400"></canvas>
+            </template>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">支払い方法ごとに</span>
+            <template id="report__week__last-week__template-canvas-week-doughnut-out-howtopay">
+              <canvas id="last-week-doughnut-out-howtopay" width="400" height="400"></canvas>
+            </template>
+          </div>
+        </div>
+        <ul class="collapsible border-0 box-shadow-0">
+          <li>
+            <div class="collapsible-header border-0 collapsible-header--box-shadow">収入</div>
+            <div class="collapsible-body border-0 padding-0">
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">先週入った金額</span>
+                  <template id="report__week__last-week__template-canvas-week-bar-in">
+                    <canvas id="last-week-bar-in" width="400" height="400"></canvas>
+                  </template>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">カテゴリーごとに</span>
+                  <template id="report__week__last-week__template-canvas-week-doughnut-in-category">
+                    <canvas id="last-week-doughnut-in-category" width="400" height="400"></canvas>
+                  </template>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title">支払い方法ごとに</span>
+                  <template id="report__week__last-week__template-canvas-week-doughnut-in-howtopay">
+                    <canvas id="last-week-doughnut-in-howtopay" width="400" height="400"></canvas>
+                  </template>
                 </div>
               </div>
             </div>
           </li>
         </ul>
 
-      </div>
-
-      <div id="report__week__last-week">
-        <div class="card">
-          <div class="card-content">
-            <canvas id="canvas" width="300" height="300"></canvas>
-          </div>
-        </div>
       </div>
     </div>
 

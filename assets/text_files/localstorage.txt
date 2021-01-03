@@ -35,7 +35,7 @@ week
 week
   this_week
     out
-      day_spent
+      eachDay
         1
         2
         3
@@ -43,7 +43,7 @@ week
       category
       howtopay
     in
-      day_spent
+      eachDay
         1
         2
         3
