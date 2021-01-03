@@ -36,7 +36,7 @@ export class FetchData {
       const todayInfoObject = {
         day: today.getDay(),
         date: today.getDate(),
-        month: `${today.getMonth() + 1}`,
+        month: today.getMonth(),
         year: today.getFullYear(),
       };
       const todayInfoJSON = JSON.stringify(todayInfoObject)
