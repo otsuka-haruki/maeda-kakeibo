@@ -16,9 +16,6 @@ import {
 import {
   fontActivate
 } from './assets/scripts/functions/fontActivate.js';
-import {
-  MaterializeSelectFixed
-} from './assets/scripts/libraries/MaterializeSelectFixed.js';
 
 class App {
   constructor() {
@@ -27,7 +24,6 @@ class App {
     new InputCard();
     new DayReport();
     drawChart.drawChartDayDoughnut();
-    MaterializeSelectFixed();
     // fontActivate();
   }
 }
@@ -48,4 +44,4 @@ dropdownYesterday.addEventListener('click', () => {
   document.getElementById('report__day__yesterday').classList.remove('display-none');
 });
 
-alert('browser default??')
+alert('読み込み順??')

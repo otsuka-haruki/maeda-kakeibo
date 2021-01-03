@@ -1,5 +1,4 @@
-export function MaterializeSelectFixed() {
-  (function($) {
+(function($) {
     'use strict';
 
     const _defaults = {
@@ -449,4 +448,3 @@ export function MaterializeSelectFixed() {
       M.initializeJqueryWrapper(FormSelect, 'formSelect', 'M_FormSelect');
     }
   })(cash);
-}
