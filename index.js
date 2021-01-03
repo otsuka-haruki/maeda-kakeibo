@@ -13,6 +13,9 @@ import * as drawChart from './assets/scripts/charts/original_chart.js';
 import {
   DayReport
 } from './assets/scripts/components/DayReport.js';
+// import {
+//   fontActivate
+// } from './assets/scripts/functions/fontActivate.js';
 
 class App {
   constructor() {
@@ -41,14 +44,4 @@ dropdownYesterday.addEventListener('click', () => {
   document.getElementById('report__day__yesterday').classList.remove('display-none');
 });
 
-alert('CSS＆JS-2');
-
-const selectFields = $('select');
-selectFields.each(function() {
-  const selectField = $(this);
-  selectField.formSelect();
-  selectField.on('change.initMaterialSelect', function() {
-    // re-init when native field changes
-    selectField.formSelect();
-  });
-});
+alert('setting??');
