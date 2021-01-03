@@ -30,11 +30,17 @@ export class FetchData {
       localStorage.setItem('toast_to_show', welcomeToastJSON);
     }
 
-    const dateData = new Date();
-    const today = dateData.getDay();
-    const todayLSData = localStorage.getItem('today_date');
-    if (!todayLSData) {
-      localStorage.setItem('today_date', today);
+    const today = new Date();
+    const todayInfoLocalStorage = localStorage.getItem('today_info');
+    if (!todayInfoLocalStorage) {
+      const todayInfoObject = {
+        day: today.getDay(),
+        date: today.getDate(),
+        month: `${today.getMonth() + 1}`,
+        year: today.getFullYear(),
+      };
+      const todayInfoJSON = JSON.stringify(todayInfoObject)
+      localStorage.setItem('today_info', todayInfoJSON);
     }
 
     const todayRecordNumber = localStorage.getItem('today_record_number');
@@ -42,18 +48,73 @@ export class FetchData {
       localStorage.setItem('today_record_number', 0);
     }
 
-    const todayEachCategoryHowmuchJSON = localStorage.getItem('today_each_category_howmuch');
-    if (!todayEachCategoryHowmuchJSON) {
-      const testobj = {};
-      const testjson = JSON.stringify(testobj);
-      localStorage.setItem('today_each_category_howmuch', testjson);
+    this.setInitialLocalStorageJSON('today_each_category_howmuch');
+    this.setInitialLocalStorageJSON('today_each_howtopay_howmuch');
+
+    const hasReportWeekJSON = localStorage.getItem('report_week');
+    if (!hasReportWeekJSON) {
+      const initialObject = {
+        thisWeek: {
+          out: {
+            eachDay: {
+
+            },
+            category: {
+
+            },
+            howtopay: {
+
+            },
+          },
+          in: {
+            eachDay: {
+
+            },
+            category: {
+
+            },
+            howtopay: {
+
+            },
+          },
+        },
+        lastWeek: {
+          out: {
+            eachDay: {
+
+            },
+            category: {
+
+            },
+            howtopay: {
+
+            },
+          },
+          in: {
+            eachDay: {
+
+            },
+            category: {
+
+            },
+            howtopay: {
+
+            },
+          },
+        },
+      };
+      const initialJSON = JSON.stringify(initialObject);
+      localStorage.setItem('report_week', initialJSON);
     }
 
-    const todayEachHowtopayHowmuchJSON = localStorage.getItem('today_each_howtopay_howmuch');
-    if (!todayEachHowtopayHowmuchJSON) {
-      const testobj = {};
-      const testjson = JSON.stringify(testobj);
-      localStorage.setItem('today_each_howtopay_howmuch', testjson);
+  }
+
+  setInitialLocalStorageJSON(localStorageKeyName) {
+    const hasJSON = localStorage.getItem(localStorageKeyName);
+    if (!hasJSON) {
+      const initialObject = {};
+      const initialJSON = JSON.stringify(initialObject);
+      localStorage.setItem(localStorageKeyName, initialJSON);
     }
   }
 

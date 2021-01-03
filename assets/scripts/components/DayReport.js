@@ -9,6 +9,8 @@ export class DayReport {
 
   setContentToReportToday() {
     const dayRecordNumber = localStorage.getItem('today_record_number');
+    const thisWeekObject = JSON.parse(localStorage.getItem('report_week'));
+    const todayInfoObject = JSON.parse(localStorage.getItem('today_info'));
     let todaySumOut = 0;
     let todaySumIn = 0;
 
@@ -26,17 +28,25 @@ export class DayReport {
       tds[1].textContent = todayRecordObject.things;
       tds[2].textContent = `¥${todayRecordObject.howMuch}`;
       tds[3].textContent = todayRecordObject.howToPay;
+
       if (todayRecordObject.inOrOut == true) {
         clone.querySelector('tr').classList.add('cyan', 'lighten-3');
         clone.querySelectorAll('td').forEach(element => {
           element.classList.add('border-radius-0');
         });
         todaySumIn = todaySumIn + +todayRecordObject.howMuch;
+        thisWeekObject.thisWeek.in.eachDay[todayInfoObject.day] = todaySumIn;
+
       } else {
         todaySumOut = todaySumOut + +todayRecordObject.howMuch;
+        thisWeekObject.thisWeek.out.eachDay[todayInfoObject.day] = todaySumOut;
       }
       container.append(clone);
     }
+
+    const thisWeekJSON = JSON.stringify(thisWeekObject)
+
+    localStorage.setItem('report_week', thisWeekJSON);
 
     const todayReportSpanOut = document.getElementById('day-report__span-out');
     const todayReportSpanIn = document.getElementById('day-report__span-in');

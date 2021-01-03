@@ -14,6 +14,9 @@ import {
   DayReport
 } from './assets/scripts/components/DayReport.js';
 import {
+  WeekReport
+} from './assets/scripts/components/WeekReport.js'
+import {
   fontActivate
 } from './assets/scripts/functions/fontActivate.js';
 
@@ -23,6 +26,7 @@ class App {
     new FetchData();
     new InputCard();
     new DayReport();
+    new WeekReport();
     // drawChart.drawTodayChart();
     fontActivate();
   }

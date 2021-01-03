@@ -32,28 +32,42 @@ today
 
 week
 
-  category this week so far = [{
-    '食費': 4600,
-    '日用品': 10800,
-    '交通費': 2400,
-    ...
-    }];
+week
+  this_week
+    out
+      day_spent
+        1
+        2
+        3
+        ...
+      category
+      howtopay
+    in
+      day_spent
+        1
+        2
+        3
+        ...
+      category
+      howtopay
 
-  howtopay this week so far = [{
-    '現金': 4600,
-    'クレカ': 10800,
-    'Sica': 2400,
-    ...
-    }];
-
-  category last week = [{
-    '食費': 20000,
-    '日用品': 16400,
-    '交通費': 4700,
-    ...
-    }];
-
-    howtopayについても同じように
+  last_week
+    out
+      day_spent
+        1
+        2
+        3
+        ...
+      category
+      howtopay
+    in
+      day_spent
+        1
+        2
+        3
+        ...
+      category
+      howtopay
 
 month
 

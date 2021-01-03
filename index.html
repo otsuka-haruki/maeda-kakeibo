@@ -73,16 +73,17 @@
 
   <!-- report -->
 
+  <!-- ここから下、１日のレポート -->
+
   <div class="row margin-bottom-0" id="report">
     <div class="col s12">
       <ul class="tabs">
         <li class="tab col s3"><a href="#day-report">今日</a></li>
-        <li class="tab col s3"><a href="#week_analysis">週間</a></li>
+        <li class="tab col s3"><a href="#report__week" id="tab__week">週間</a></li>
         <li class="tab col s3"><a href="#month_analysis">月間</a></li>
         <li class="tab col s3"><a href="#year_analysis">年間</a></li>
       </ul>
     </div>
-    <!-- TODO: 今日の収支、カテゴリー別、テーブルを完成させる。 -->
     <div id="day-report" class="col s12 cyan lighten-3">
 
       <div class="center-align">
@@ -95,8 +96,8 @@
       <div id="report__day__today">
         <div class="card">
           <div class="card-content">
-            <h5 class="center-align">収入 ￥<span id="day-report__span-out">0</span></h5>
-            <h5 class="center-align">支出 ￥<span id="day-report__span-in">0</span></h5>
+            <h5 class="center-align">支出 ￥<span id="day-report__span-out">0</span></h5>
+            <h5 class="center-align">収入 ￥<span id="day-report__span-in">0</span></h5>
           </div>
         </div>
         <div class="card display-none">
@@ -171,16 +172,56 @@
       </div>
     </div>
 
-    <div id="week_analysis" class="col s12">
-      <div class="input-field" style="width: 40%; margin: 0 auto; text-align: center;">
-        <select>
-          <option value="1" selected>今週</option>
-          <option value="2">先週</option>
-        </select>
+    <!-- ここから上、１日のレポート -->
+
+    <!-- ここから下、週間のレポート -->
+
+    <div id="report__week" class="col s12 teal lighten-3">
+      <div class="center-align">
+        <ul class="tabs">
+          <li class="tab col s3"><a href="#report__week__this-week" class="active">今週</a></li>
+          <li class="tab col s3"><a href="#report__week__last-week">先週</a></li>
+        </ul>
       </div>
-      <canvas id="week_bar" width="400" height="400"></canvas>
-      <canvas id="week_doughnut" width="400" height="400"></canvas>
+      <div id="report__week__this-week">
+        <div class="card">
+          <div class="card-content">
+            <canvas id="week-bar-out" width="400" height="400"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <canvas id="week-doughnut-out" width="400" height="400"></canvas>
+          </div>
+        </div>
+        <ul class="collapsible border-0">
+          <li>
+            <div class="collapsible-header border-0">収入</div>
+            <div class="collapsible-body border-0 padding-0"><div class="card">
+              <div class="card-content">
+                <canvas id="week-bar-in" width="400" height="400"></canvas>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-content">
+                <canvas id="week-doughnut-in" width="400" height="400"></canvas>
+              </div>
+            </div></div>
+          </li>
+        </ul>
+
+      </div>
+
+      <div id="report__week__last-week">
+        <div class="card">
+          <div class="card-content">
+            <canvas id="canvas" width="300" height="300"></canvas>
+          </div>
+        </div>
+      </div>
     </div>
+
+
     <div id="month_analysis" class="col s12">
       <div class="input-field" style="width: 40%; margin: 0 auto; text-align: center;">
         <select>

@@ -64,8 +64,8 @@ export function drawChartMonthDoughnutOut() {
 }
 
 export function drawChartWeekDoughnut() {
-  const week_doughnut = document.getElementById('week_doughnut');
-  new Chart(week_doughnut, {
+  const weekDoughnutOut = document.getElementById('week-doughnut-out');
+  new Chart(weekDoughnutOut, {
     type: 'doughnut',
     data: {
       datasets: [{
@@ -84,8 +84,8 @@ export function drawChartWeekDoughnut() {
 }
 
 export function drawChartWeekBar() {
-  const week_bar = document.getElementById('week_bar');
-  new Chart(week_bar, {
+  const weekBarOut = document.getElementById('week-bar-out');
+  new Chart(weekBarOut, {
     type: 'bar',
     data: {
       labels: ['月', '火', '水', '木', '金', '土', '日'],

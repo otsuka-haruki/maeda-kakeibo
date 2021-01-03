@@ -104,28 +104,46 @@ export class InputCard {
       localStorage.setItem(`today_record_${todayRecordNumber}`, todayRecordJSON);
       localStorage.setItem('today_record_number', ++todayRecordNumber);
 
-      let todayEachCatgoryHowmuch = localStorage.getItem('today_each_category_howmuch');
-      todayEachCatgoryHowmuch = JSON.parse(todayEachCatgoryHowmuch);
-      let oldHowmuch = todayEachCatgoryHowmuch[todayRecordObject.category];
-      if (!oldHowmuch) {
-        oldHowmuch = 0;
-      }
-      const newHowmuch = +oldHowmuch + +todayRecordObject.howMuch;
-      todayEachCatgoryHowmuch[todayRecordObject.category] = newHowmuch;
-      todayEachCatgoryHowmuch = JSON.stringify(todayEachCatgoryHowmuch);
-      localStorage.setItem('today_each_category_howmuch', todayEachCatgoryHowmuch);
+      // ここまでそのレコード１つを新たに追加
 
-      let todayEachHowtopayHowmuch = localStorage.getItem('today_each_howtopay_howmuch');
-      todayEachHowtopayHowmuch = JSON.parse(todayEachHowtopayHowmuch);
-      let oldHowmuch2 = todayEachHowtopayHowmuch[todayRecordObject.howToPay];
-      if (!oldHowmuch2) {
-        oldHowmuch2 = 0;
-      }
-      const newHowmuch2 = +oldHowmuch2 + +todayRecordObject.howMuch;
-      todayEachHowtopayHowmuch[todayRecordObject.howToPay] = newHowmuch2;
-      todayEachHowtopayHowmuch = JSON.stringify(todayEachHowtopayHowmuch);
-      localStorage.setItem('today_each_howtopay_howmuch', todayEachHowtopayHowmuch);
+      // ここから今週のカテゴリー別や支払い方法別を更新
+      
+      let thisWeekObject = JSON.parse(localStorage.getItem('report_week'));
+      if (!isSwitchChecked) {
+        let oldThisWeekCategory = thisWeekObject.thisWeek.out.category[todayRecordObject.category];
+        if (!oldThisWeekCategory) {
+          oldThisWeekCategory = 0;
+        }
+        const newThisWeekCategory = +oldThisWeekCategory + +todayRecordObject.howMuch;
+        thisWeekObject.thisWeek.out.category[todayRecordObject.category] = newThisWeekCategory;
 
+        let oldThisWeekHowtopay = thisWeekObject.thisWeek.out.howtopay[todayRecordObject.howToPay];
+        if (!oldThisWeekHowtopay) {
+          oldThisWeekHowtopay = 0;
+        }
+        const newThisWeekHowtopay = +oldThisWeekHowtopay + +todayRecordObject.howMuch;
+        thisWeekObject.thisWeek.out.howtopay[todayRecordObject.howToPay] = newThisWeekHowtopay;
+
+        thisWeekObject = JSON.stringify(thisWeekObject);
+        localStorage.setItem('report_week', thisWeekObject);
+      } else {
+        let oldThisWeekCategory = thisWeekObject.thisWeek.in.category[todayRecordObject.category];
+        if (!oldThisWeekCategory) {
+          oldThisWeekCategory = 0;
+        }
+        const newThisWeekCategory = +oldThisWeekCategory + +todayRecordObject.howMuch;
+        thisWeekObject.thisWeek.in.category[todayRecordObject.category] = newThisWeekCategory;
+
+        let oldThisWeekHowtopay = thisWeekObject.thisWeek.in.howtopay[todayRecordObject.howToPay];
+        if (!oldThisWeekHowtopay) {
+          oldThisWeekHowtopay = 0;
+        }
+        const newThisWeekHowtopay = +oldThisWeekHowtopay + +todayRecordObject.howMuch;
+        thisWeekObject.thisWeek.in.howtopay[todayRecordObject.howToPay] = newThisWeekHowtopay;
+
+        thisWeekObject = JSON.stringify(thisWeekObject);
+        localStorage.setItem('report_week', thisWeekObject);
+      }
       setToastDataFunctions('true', 'データを追加しました！', 'toast-success toast-pop');
     });
   }

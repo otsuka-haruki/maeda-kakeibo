@@ -1,11 +1,14 @@
 'use strict';
 
 export function updateDate() {
-  const todayDate = new Date().getDay();
-  const todayDateLSData = localStorage.getItem('today_date');
-  if (todayDate == todayDateLSData) {
+  const todayInfoNow = new Date();
+  const todayInfoLS = JSON.parse(localStorage.getItem('today_info'));
+
+  if (todayInfoNow.getDate() == todayInfoLS.date) {
+    // 同じ日、することなし
     console.log('same day!');
   } else {
+    // 日が変わるアップデート
     document.getElementById('update').addEventListener('click', () => {
       const yesterdayRecordNumber = localStorage.getItem('yesterday_record_number');
       for (let i = 0; i < yesterdayRecordNumber; i++) {
@@ -28,9 +31,11 @@ export function updateDate() {
       localStorage.removeItem('today_each_category_howmuch');
       localStorage.removeItem('today_each_howtopay_howmuch');
 
-      setTimeout(() => {
-        location.reload();
-      }, 1000);
-    })
+
+    });
+    // 週が変わるアップデート
+    // 月が変わるアップデート
+    // 年が変わるアップデート
+
   }
 }
