@@ -9,7 +9,7 @@ import {
 import {
   FetchData
 } from './assets/scripts/database/FetchData.js';
-import * as drawChart from './assets/scripts/charts/original_chart.js';
+// import * as drawChart from './assets/scripts/charts/original_chart.js';
 import {
   DayReport
 } from './assets/scripts/components/DayReport.js';
