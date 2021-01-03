@@ -27,7 +27,6 @@ export class AppInitialize {
       $('input.input--charactor-counter').characterCounter();
       $('.dropdown-trigger').dropdown({
         'coverTrigger': false,
-        'constrainWidth': false,
       });
     });
   }

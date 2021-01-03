@@ -13,6 +13,9 @@ import * as drawChart from './assets/scripts/charts/original_chart.js';
 import {
   DayReport
 } from './assets/scripts/components/DayReport.js';
+import {
+  fontActivate
+} from './assets/scripts/functions/fontActivate.js';
 
 class App {
   constructor() {
@@ -21,6 +24,7 @@ class App {
     new InputCard();
     new DayReport();
     drawChart.drawChartDayDoughnut();
+    fontActivate();
   }
 }
 

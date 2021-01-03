@@ -73,7 +73,7 @@ export class DayReport {
   printYesterdayReportChart() {
     const yesterdayEachCategoryHowmuchJSON = localStorage.getItem('yesterday_each_category_howmuch');
     const yesterdayEachCategoryHowmuch = JSON.parse(yesterdayEachCategoryHowmuchJSON);
-    if (Object.keys(yesterdayEachCategoryHowmuch).length == 0) {
+    if (!yesterdayEachCategoryHowmuch) {
       return;
     }
     const yesterdaySum = Object.values(yesterdayEachCategoryHowmuch).reduce(function(a, b) {
