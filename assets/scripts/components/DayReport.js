@@ -6,6 +6,10 @@ export class DayReport {
     this.printYesterdayReportChart();
   }
 
+  // TODO: distinguish in and out
+  // TODO: fix dropdown
+  // TODO: 
+
   printTodayReportTable() {
     const dayRecordNumber = localStorage.getItem('today_record_number');
     const todayRecord = localStorage.getItem('today_record_0');
