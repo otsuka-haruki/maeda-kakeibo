@@ -78,11 +78,17 @@ export class FetchData {
             },
           },
         },
-        lastWeek: {
-          out: {
-            eachDay: {
+        lastWeek: {out: {eachDay: {},category: {},howtopay: {},},in: {eachDay: {},category: {},howtopay: {},},},
+      };
+      const initialJSON = JSON.stringify(initialObject);
+      localStorage.setItem('report_week', initialJSON);
+    }
 
-            },
+    const hasMonthJSON = localStorage.getItem('report_month');
+    if (!hasMonthJSON) {
+      const initialObject = {
+        0: {
+          in: {
             category: {
 
             },
@@ -90,10 +96,7 @@ export class FetchData {
 
             },
           },
-          in: {
-            eachDay: {
-
-            },
+          out: {
             category: {
 
             },
@@ -102,9 +105,20 @@ export class FetchData {
             },
           },
         },
-      };
+        1: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        2: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        3: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        4: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        5: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        6: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        7: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        8: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        9: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        10: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        11: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+      }
       const initialJSON = JSON.stringify(initialObject);
-      localStorage.setItem('report_week', initialJSON);
+      localStorage.setItem('report_month', initialJSON);
     }
 
   }

@@ -1,3 +1,5 @@
+'use strict';
+
 export class DayReport {
   constructor() {
     this.setContentToReportToday();

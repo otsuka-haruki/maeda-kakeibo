@@ -31,8 +31,6 @@ today
   }];
 
 week
-
-week
   this_week
     out
       eachDay
@@ -70,43 +68,21 @@ week
       howtopay
 
 month
-
-  category this month so far = [{
-    '食費': 20000,
-    '日用品': 16400,
-    '交通費': 4700,
-    ...
-    }];
-
-  category January = [{
-    '食費': 60000,
-    '日用品': 20000,
-    '交通費': 12000,
-    ...
-    }];
-
-  category February = [{
-    '食費': 60000,
-    '日用品': 20000,
-    '交通費': 12000,
-    ...
-    }];
-
-  category March = [{
-    '食費': 60000,
-    '日用品': 20000,
-    '交通費': 12000,
-    ...
-    }];
-
-  category April = [{
-    '食費': 60000,
-    '日用品': 20000,
-    '交通費': 12000,
-    ...
-    }];
-
-    howtopayについても同じように
+  0
+    in
+      category
+      howtopay
+    out
+      category
+      howtopay
+  1
+    in
+      category
+      howtopay
+    out
+      category
+      howtopay
+  ...
 
 year
 

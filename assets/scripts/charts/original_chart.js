@@ -190,7 +190,7 @@ export function drawChartThisWeekBarIn() {
     data: {
       labels: ['月', '火', '水', '木', '金', '土', '日'],
       datasets: [{
-        label: '支出',
+        label: '収入',
         data: valueArray,
         backgroundColor: '#ffe082',
       }]
@@ -379,7 +379,7 @@ export function drawChartLastWeekBarIn() {
     data: {
       labels: ['月', '火', '水', '木', '金', '土', '日'],
       datasets: [{
-        label: '支出',
+        label: '収入',
         data: valueArray,
         backgroundColor: '#ffe082',
       }]

@@ -17,6 +17,9 @@ import {
   WeekReport
 } from './assets/scripts/components/WeekReport.js'
 import {
+  MonthReport
+} from './assets/scripts/components/MonthReport.js'
+import {
   fontActivate
 } from './assets/scripts/functions/fontActivate.js';
 
@@ -27,6 +30,7 @@ class App {
     new InputCard();
     new DayReport();
     new WeekReport();
+    new MonthReport();
     // drawChart.drawTodayChart();
     fontActivate();
   }
