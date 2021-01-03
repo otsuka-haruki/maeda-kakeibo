@@ -49,6 +49,6 @@ selectFields.each(function() {
   selectField.formSelect();
   selectField.on('change.initMaterialSelect', function() {
     // re-init when native field changes
-    selectField.material_select();
+    selectField.formSelect();
   });
 });
