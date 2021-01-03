@@ -18,11 +18,16 @@ export class DayReport {
       if (!todayRecordJSON) {
         continue;
       }
-      console.log('here');
       const todayRecordObject = JSON.parse(todayRecordJSON);
       const container = document.getElementById('analysis-today__table');
       const template = document.getElementById('analysis__today__template-table-tbody');
       const clone = template.content.cloneNode(true);
+      if (todayRecordObject.inOrOut == true) {
+        clone.querySelector('tr').classList.add('cyan');
+        clone.querySelectorAll('td').forEach(element => {
+          element.classList.add('border-radius-0');
+        });
+      }
       const tds = clone.querySelectorAll('td');
       tds[0].textContent = todayRecordObject.category;
       tds[1].textContent = todayRecordObject.things;

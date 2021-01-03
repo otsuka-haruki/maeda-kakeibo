@@ -16,15 +16,19 @@ import {
 import {
   fontActivate
 } from './assets/scripts/functions/fontActivate.js';
+import {
+  MaterializeSelectFixed
+} from './assets/scripts/libraries/MaterializeSelectFixed.js';
 
 class App {
   constructor() {
+    fontActivate();
     new AppInitialize();
     new FetchData();
     new InputCard();
     new DayReport();
     drawChart.drawChartDayDoughnut();
-    fontActivate();
+    MaterializeSelectFixed();
   }
 }
 

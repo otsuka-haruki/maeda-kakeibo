@@ -1,11 +1,9 @@
-import { MaterializeSelectFixed } from '../libraries/MaterializeSelectFixed.js';
 import { chartInitialize } from '../charts/original_chart.js';
 
 
 export class AppInitialize {
   constructor() {
     this.materializeInitialize();
-    MaterializeSelectFixed();
     chartInitialize();
   }
 
