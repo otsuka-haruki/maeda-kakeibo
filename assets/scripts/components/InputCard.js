@@ -12,8 +12,8 @@ export class InputCard {
 
   initializeInputCardContent() {
     this.setTodayAsDefaultAtDatepicker();
-    this.initializeCategorySelectOptions();
-    this.initializeHowtopaySelectOptions();
+    this.initializeCategoryModal();
+    this.initializeHowtopayModal();
     this.addEventListenerToCardAddBtn();
   }
 
@@ -31,43 +31,41 @@ export class InputCard {
     datepickerLabel.classList.add('active');
   }
 
-  initializeCategorySelectOptions() {
-    const hasCategory = localStorage.getItem('user_category_options');
-    if (!hasCategory) {
-      const testCategoryArray = ['食費', '日用品', '交通費', '光熱費'];
-      localStorage.setItem('user_category_options', testCategoryArray);
-    }
+  initializeCategoryModal() {
+    const userCategoryOptionsArray = localStorage.getItem('user_category_options').split(',');
 
-    const userCategoryOptions = localStorage.getItem('user_category_options');
-    const userCategoryOptionsArray = userCategoryOptions.split(',');
-
-    const selectContainer = document.querySelector('#input-card__select-category');
+    const container = document.querySelector('#modal__input-card__radio-buttons-category .modal-content');
     for (let i = 0; i < userCategoryOptionsArray.length; i++) {
-      const template = document.getElementById('input-card__select-category__template-option-category');
+      const template = document.getElementById('modal__input-card__radio-buttons-category__template-radio');
       const clone = template.content.cloneNode(true);
-      clone.querySelector('option').textContent = userCategoryOptionsArray[i];
-      clone.querySelector('option').setAttribute('value', userCategoryOptionsArray[i]);
-      selectContainer.append(clone);
+      clone.querySelector('span').textContent = userCategoryOptionsArray[i];
+      clone.querySelector('input').setAttribute('value', userCategoryOptionsArray[i]);
+      clone.querySelector('input').addEventListener('click', (event) => {
+        const inputCardInputCategory = document.getElementById('input-card__input-category');
+        console.log(inputCardInputCategory);
+        inputCardInputCategory.value = event.target.value;
+        inputCardInputCategory.parentElement.nextElementSibling.classList.add('active');
+      });
+      container.append(clone);
     }
   }
 
-  initializeHowtopaySelectOptions() {
-    const hasHowtopay = localStorage.getItem('user_howtopay_options');
-    if (!hasHowtopay) {
-      const testHowtopayArray = ['現金', 'クレジットカード', 'Paypay', 'Linepay'];
-      localStorage.setItem('user_howtopay_options', testHowtopayArray);
-    }
+  initializeHowtopayModal() {
+    const userHowtopayOptionsArray = localStorage.getItem('user_howtopay_options').split(',');
 
-    const userHowtopayOptions = localStorage.getItem('user_howtopay_options');
-    const userHowtopayOptionsArray = userHowtopayOptions.split(',');
-
-    const selectContainer = document.querySelector('#input-card__select-how-to-pay');
+    const container = document.querySelector('#modal__input-card__radio-buttons-howtopay .modal-content');
     for (let i = 0; i < userHowtopayOptionsArray.length; i++) {
-      const template = document.getElementById('input-card__select-how-to-pay__template-option-howtopay');
+      const template = document.getElementById('modal__input-card__radio-buttons-howtopay__template-radio');
       const clone = template.content.cloneNode(true);
-      clone.querySelector('option').textContent = userHowtopayOptionsArray[i];
-      clone.querySelector('option').setAttribute('value', userHowtopayOptionsArray[i]);
-      selectContainer.append(clone);
+      clone.querySelector('span').textContent = userHowtopayOptionsArray[i];
+      clone.querySelector('input').setAttribute('value', userHowtopayOptionsArray[i]);
+      clone.querySelector('input').addEventListener('click', (event) => {
+        const inputCardInputCategory = document.getElementById('input-card__input-howtopay');
+        console.log(inputCardInputCategory);
+        inputCardInputCategory.value = event.target.value;
+        inputCardInputCategory.parentElement.nextElementSibling.classList.add('active');
+      });
+      container.append(clone);
     }
   }
 
@@ -81,16 +79,11 @@ export class InputCard {
         isSwitchChecked = true;
       }
 
-      const categorySelect = document.getElementById('input-card__select-category');
-      const categorySelectInstance = M.FormSelect.getInstance(categorySelect);
-      const howToPaySelect = document.getElementById('input-card__select-how-to-pay');
-      const howToPaySelectInstance = M.FormSelect.getInstance(howToPaySelect);
-
       const dateValue = document.getElementById('input-card__input-date').value;
       const howMuchValue = document.getElementById('input-card__input--how-much').value;
       const thingsValue = document.getElementById('input-card__input-things').value.trim();
-      const categoryValue = categorySelectInstance.getSelectedValues()[0];
-      const howToPayValue = howToPaySelectInstance.getSelectedValues()[0];
+      const categoryValue = document.getElementById('input-card__input-category').value.trim();
+      const howToPayValue = document.getElementById('input-card__input-howtopay').value.trim();
 
       const isInputContentValid = this.validateInputContent(howMuchValue, thingsValue, categoryValue, howToPayValue);
       if (!isInputContentValid) {

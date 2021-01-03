@@ -13,9 +13,9 @@ import * as drawChart from './assets/scripts/charts/original_chart.js';
 import {
   DayReport
 } from './assets/scripts/components/DayReport.js';
-// import {
-//   fontActivate
-// } from './assets/scripts/functions/fontActivate.js';
+import {
+  fontActivate
+} from './assets/scripts/functions/fontActivate.js';
 
 class App {
   constructor() {
@@ -23,8 +23,8 @@ class App {
     new FetchData();
     new InputCard();
     new DayReport();
-    drawChart.drawChartDayDoughnut();
-    // fontActivate();
+    // drawChart.drawTodayChart();
+    fontActivate();
   }
 }
 
@@ -33,15 +33,3 @@ class App {
 new App();
 
 // test below
-const dropdownToday = document.getElementById('report__day__dropdown-today');
-const dropdownYesterday = document.getElementById('report__day__dropdown-yesterday');
-dropdownToday.addEventListener('click', () => {
-  document.getElementById('report__day__today').classList.remove('display-none');
-  document.getElementById('report__day__yesterday').classList.add('display-none');
-});
-dropdownYesterday.addEventListener('click', () => {
-  document.getElementById('report__day__today').classList.add('display-none');
-  document.getElementById('report__day__yesterday').classList.remove('display-none');
-});
-
-alert('code original??');

@@ -108,9 +108,9 @@ export function drawChartWeekBar() {
   });
 }
 
-export function drawChartDayDoughnut() {
+export function drawTodayChart() {
   (function() {
-    const dayDoughnutOut = document.getElementById('day_doughnut_out');
+    const dayDoughnutOut = document.getElementById('today-doughnut-out');
     const todayCategoryObject = JSON.parse(localStorage.getItem('today_each_category_howmuch'));
     if (!todayCategoryObject) {
       return;
@@ -125,10 +125,7 @@ export function drawChartDayDoughnut() {
     for (let i = 0; i < values.length; i++) {
       valueArray.push(values[i]);
     }
-    // const colorArray = [];
-    // for (let i = 0; i < keys.length; i++) {
-    //   colorArray.push()
-    // }
+
     new Chart(dayDoughnutOut, {
       type: 'doughnut',
       data: {
@@ -144,7 +141,7 @@ export function drawChartDayDoughnut() {
   }());
 
   (function () {
-    const dayDoughnutIn = document.getElementById('day_doughnut_in');
+    const dayDoughnutIn = document.getElementById('today-doughnut-in');
     const todayHowtopayObject = JSON.parse(localStorage.getItem('today_each_howtopay_howmuch'));
     if (!todayHowtopayObject) {
       return;

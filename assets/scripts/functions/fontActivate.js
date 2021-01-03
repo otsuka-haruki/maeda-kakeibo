@@ -27,4 +27,8 @@ export function fontActivate () {
     };
     s.parentNode.insertBefore(tk, s)
   })(document);
+
+  document.querySelectorAll('.input-field input').forEach((element) => {
+    element.classList.add('font-cute');
+  });
 }

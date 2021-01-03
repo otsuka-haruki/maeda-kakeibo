@@ -26,6 +26,7 @@ export class AppInitialize {
       $('.dropdown-trigger').dropdown({
         'coverTrigger': false,
       });
+      $('.collapsible').collapsible();
     });
   }
 }

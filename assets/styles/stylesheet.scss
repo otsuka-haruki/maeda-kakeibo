@@ -1,7 +1,5 @@
-// @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 html {
-  // font-family: 'Roboto', 'Yu-Gothic', sans-serif;
   // font-family: fot-tsukuardgothic-std, sans-serif;
   overflow-x: hidden;
 }
@@ -14,10 +12,14 @@ body {
 canvas {
   max-width: 100%;
 }
-//
+
 // .input-field input {
 //   font-family: 'fot-tsukuardgothic-std', sans-serif;
 // }
+
+.font-cute {
+  font-family: 'fot-tsukuardgothic-std', sans-serif;
+}
 
 .font-bold {
   font-weight: bold;

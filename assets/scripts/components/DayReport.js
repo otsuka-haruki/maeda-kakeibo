@@ -1,21 +1,16 @@
 export class DayReport {
   constructor() {
-    this.printTodayReportTable();
-    this.printTodayReportSum();
-    this.printYesterdayReportTable();
-    this.printYesterdayReportSum();
+    this.setContentToReportToday();
+    this.setContentToReportYesterday();
   }
 
   // TODO: distinguish in and out
   // TODO: fix dropdown
-  // TODO:
 
-  printTodayReportTable() {
+  setContentToReportToday() {
     const dayRecordNumber = localStorage.getItem('today_record_number');
-    const todayRecord = localStorage.getItem('today_record_0');
-    if (!todayRecord) {
-      return;
-    }
+    let todaySumOut = 0;
+    let todaySumIn = 0;
 
     for (let i = 0; i < dayRecordNumber; i++) {
       const todayRecordJSON = localStorage.getItem(`today_record_${i}`);
@@ -26,40 +21,33 @@ export class DayReport {
       const container = document.getElementById('analysis-today__table');
       const template = document.getElementById('analysis__today__template-table-tbody');
       const clone = template.content.cloneNode(true);
-      if (todayRecordObject.inOrOut == true) {
-        clone.querySelector('tr').classList.add('cyan');
-        clone.querySelectorAll('td').forEach(element => {
-          element.classList.add('border-radius-0');
-        });
-      }
       const tds = clone.querySelectorAll('td');
       tds[0].textContent = todayRecordObject.category;
       tds[1].textContent = todayRecordObject.things;
       tds[2].textContent = `¥${todayRecordObject.howMuch}`;
       tds[3].textContent = todayRecordObject.howToPay;
+      if (todayRecordObject.inOrOut == true) {
+        clone.querySelector('tr').classList.add('cyan', 'lighten-3');
+        clone.querySelectorAll('td').forEach(element => {
+          element.classList.add('border-radius-0');
+        });
+        todaySumIn = todaySumIn + +todayRecordObject.howMuch;
+      } else {
+        todaySumOut = todaySumOut + +todayRecordObject.howMuch;
+      }
       container.append(clone);
     }
-  }
 
-  printTodayReportSum() {
-    const todayEachCategoryHowmuchJSON = localStorage.getItem('today_each_category_howmuch');
-    const todayEachCategoryHowmuch = JSON.parse(todayEachCategoryHowmuchJSON);
-    if (Object.keys(todayEachCategoryHowmuch).length == 0) {
-      return;
-    }
-    const todaySum = Object.values(todayEachCategoryHowmuch).reduce(function(a, b) {
-      return a + b;
-    });
     const todayReportSpanOut = document.getElementById('day-report__span-out');
-    todayReportSpanOut.textContent = todaySum;
+    const todayReportSpanIn = document.getElementById('day-report__span-in');
+    todayReportSpanOut.textContent = todaySumOut;
+    todayReportSpanIn.textContent = todaySumIn;
   }
 
-  printYesterdayReportTable() {
+  setContentToReportYesterday() {
     const dayRecordNumber = localStorage.getItem('yesterday_record_number');
-    const yesterdayRecord = localStorage.getItem('yesterday_record_0');
-    if (!yesterdayRecord) {
-      return;
-    }
+    let yesterdaySumOut = 0;
+    let yesterdaySumIn = 0;
 
     for (let i = 0; i < dayRecordNumber; i++) {
       const yesterdayRecordJSON = localStorage.getItem(`yesterday_record_${i}`);
@@ -75,20 +63,21 @@ export class DayReport {
       tds[1].textContent = yesterdayRecordObject.things;
       tds[2].textContent = `¥${yesterdayRecordObject.howMuch}`;
       tds[3].textContent = yesterdayRecordObject.howToPay;
+      if (yesterdayRecordObject.inOrOut == true) {
+        clone.querySelector('tr').classList.add('cyan', 'lighten-3');
+        clone.querySelectorAll('td').forEach(element => {
+          element.classList.add('border-radius-0');
+        });
+        yesterdaySumIn = yesterdaySumIn + +yesterdayRecordObject.howMuch;
+      } else {
+        yesterdaySumOut = yesterdaySumOut + +yesterdayRecordObject.howMuch;
+      }
       container.append(clone);
     }
-  }
 
-  printYesterdayReportSum() {
-    const yesterdayEachCategoryHowmuchJSON = localStorage.getItem('yesterday_each_category_howmuch');
-    const yesterdayEachCategoryHowmuch = JSON.parse(yesterdayEachCategoryHowmuchJSON);
-    if (!yesterdayEachCategoryHowmuch) {
-      return;
-    }
-    const yesterdaySum = Object.values(yesterdayEachCategoryHowmuch).reduce(function(a, b) {
-      return a + b;
-    });
     const yesterdayReportSpanOut = document.getElementById('report__day__yesterday__span-out');
-    yesterdayReportSpanOut.textContent = yesterdaySum;
+    const yesterdayReportSpanIn = document.getElementById('report__day__yesterday__span-in');
+    yesterdayReportSpanOut.textContent = yesterdaySumOut;
+    yesterdayReportSpanIn.textContent = yesterdaySumIn;
   }
 }
