@@ -186,27 +186,33 @@
       <div id="report__week__this-week">
         <div class="card">
           <div class="card-content">
-            <canvas id="week-bar-out" width="400" height="400"></canvas>
+            <template id="report__week__this-week__template-canvas-week-bar-out">
+              <canvas id="week-bar-out" width="400" height="400"></canvas>
+            </template>
           </div>
         </div>
         <div class="card">
           <div class="card-content">
-            <canvas id="week-doughnut-out" width="400" height="400"></canvas>
+            <template id="report__week__this-week__template-canvas-week-doughnut-out">
+              <canvas id="week-doughnut-out" width="400" height="400"></canvas>
+            </template>
           </div>
         </div>
         <ul class="collapsible border-0">
           <li>
             <div class="collapsible-header border-0">収入</div>
-            <div class="collapsible-body border-0 padding-0"><div class="card">
-              <div class="card-content">
-                <canvas id="week-bar-in" width="400" height="400"></canvas>
+            <div class="collapsible-body border-0 padding-0">
+              <div class="card">
+                <div class="card-content">
+                  <canvas id="week-bar-in" width="400" height="400"></canvas>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-content">
+                  <canvas id="week-doughnut-in" width="400" height="400"></canvas>
+                </div>
               </div>
             </div>
-            <div class="card">
-              <div class="card-content">
-                <canvas id="week-doughnut-in" width="400" height="400"></canvas>
-              </div>
-            </div></div>
           </li>
         </ul>
 
