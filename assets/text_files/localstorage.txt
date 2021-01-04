@@ -66,7 +66,7 @@ week
         ...
       category
       howtopay
-      
+
 
 month
   0
@@ -86,3 +86,21 @@ month
   ...
 
 year
+  2021
+    in
+     each_month
+     category
+     howtopay
+    out
+     each_month
+     category
+     howtopay
+   2022
+     in
+      each_month
+      category
+      howtopay
+     out
+      each_month
+      category
+      howtopay

@@ -9,7 +9,6 @@ import {
 import {
   FetchData
 } from './assets/scripts/database/FetchData.js';
-// import * as drawChart from './assets/scripts/charts/original_chart.js';
 import {
   DayReport
 } from './assets/scripts/components/DayReport.js';
@@ -19,6 +18,9 @@ import {
 import {
   MonthReport
 } from './assets/scripts/components/MonthReport.js'
+import {
+  YearReport
+} from './assets/scripts/components/YearReport.js'
 import {
   fontActivate
 } from './assets/scripts/functions/fontActivate.js';
@@ -31,7 +33,7 @@ class App {
     new DayReport();
     new WeekReport();
     new MonthReport();
-    // drawChart.drawTodayChart();
+    new YearReport();
     fontActivate();
   }
 }
@@ -41,3 +43,31 @@ class App {
 new App();
 
 // test below
+
+// const testobj = JSON.parse(localStorage.getItem('report_year'));
+// testobj[2022] = {
+//   in: {
+//     each_month: {
+//
+//     },
+//     category: {
+//
+//     },
+//     howtopay: {
+//
+//     },
+//   },
+//   out: {
+//     each_month: {
+//
+//     },
+//     category: {
+//
+//     },
+//     howtopay: {
+//
+//     },
+//   },
+// };
+//
+// localStorage.setItem('report_year', JSON.stringify(testobj));

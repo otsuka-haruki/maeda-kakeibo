@@ -96,7 +96,7 @@ export class InputCard {
         howMuch: howMuchValue,
         things: thingsValue,
         category: categoryValue,
-        howToPay: howToPayValue,
+        howtopay: howToPayValue,
       };
       const todayRecordJSON = JSON.stringify(todayRecordObject);
 
@@ -106,10 +106,16 @@ export class InputCard {
 
       // ここまでそのレコード１つを新たに追加
 
-      // ここから今週のカテゴリー別や支払い方法別を更新
-      
-      let thisWeekObject = JSON.parse(localStorage.getItem('report_week'));
+      // ここから週間、月間、年間を更新
+
+      const thisWeekObject = JSON.parse(localStorage.getItem('report_week'));
+      const monthObject = JSON.parse(localStorage.getItem('report_month'));
+      const yearObject = JSON.parse(localStorage.getItem('report_year'));
+      const today = new Date();
+      // 支出だった場合
       if (!isSwitchChecked) {
+        // week
+        // category
         let oldThisWeekCategory = thisWeekObject.thisWeek.out.category[todayRecordObject.category];
         if (!oldThisWeekCategory) {
           oldThisWeekCategory = 0;
@@ -117,16 +123,53 @@ export class InputCard {
         const newThisWeekCategory = +oldThisWeekCategory + +todayRecordObject.howMuch;
         thisWeekObject.thisWeek.out.category[todayRecordObject.category] = newThisWeekCategory;
 
-        let oldThisWeekHowtopay = thisWeekObject.thisWeek.out.howtopay[todayRecordObject.howToPay];
+        // howtopay
+        let oldThisWeekHowtopay = thisWeekObject.thisWeek.out.howtopay[todayRecordObject.howtopay];
         if (!oldThisWeekHowtopay) {
           oldThisWeekHowtopay = 0;
         }
         const newThisWeekHowtopay = +oldThisWeekHowtopay + +todayRecordObject.howMuch;
-        thisWeekObject.thisWeek.out.howtopay[todayRecordObject.howToPay] = newThisWeekHowtopay;
+        thisWeekObject.thisWeek.out.howtopay[todayRecordObject.howtopay] = newThisWeekHowtopay;
 
-        thisWeekObject = JSON.stringify(thisWeekObject);
-        localStorage.setItem('report_week', thisWeekObject);
-      } else {
+        // month
+        // category
+        let oldThisMonthCategory = monthObject[today.getMonth()].out.category[todayRecordObject.category];
+        if (!oldThisMonthCategory) {
+          oldThisMonthCategory = 0;
+        }
+        const newThisMonthCategory = +oldThisMonthCategory + +todayRecordObject.howMuch;
+        monthObject[today.getMonth()].out.category[todayRecordObject.category] = newThisMonthCategory;
+
+        // month
+        // howtopay
+        let oldThisMonthHowtopay = monthObject[today.getMonth()].out.howtopay[todayRecordObject.howtopay];
+        if (!oldThisMonthHowtopay) {
+          oldThisMonthHowtopay = 0;
+        }
+        const newThisMonthHowtopay = +oldThisMonthHowtopay + +todayRecordObject.howMuch;
+        monthObject[today.getMonth()].out.howtopay[todayRecordObject.howtopay] = newThisMonthHowtopay;
+
+        // year
+        // category
+        let oldThisYearCategory = yearObject[today.getFullYear()].out.category[todayRecordObject.category];
+        if (!oldThisYearCategory) {
+          oldThisYearCategory = 0;
+        }
+        const newThisYearCategory = +oldThisYearCategory + +todayRecordObject.howMuch;
+        yearObject[today.getFullYear()].out.category[todayRecordObject.category] = newThisYearCategory;
+
+        // year
+        // howtopay
+        let oldThisYearHowtopay = yearObject[today.getFullYear()].out.howtopay[todayRecordObject.howtopay];
+        if (!oldThisYearHowtopay) {
+          oldThisYearHowtopay = 0;
+        }
+        const newThisYearHowtopay = +oldThisYearHowtopay + +todayRecordObject.howMuch;
+        yearObject[today.getFullYear()].out.howtopay[todayRecordObject.howtopay] = newThisYearHowtopay;
+      }
+
+      // 収入だった場合
+      else {
         let oldThisWeekCategory = thisWeekObject.thisWeek.in.category[todayRecordObject.category];
         if (!oldThisWeekCategory) {
           oldThisWeekCategory = 0;
@@ -134,16 +177,59 @@ export class InputCard {
         const newThisWeekCategory = +oldThisWeekCategory + +todayRecordObject.howMuch;
         thisWeekObject.thisWeek.in.category[todayRecordObject.category] = newThisWeekCategory;
 
-        let oldThisWeekHowtopay = thisWeekObject.thisWeek.in.howtopay[todayRecordObject.howToPay];
+        let oldThisWeekHowtopay = thisWeekObject.thisWeek.in.howtopay[todayRecordObject.howtopay];
         if (!oldThisWeekHowtopay) {
           oldThisWeekHowtopay = 0;
         }
         const newThisWeekHowtopay = +oldThisWeekHowtopay + +todayRecordObject.howMuch;
-        thisWeekObject.thisWeek.in.howtopay[todayRecordObject.howToPay] = newThisWeekHowtopay;
+        thisWeekObject.thisWeek.in.howtopay[todayRecordObject.howtopay] = newThisWeekHowtopay;
 
-        thisWeekObject = JSON.stringify(thisWeekObject);
-        localStorage.setItem('report_week', thisWeekObject);
+        // month
+        // category
+        let oldThisMonthCategory = monthObject[today.getMonth()].in.category[todayRecordObject.category];
+        if (!oldThisMonthCategory) {
+          oldThisMonthCategory = 0;
+        }
+        const newThisMonthCategory = +oldThisMonthCategory + +todayRecordObject.howMuch;
+        monthObject[today.getMonth()].in.category[todayRecordObject.category] = newThisMonthCategory;
+
+        // month
+        // howtopay
+        let oldThisMonthHowtopay = monthObject[today.getMonth()].in.howtopay[todayRecordObject.howtopay];
+        if (!oldThisMonthHowtopay) {
+          oldThisMonthHowtopay = 0;
+        }
+        const newThisMonthHowtopay = +oldThisMonthHowtopay + +todayRecordObject.howMuch;
+        monthObject[today.getMonth()].in.howtopay[todayRecordObject.howtopay] = newThisMonthHowtopay;
+
+        // year
+        // category
+        let oldThisYearCategory = yearObject[today.getFullYear()].in.category[todayRecordObject.category];
+        if (!oldThisYearCategory) {
+          oldThisYearCategory = 0;
+        }
+        const newThisYearCategory = +oldThisYearCategory + +todayRecordObject.howMuch;
+        yearObject[today.getFullYear()].in.category[todayRecordObject.category] = newThisYearCategory;
+
+        // year
+        // howtopay
+        let oldThisYearHowtopay = yearObject[today.getFullYear()].in.howtopay[todayRecordObject.howtopay];
+        if (!oldThisYearHowtopay) {
+          oldThisYearHowtopay = 0;
+        }
+        const newThisYearHowtopay = +oldThisYearHowtopay + +todayRecordObject.howMuch;
+        yearObject[today.getFullYear()].in.howtopay[todayRecordObject.howtopay] = newThisYearHowtopay;
       }
+
+      const thisWeekJSON = JSON.stringify(thisWeekObject);
+      localStorage.setItem('report_week', thisWeekJSON);
+
+      const monthJSON = JSON.stringify(monthObject);
+      localStorage.setItem('report_month', monthJSON);
+
+      const yearJSON = JSON.stringify(yearObject);
+      localStorage.setItem('report_year', yearJSON);
+
       setToastDataFunctions('true', 'データを追加しました！', 'toast-success toast-pop');
     });
   }

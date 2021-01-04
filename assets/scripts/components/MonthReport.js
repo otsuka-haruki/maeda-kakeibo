@@ -4,14 +4,13 @@ import * as chartFunctions from '../charts/original_chart.js';
 
 export class MonthReport {
   constructor() {
-    this.setEachMonthWrapper();
+    this.setEachMonthContent();
   }
 
-  setEachMonthWrapper() {
+  setEachMonthContent() {
     const container = document.getElementById('report__month');
     const template = container.querySelector('#report__month__template-wrapper');
     const monthObject = JSON.parse(localStorage.getItem('report_month'));
-    console.log(monthObject);
     for (let i = 0; i < 12; i++) {
       const clone = template.content.cloneNode(true);
       clone.querySelector('div').setAttribute('id', `report__month__container-${i}`);
@@ -50,7 +49,7 @@ export class MonthReport {
       const howtopayOutKeys = Object.keys(monthObject[i].out.howtopay);
       chartFunctions.drawChartMonthDoughnut(i, `report__month__card-out-howtopay-${i}`, howtopayOutValues, howtopayOutKeys);
 
-      // table
+      // table-out
       const containerTable = document.getElementById(`report__month__card-table-${i}`).querySelector('table');
       const templateTbody = containerTable.querySelector('template');
       for (let i = 0; i < categoryOutKeys.length; i++) {
@@ -65,6 +64,7 @@ export class MonthReport {
       const categoryInKeys = Object.keys(monthObject[i].in.category);
       chartFunctions.drawChartMonthDoughnut(i, `report__month__card-in-category-${i}`, categoryInValues, categoryInKeys);
 
+      // table-in
       for (let i = 0; i < categoryInKeys.length; i++) {
         const cloneTbody = templateTbody.content.cloneNode(true);
         cloneTbody.querySelector('tr').classList.add('cyan', 'lighten-3');

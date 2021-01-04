@@ -9,21 +9,17 @@ export function chartInitialize() {
 
 // ここから下、年間のチャート
 
-export function drawChartYearDoughnut() {
-  const year_doughnut = document.getElementById('year_doughnut');
+export function drawChartYearDoughnut(cardId, dataArray, labelArray) {
+  const year_doughnut = document.getElementById(cardId).querySelector('canvas');
   new Chart(year_doughnut, {
     type: 'doughnut',
     data: {
       datasets: [{
-        data: [40, 30, 10],
+        data: dataArray,
         backgroundColor: ['#f44336', '#90a4ae', '#4caf50']
       }],
 
-      labels: [
-        '食費',
-        '交通費',
-        '日用品'
-      ]
+      labels: labelArray
     },
     // options: options
   });

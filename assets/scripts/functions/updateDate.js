@@ -1,15 +1,17 @@
 'use strict';
 
 export function updateDate() {
-  // TODO: １回変えたらそれで終わりにする
+
   const todayInfoNow = new Date();
   const todayInfoLS = JSON.parse(localStorage.getItem('today_info'));
 
   if (todayInfoNow.getDate() == todayInfoLS.date) {
     // 同じ日、することなし
     console.log('same day!');
-  } else {
-    // 日が変わるアップデート、下のコードはちゃんと動く（はず）、安全のためコメントアウトしている
+  }
+  else {
+
+    // 日が変わるアップデート
     const yesterdayRecordNumber = localStorage.getItem('yesterday_record_number');
     for (let i = 0; i < yesterdayRecordNumber; i++) {
       localStorage.removeItem(`yesterday_record_${i}`)
@@ -34,6 +36,46 @@ export function updateDate() {
       localStorage.setItem('report_week', newWeekObject);
     }
 
+    // 年が変わるアップデート
+    if (todayInfoNow.getFullYear() != todayInfoLS.year) {
+      // 月オブジェクトを初期化
+      const newMonthObject = {
+        0: {
+          in: {
+            category: {
+
+            },
+            howtopay: {
+
+            },
+          },
+          out: {
+            category: {
+
+            },
+            howtopay: {
+
+            },
+          },
+        },
+        1: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        2: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        3: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        4: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        5: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        6: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        7: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        8: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        9: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        10: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        11: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+      }
+      const newMonthJSON = JSON.stringify(newMonthObject);
+      localStorage.setItem('report_month', newMonthJSON);
+    }
+
+
+
     const updatedTodayInfo = {
       date: todayInfoNow.getDate(),
       day: todayInfoNow.getDay(),
@@ -42,6 +84,5 @@ export function updateDate() {
     };
     const updatedTodayInfoJSON = JSON.stringify(updatedTodayInfo);
     localStorage.setItem('today_info', updatedTodayInfoJSON);
-    alert('new week! Ha!');
   }
 }

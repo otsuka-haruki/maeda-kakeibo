@@ -81,7 +81,7 @@
         <li class="tab col s3"><a href="#day-report">今日</a></li>
         <li class="tab col s3"><a href="#report__week" id="tab__week">週間</a></li>
         <li class="tab col s3"><a href="#report__month">月間</a></li>
-        <li class="tab col s3"><a href="#year_analysis">年間</a></li>
+        <li class="tab col s3"><a href="#report__year">年間</a></li>
       </ul>
     </div>
     <div id="day-report" class="col s12 cyan lighten-3">
@@ -172,7 +172,7 @@
 
     <!-- ここから下、週間のレポート -->
 
-    <div id="report__week" class="col s12 green accent-2">
+    <div id="report__week" class="col s12 teal lighten-3">
       <div class="center-align">
         <ul class="tabs">
           <li class="tab col s3"><a href="#report__week__this-week" class="active">今週</a></li>
@@ -380,21 +380,86 @@
       </template>
     </div>
 
-    <div id="year_analysis" class="col s12">
+    <!-- Report Year -->
+
+    <div id="report__year" class="col s12 blue-grey lighten-3">
       <ul class="tabs">
-        <li class="tab col s3"><a href="#report__year-2021">2021年</a></li>
+        <template>
+          <li class="tab col s3"><a href="#">----年</a></li>
+        </template>
       </ul>
-      <div class="report__year-2021">
-        <div class="card">
-          <div class="card-content">
-            <canvas id="year_doughnut" width="400" height="400"></canvas>
+      <template id="report__year__template-container">
+        <div>
+          <div class="card" id="report__year__card-general">
+            <div class="card-content">
+              <h5 class="center-align">支出 ￥<span id="report__year__card-general__span-out">0</span></h5>
+              <h5 class="center-align">収入 ￥<span id="report__year__card-general__span-in">0</span></h5>
+            </div>
           </div>
+          <div class="card" id="report__year__card-out-category">
+            <div class="card-content">
+              <span class="card-title">カテゴリーごとに</span>
+              <canvas width="300" height="300"></canvas>
+            </div>
+          </div>
+          <div class="card" id="report__year__card-out-howtopay">
+            <div class="card-content">
+              <span class="card-title">支払い方法ごとに</span>
+              <canvas width="300" height="300"></canvas>
+            </div>
+          </div>
+          <div class="card" id="report__year__card-table">
+            <div class="card-content padding-side-little">
+              <span class="card-title"><span></span>年の明細</span>
+              <table class="centered">
+                <thead>
+                  <tr>
+                    <th>カテゴリー</th>
+                    <th>金額</th>
+                  </tr>
+                </thead>
+                <template>
+                  <tbody>
+                    <tr>
+                      <td>--</td>
+                      <td>--</td>
+                    </tr>
+                  </tbody>
+                </template>
+              </table>
+            </div>
+          </div>
+          <ul class="collapsible border-0 box-shadow-0 font-bold font-bold">
+            <li>
+              <div class="collapsible-header border-0 collapsible-header--box-shadow">収入</div>
+              <div class="collapsible-body border-0 padding-0">
+                <div class="card" id="report__year__card-in-category">
+                  <div class="card-content">
+                    <span class="card-title">カテゴリーごとに</span>
+                    <canvas width="400" height="400"></canvas>
+                  </div>
+                </div>
+                <div class="card" id="report__year__card-in-howtopay">
+                  <div class="card-content">
+                    <span class="card-title">支払い方法ごとに</span>
+                    <canvas width="400" height="400"></canvas>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
-      </div>
+      </template>
     </div>
   </div>
 
+  <!-- Report Year -->
+
   <a class="waves-effect waves-light btn display-none" id="update">1日分更新する</a>
+
+
+  <!-- footer -->
+
 
   <footer class="page-footer">
     <div class="container">
@@ -411,6 +476,9 @@
       </div>
     </div>
   </footer>
+
+
+  <!-- footer -->
 
 
   <!-- Modals -->

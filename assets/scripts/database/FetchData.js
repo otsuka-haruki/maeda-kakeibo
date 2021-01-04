@@ -154,6 +154,38 @@ export class FetchData {
       localStorage.setItem('report_month', initialJSON);
     }
 
+    const hasYearJSON = localStorage.getItem('report_year');
+    if (!hasYearJSON) {
+      const thisYear = today.getFullYear();
+      const initialObject = {}
+      initialObject[thisYear] = {
+        in: {
+          each_month: {
+
+          },
+          category: {
+
+          },
+          howtopay: {
+
+          },
+        },
+        out: {
+          each_month: {
+
+          },
+          category: {
+
+          },
+          howtopay: {
+
+          },
+        },
+      }
+      const initialJSON = JSON.stringify(initialObject);
+      localStorage.setItem('report_year', initialJSON);
+    }
+
   }
 
   setInitialLocalStorageJSON(localStorageKeyName) {
