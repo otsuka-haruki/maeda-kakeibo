@@ -8,7 +8,32 @@ export function chartInitialize() {
 }
 
 // ここから下、年間のチャート
-const colorObject = JSON.parse(localStorage.getItem('color_palette'));
+let colorObject = JSON.parse(localStorage.getItem('color_palette'));
+if (!colorObject) {
+   colorObject = {
+    red: '#ff5252',
+    cyan: '#00b8d4',
+    teal: '#00bfa5',
+    yellow: '#ffff00',
+    blueGrey: '#546e7a',
+    pink: '#ff4081',
+    blue: '#2979ff',
+    green: '#00e676',
+    amber: '#ffc400',
+    brown: '#795548',
+    deepOrange: '#ff3d00',
+    indigo: '#3d5afe',
+    lightGreen: '#76ff03',
+    lime: '#eeff41',
+    grey: '#616161',
+    purple: '#e040fb',
+    lightBlue: '#00b0ff',
+    orange: '#ff9100',
+    deepPurple: '#7c4dff',
+  };
+  const colorJSON = JSON.stringify(colorObject);
+  localStorage.setItem('color_palette', colorJSON);
+}
 const colorArray = Object.values(colorObject);
 
 let isDoubled = false;
