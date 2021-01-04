@@ -66,6 +66,7 @@ week
         ...
       category
       howtopay
+      
 
 month
   0
@@ -85,19 +86,3 @@ month
   ...
 
 year
-
-  category this year so far = [{
-    '食費': 700000,
-    '日用品': 300000,
-    '交通費': 150000,
-    ...
-    }];
-
-  category last year = [{
-    '食費': 700000,
-    '日用品': 300000,
-    '交通費': 150000,
-    ...
-    }];
-
-howtopayについても同じように

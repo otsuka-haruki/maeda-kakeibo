@@ -30,6 +30,8 @@ export function updateDate() {
       const oldThisWeekObject = weekObject.thisWeek;
       weekObject.lastWeek = oldThisWeekObject;
       weekObject.thisWeek = {out: {eachDay: {},category: {},howtopay: {},},in: {eachDay: {},category: {},howtopay: {},},}
+      const newWeekObject = JSON.stringify(weekObject);
+      localStorage.setItem('report_week', newWeekObject);
     }
 
     const updatedTodayInfo = {

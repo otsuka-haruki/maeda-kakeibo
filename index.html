@@ -303,25 +303,25 @@
 
     <div id="report__month" class="col s12 pink lighten-4">
       <ul class="tabs">
-        <li class="tab col s3"><a href="#report__month__template-wrapper__container-0">１月</a></li>
-        <li class="tab col s3"><a href="#report__month__template-wrapper__container-1">２月</a></li>
-        <li class="tab col s3"><a href="#report__month__template-wrapper__container-2">３月</a></li>
-        <li class="tab col s3"><a href="#report__month__template-wrapper__container-3">４月</a></li>
-        <li class="tab col s3"><a href="#report__month__template-wrapper__container-4">５月</a></li>
-        <li class="tab col s3"><a href="#report__month__template-wrapper__container-5">６月</a></li>
-        <li class="tab col s3"><a href="#report__month__template-wrapper__container-6">７月</a></li>
-        <li class="tab col s3"><a href="#report__month__template-wrapper__container-7">８月</a></li>
-        <li class="tab col s3"><a href="#report__month__template-wrapper__container-8">９月</a></li>
-        <li class="tab col s3"><a href="#report__month__template-wrapper__container-9">１０月</a></li>
-        <li class="tab col s3"><a href="#report__month__template-wrapper__container-10">１１月</a></li>
-        <li class="tab col s3"><a href="#report__month__template-wrapper__container-11">１２月</a></li>
+        <li class="tab col s3"><a href="#report__month__container-0">１月</a></li>
+        <li class="tab col s3"><a href="#report__month__container-1">２月</a></li>
+        <li class="tab col s3"><a href="#report__month__container-2">３月</a></li>
+        <li class="tab col s3"><a href="#report__month__container-3">４月</a></li>
+        <li class="tab col s3"><a href="#report__month__container-4">５月</a></li>
+        <li class="tab col s3"><a href="#report__month__container-5">６月</a></li>
+        <li class="tab col s3"><a href="#report__month__container-6">７月</a></li>
+        <li class="tab col s3"><a href="#report__month__container-7">８月</a></li>
+        <li class="tab col s3"><a href="#report__month__container-8">９月</a></li>
+        <li class="tab col s3"><a href="#report__month__container-9">１０月</a></li>
+        <li class="tab col s3"><a href="#report__month__container-10">１１月</a></li>
+        <li class="tab col s3"><a href="#report__month__container-11">１２月</a></li>
       </ul>
       <template id="report__month__template-wrapper">
         <div>
-          <div class="card">
+          <div class="card" id="report__month__card-general">
             <div class="card-content">
-              <h5 class="center-align">支出 ￥<span>0</span></h5>
-              <h5 class="center-align">収入 ￥<span>0</span></h5>
+              <h5 class="center-align">支出 ￥<span id="report__month__card-general__span-out">0</span></h5>
+              <h5 class="center-align">収入 ￥<span id="report__month__card-general__span-in">0</span></h5>
             </div>
           </div>
           <div class="card" id="report__month__card-out-category">
@@ -339,7 +339,7 @@
           <div class="card" id="report__month__card-table">
             <div class="card-content padding-side-little">
               <span class="card-title"><span></span>月の明細</span>
-              <table class="centered" id="report__day__yesterday__table">
+              <table class="centered">
                 <thead>
                   <tr>
                     <th>カテゴリー</th>
@@ -381,8 +381,16 @@
     </div>
 
     <div id="year_analysis" class="col s12">
-      <h4 class="center-align">2020年</h4>
-      <canvas id="year_doughnut" width="400" height="400"></canvas>
+      <ul class="tabs">
+        <li class="tab col s3"><a href="#report__year-2021">2021年</a></li>
+      </ul>
+      <div class="report__year-2021">
+        <div class="card">
+          <div class="card-content">
+            <canvas id="year_doughnut" width="400" height="400"></canvas>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -404,7 +412,9 @@
     </div>
   </footer>
 
+
   <!-- Modals -->
+
 
   <div class="modal" id="modal__input-card__radio-buttons-category">
     <div class="modal-content">
@@ -488,7 +498,9 @@
     </div>
   </div>
 
+
   <!-- Modals -->
+
 
 </body>
 

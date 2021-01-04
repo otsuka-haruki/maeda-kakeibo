@@ -87,6 +87,39 @@ export class FetchData {
     const hasMonthJSON = localStorage.getItem('report_month');
     if (!hasMonthJSON) {
       const initialObject = {
+        // 0: {
+        //   in: {
+        //     category: {
+        //       '臨時収入': 1200,
+        //       'お小遣い': 200,
+        //     },
+        //     howtopay: {
+        //       '現金': 200,
+        //       'Linepay': 1200,
+        //     },
+        //   },
+        //   out: {
+        //     category: {
+        //       '食費': 3000,
+        //       '交通費': 1600,
+        //     },
+        //     howtopay: {
+        //       'Paypay': 3000,
+        //       'Suica': 1600,
+        //     },
+        //   },
+        // },
+        // 1: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        // 2: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        // 3: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        // 4: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        // 5: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        // 6: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        // 7: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        // 8: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        // 9: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        // 10: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
+        // 11: {in: {category: {},howtopay: {},},out: {category: {},howtopay: {},},},
         0: {
           in: {
             category: {

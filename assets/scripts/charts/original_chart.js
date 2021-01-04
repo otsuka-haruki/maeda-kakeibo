@@ -31,39 +31,17 @@ export function drawChartYearDoughnut() {
 
 // ここから下、月間のチャート
 
-export function drawChartMonthDoughnutIn() {
-  const month_doughnut_in = document.getElementById('month_doughnut_in');
-  new Chart(month_doughnut_in, {
+export function drawChartMonthDoughnut(monthNumber, cardId, dataArray, labelArray) {
+  const target = document.getElementById(cardId).querySelector('canvas');
+  new Chart(target, {
     type: 'doughnut',
     data: {
       datasets: [{
-        data: [50, 15, 30],
-        backgroundColor: ['#f44336', '#90a4ae', '#4caf50']
-      }],
-
-      labels: [
-        '食費',
-        '交通費',
-        '日用品'
-      ]
-    },
-    // options: options
-  });
-}
-export function drawChartMonthDoughnutOut() {
-  const month_doughnut_out = document.getElementById('month_doughnut_out');
-  new Chart(month_doughnut_out, {
-    type: 'doughnut',
-    data: {
-      datasets: [{
-        data: [50, 10],
+        data: dataArray,
         backgroundColor: ['#00bcd4', '#90a4ae']
       }],
 
-      labels: [
-        '仕送り',
-        'バイト'
-      ]
+      labels: labelArray,
     },
     // options: options
   });
