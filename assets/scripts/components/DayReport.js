@@ -29,7 +29,7 @@ export class DayReport {
       tds[0].textContent = todayRecordObject.category;
       tds[1].textContent = todayRecordObject.things;
       tds[2].textContent = `¥${todayRecordObject.howMuch}`;
-      tds[3].textContent = todayRecordObject.howToPay;
+      tds[3].textContent = todayRecordObject.howtopay;
 
       if (todayRecordObject.inOrOut == true) {
         clone.querySelector('tr').classList.add('cyan', 'lighten-3');

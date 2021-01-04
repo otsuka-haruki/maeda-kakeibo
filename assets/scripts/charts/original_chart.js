@@ -8,15 +8,63 @@ export function chartInitialize() {
 }
 
 // ここから下、年間のチャート
+const colorObject = JSON.parse(localStorage.getItem('color_palette'));
+const colorArray = Object.values(colorObject);
+
+let isDoubled = false;
+function checkDoubleColorQuantity(dataArray) {
+  if (dataArray.length > 19 && isDoubled == false) {
+    for (let i = 0; i < 19; i++) {
+      const colors = colorArray[i];
+      colorArray.push(colors);
+    }
+    isDoubled = true;
+  }
+}
+
+export function drawChartYearBar(cardId, dataArray, inOrOut) {
+  const year_doughnut = document.getElementById(cardId).querySelector('canvas');
+  let backgroundColor;
+  let label;
+  if (inOrOut == 'in') {
+    backgroundColor = '#4dd0e1';
+    label = '収入';
+  } else {
+    backgroundColor = '#ffd54f';
+    label = '支出';
+  }
+  new Chart(year_doughnut, {
+    type: 'bar',
+    data: {
+      labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+      datasets: [{
+        label,
+        data: dataArray,
+        backgroundColor,
+        hoverBackgroundColor: '#ff5252',
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+}
 
 export function drawChartYearDoughnut(cardId, dataArray, labelArray) {
+  checkDoubleColorQuantity(dataArray);
   const year_doughnut = document.getElementById(cardId).querySelector('canvas');
   new Chart(year_doughnut, {
     type: 'doughnut',
     data: {
       datasets: [{
         data: dataArray,
-        backgroundColor: ['#f44336', '#90a4ae', '#4caf50']
+        backgroundColor: colorArray,
       }],
 
       labels: labelArray
@@ -28,13 +76,14 @@ export function drawChartYearDoughnut(cardId, dataArray, labelArray) {
 // ここから下、月間のチャート
 
 export function drawChartMonthDoughnut(monthNumber, cardId, dataArray, labelArray) {
+  checkDoubleColorQuantity(dataArray);
   const target = document.getElementById(cardId).querySelector('canvas');
   new Chart(target, {
     type: 'doughnut',
     data: {
       datasets: [{
         data: dataArray,
-        backgroundColor: ['#00bcd4', '#90a4ae']
+        backgroundColor: colorArray,
       }],
 
       labels: labelArray,
@@ -68,7 +117,8 @@ export function drawChartThisWeekBarOut() {
       datasets: [{
         label: '支出',
         data: valueArray,
-        backgroundColor: '#ffe082',
+        backgroundColor: '#ffd54f',
+        hoverBackgroundColor: '#ff5252',
       }]
     },
     options: {
@@ -99,13 +149,15 @@ export function drawChartThisWeekDoughnutOutCategory() {
     valueArray.push(values[i]);
   }
 
+  checkDoubleColorQuantity(keyArray);
+
   const weekDoughnutOut = document.getElementById('this-week-doughnut-out-category');
   new Chart(weekDoughnutOut, {
     type: 'doughnut',
     data: {
       datasets: [{
         data: valueArray,
-        backgroundColor: ['#f44336', '#90a4ae', '#4caf50']
+        backgroundColor: colorArray,
       }],
       labels: keyArray,
     },
@@ -129,13 +181,15 @@ export function drawChartThisWeekDoughnutOutHowtopay() {
     valueArray.push(values[i]);
   }
 
+  checkDoubleColorQuantity(keyArray);
+
   const weekDoughnutOut = document.getElementById('this-week-doughnut-out-howtopay');
   new Chart(weekDoughnutOut, {
     type: 'doughnut',
     data: {
       datasets: [{
         data: valueArray,
-        backgroundColor: ['#f44336', '#90a4ae', '#4caf50']
+        backgroundColor: colorArray,
       }],
       labels: keyArray,
     },
@@ -166,7 +220,8 @@ export function drawChartThisWeekBarIn() {
       datasets: [{
         label: '収入',
         data: valueArray,
-        backgroundColor: '#ffe082',
+        backgroundColor: '#4dd0e1',
+        hoverBackgroundColor: '#ff5252',
       }]
     },
     options: {
@@ -197,13 +252,15 @@ export function drawChartThisWeekDoughnutInCategory() {
     valueArray.push(values[i]);
   }
 
+    checkDoubleColorQuantity(keyArray);
+
   const weekDoughnutOut = document.getElementById('this-week-doughnut-in-category');
   new Chart(weekDoughnutOut, {
     type: 'doughnut',
     data: {
       datasets: [{
         data: valueArray,
-        backgroundColor: ['#f44336', '#90a4ae', '#4caf50']
+        backgroundColor: colorArray,
       }],
       labels: keyArray,
     },
@@ -227,13 +284,15 @@ export function drawChartThisWeekDoughnutInHowtopay() {
     valueArray.push(values[i]);
   }
 
+    checkDoubleColorQuantity(keyArray);
+
   const weekDoughnutOut = document.getElementById('this-week-doughnut-in-howtopay');
   new Chart(weekDoughnutOut, {
     type: 'doughnut',
     data: {
       datasets: [{
         data: valueArray,
-        backgroundColor: ['#f44336', '#90a4ae', '#4caf50']
+        backgroundColor: colorArray,
       }],
       labels: keyArray,
     },
@@ -260,7 +319,8 @@ export function drawChartLastWeekBarOut() {
       datasets: [{
         label: '支出',
         data: valueArray,
-        backgroundColor: '#ffe082',
+        backgroundColor: '#ffd54f',
+        hoverBackgroundColor: '#ff5252',
       }]
     },
     options: {
@@ -291,13 +351,15 @@ export function drawChartLastWeekDoughnutOutCategory() {
     valueArray.push(values[i]);
   }
 
+    checkDoubleColorQuantity(keyArray);
+
   const weekDoughnutOut = document.getElementById('last-week-doughnut-out-category');
   new Chart(weekDoughnutOut, {
     type: 'doughnut',
     data: {
       datasets: [{
         data: valueArray,
-        backgroundColor: ['#f44336', '#90a4ae', '#4caf50']
+        backgroundColor: colorArray,
       }],
       labels: keyArray,
     },
@@ -321,13 +383,15 @@ export function drawChartLastWeekDoughnutOutHowtopay() {
     valueArray.push(values[i]);
   }
 
+    checkDoubleColorQuantity(keyArray);
+
   const weekDoughnutOut = document.getElementById('last-week-doughnut-out-howtopay');
   new Chart(weekDoughnutOut, {
     type: 'doughnut',
     data: {
       datasets: [{
         data: valueArray,
-        backgroundColor: ['#f44336', '#90a4ae', '#4caf50']
+        backgroundColor: colorArray,
       }],
       labels: keyArray,
     },
@@ -355,7 +419,8 @@ export function drawChartLastWeekBarIn() {
       datasets: [{
         label: '収入',
         data: valueArray,
-        backgroundColor: '#ffe082',
+        backgroundColor: '#4dd0e1',
+        hoverBackgroundColor: '#ff5252',
       }]
     },
     options: {
@@ -383,13 +448,15 @@ export function drawChartLastWeekDoughnutInCategory() {
     valueArray.push(values[i]);
   }
 
+    checkDoubleColorQuantity(keyArray);
+
   const weekDoughnutOut = document.getElementById('last-week-doughnut-in-category');
   new Chart(weekDoughnutOut, {
     type: 'doughnut',
     data: {
       datasets: [{
         data: valueArray,
-        backgroundColor: ['#f44336', '#90a4ae', '#4caf50']
+        backgroundColor: colorArray,
       }],
       labels: keyArray,
     },
@@ -410,79 +477,18 @@ export function drawChartLastWeekDoughnutInHowtopay() {
     valueArray.push(values[i]);
   }
 
+    checkDoubleColorQuantity(keyArray);
+
   const weekDoughnutOut = document.getElementById('last-week-doughnut-in-howtopay');
   new Chart(weekDoughnutOut, {
     type: 'doughnut',
     data: {
       datasets: [{
         data: valueArray,
-        backgroundColor: ['#f44336', '#90a4ae', '#4caf50']
+        backgroundColor: colorArray,
       }],
       labels: keyArray,
     },
     // options: options
   });
-}
-
-export function drawTodayChart() {
-  (function() {
-    const dayDoughnutOut = document.getElementById('today-doughnut-out');
-    const todayCategoryObject = JSON.parse(localStorage.getItem('today_each_category_howmuch'));
-    if (!todayCategoryObject) {
-      return;
-    }
-    const keys = Object.keys(todayCategoryObject);
-    const keyArray = [];
-    for (let i = 0; i < keys.length; i++) {
-      keyArray.push(keys[i]);
-    }
-    const values = Object.values(todayCategoryObject);
-    const valueArray = [];
-    for (let i = 0; i < values.length; i++) {
-      valueArray.push(values[i]);
-    }
-
-    new Chart(dayDoughnutOut, {
-      type: 'doughnut',
-      data: {
-        datasets: [{
-          data: valueArray,
-          backgroundColor: ['#f44336', '#90a4ae', '#4caf50']
-        }],
-
-        labels: keyArray,
-      },
-      // options: options
-    });
-  }());
-
-  (function () {
-    const dayDoughnutIn = document.getElementById('today-doughnut-in');
-    const todayHowtopayObject = JSON.parse(localStorage.getItem('today_each_howtopay_howmuch'));
-    if (!todayHowtopayObject) {
-      return;
-    }
-    const keys = Object.keys(todayHowtopayObject);
-    const keyArray = [];
-    for (let i = 0; i < keys.length; i++) {
-      keyArray.push(keys[i]);
-    }
-    const values = Object.values(todayHowtopayObject);
-    const valueArray = [];
-    for (let i = 0; i < values.length; i++) {
-      valueArray.push(values[i]);
-    }
-    new Chart(dayDoughnutIn, {
-      type: 'doughnut',
-      data: {
-        datasets: [{
-          data: valueArray,
-          backgroundColor: ['#f44336', '#90a4ae', '#4caf50']
-        }],
-
-        labels: keyArray,
-      },
-      // options: options
-    });
-  }());
 }

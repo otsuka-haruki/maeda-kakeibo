@@ -72,6 +72,35 @@ export function updateDate() {
       }
       const newMonthJSON = JSON.stringify(newMonthObject);
       localStorage.setItem('report_month', newMonthJSON);
+
+      const yearObject = JSON.parse(localStorage.getItem('report_year'));
+      const yearObjectNewYearObjet = {
+          in: {
+            each_month: {
+
+            },
+            category: {
+
+            },
+            howtopay: {
+
+            },
+          },
+          out: {
+            each_month: {
+
+            },
+            category: {
+
+            },
+            howtopay: {
+
+            },
+          },
+      }
+      yearObject[todayInfoNow.getFullYear()] = yearObjectNewYearObjet;
+      const newYearJSON = JSON.stringify(yearObject);
+      localStorage.setItem('report_year', newYearJSON);
     }
 
 

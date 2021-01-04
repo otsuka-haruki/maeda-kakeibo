@@ -32,14 +32,20 @@ export class YearReport {
       clone.querySelector('#report__year__card-general #report__year__card-general__span-in').textContent = sum;
 
       clone.querySelector('#report__year__card-general').setAttribute('id', `report__year__card-general-${yearNumber}`);
+      clone.querySelector('#report__year__card-bar-out').setAttribute('id', `report__year__card-bar-out-${yearNumber}`);
       clone.querySelector('#report__year__card-out-category').setAttribute('id', `report__year__card-out-category-${yearNumber}`);
       clone.querySelector('#report__year__card-out-howtopay').setAttribute('id', `report__year__card-out-howtopay-${yearNumber}`);
       clone.querySelector('#report__year__card-table').setAttribute('id', `report__year__card-table-${yearNumber}`);
+      clone.querySelector('#report__year__card-bar-in').setAttribute('id', `report__year__card-bar-in-${yearNumber}`);
       clone.querySelector('#report__year__card-in-category').setAttribute('id', `report__year__card-in-category-${yearNumber}`);
       clone.querySelector('#report__year__card-in-howtopay').setAttribute('id', `report__year__card-in-howtopay-${yearNumber}`);
 
       clone.querySelector(`#report__year__card-table-${yearNumber}`).querySelector('span').querySelector('span').textContent = +yearNumber;
       container.append(clone);
+
+      // bar-1
+      const eachMonthOutValues = Object.values(yearObject[yearNumber].out.each_month);
+      chartFunctions.drawChartYearBar(`report__year__card-bar-out-${yearNumber}`, eachMonthOutValues, 'out');
 
       // chart-1
       const categoryOutValues = Object.values(yearObject[yearNumber].out.category);
@@ -60,6 +66,10 @@ export class YearReport {
         cloneTbody.querySelectorAll('td')[1].textContent = `￥${categoryOutValues[i]}`;
         containerTable.append(cloneTbody);
       }
+
+      // bar-2
+      const eachMonthInValues = Object.values(yearObject[yearNumber].in.each_month);
+      chartFunctions.drawChartYearBar(`report__year__card-bar-in-${yearNumber}`, eachMonthInValues, 'in');
 
       // chart-3
       const categoryInValues = Object.values(yearObject[yearNumber].in.category);

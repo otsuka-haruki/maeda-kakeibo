@@ -4,11 +4,11 @@ import {
   AppInitialize
 } from './assets/scripts/general_initialization/AppInitialize.js';
 import {
-  InputCard
-} from './assets/scripts/components/InputCard.js';
-import {
   FetchData
 } from './assets/scripts/database/FetchData.js';
+import {
+  InputCard
+} from './assets/scripts/components/InputCard.js';
 import {
   DayReport
 } from './assets/scripts/components/DayReport.js';
@@ -29,12 +29,12 @@ class App {
   constructor() {
     new AppInitialize();
     new FetchData();
+    fontActivate();
     new InputCard();
     new DayReport();
     new WeekReport();
     new MonthReport();
     new YearReport();
-    fontActivate();
   }
 }
 
@@ -42,32 +42,8 @@ class App {
 
 new App();
 
-// test below
+// TODO: things to do below
 
-// const testobj = JSON.parse(localStorage.getItem('report_year'));
-// testobj[2022] = {
-//   in: {
-//     each_month: {
-//
-//     },
-//     category: {
-//
-//     },
-//     howtopay: {
-//
-//     },
-//   },
-//   out: {
-//     each_month: {
-//
-//     },
-//     category: {
-//
-//     },
-//     howtopay: {
-//
-//     },
-//   },
-// };
-//
-// localStorage.setItem('report_year', JSON.stringify(testobj));
+// TODO: user can fix each record ?
+
+// test below

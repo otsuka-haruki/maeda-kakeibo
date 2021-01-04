@@ -48,9 +48,6 @@ export class FetchData {
       localStorage.setItem('today_record_number', 0);
     }
 
-    this.setInitialLocalStorageJSON('today_each_category_howmuch');
-    this.setInitialLocalStorageJSON('today_each_howtopay_howmuch');
-
     const hasReportWeekJSON = localStorage.getItem('report_week');
     if (!hasReportWeekJSON) {
       const initialObject = {
@@ -186,17 +183,33 @@ export class FetchData {
       localStorage.setItem('report_year', initialJSON);
     }
 
-  }
-
-  setInitialLocalStorageJSON(localStorageKeyName) {
-    const hasJSON = localStorage.getItem(localStorageKeyName);
-    if (!hasJSON) {
-      const initialObject = {};
-      const initialJSON = JSON.stringify(initialObject);
-      localStorage.setItem(localStorageKeyName, initialJSON);
+    const hasColorPalette = localStorage.getItem('color_palette');
+    if (!hasColorPalette) {
+      const colorObject = {
+        red: '#ff5252',
+        cyan: '#00b8d4',
+        teal: '#00bfa5',
+        yellow: '#ffff00',
+        blueGrey: '#546e7a',
+        pink: '#ff4081',
+        blue: '#2979ff',
+        green: '#00e676',
+        amber: '#ffc400',
+        brown: '#795548',
+        deepOrange: '#ff3d00',
+        indigo: '#3d5afe',
+        lightGreen: '#76ff03',
+        lime: '#eeff41',
+        grey: '#616161',
+        purple: '#e040fb',
+        lightBlue: '#00b0ff',
+        orange: '#ff9100',
+        deepPurple: '#7c4dff',
+      };
+      const colorJSON = JSON.stringify(colorObject);
+      localStorage.setItem('color_palette', colorJSON);
     }
   }
-
 
   showToast() {
     const toastJSON = localStorage.getItem('toast_to_show');

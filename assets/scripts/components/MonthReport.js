@@ -8,6 +8,9 @@ export class MonthReport {
   }
 
   setEachMonthContent() {
+    const yearObject = JSON.parse(localStorage.getItem('report_year'));
+    const thisYearNumber = new Date().getFullYear();
+
     const container = document.getElementById('report__month');
     const template = container.querySelector('#report__month__template-wrapper');
     const monthObject = JSON.parse(localStorage.getItem('report_month'));
@@ -21,12 +24,15 @@ export class MonthReport {
         sum = sum + +element;
       });
       clone.querySelector('#report__month__card-general #report__month__card-general__span-out').textContent = sum;
+      yearObject[thisYearNumber].out.each_month[i] = sum;
+
       const valuesIn = Object.values(monthObject[i].in.category);
       sum = 0;
       valuesIn.forEach(element => {
         sum = sum + +element;
       });
       clone.querySelector('#report__month__card-general #report__month__card-general__span-in').textContent = sum;
+      yearObject[thisYearNumber].in.each_month[i] = sum;
 
       clone.querySelector('#report__month__card-general').setAttribute('id', `report__month__card-general-${i}`);
       clone.querySelector('#report__month__card-out-category').setAttribute('id', `report__month__card-out-category-${i}`);
@@ -78,5 +84,8 @@ export class MonthReport {
       const howtopayInKeys = Object.keys(monthObject[i].in.howtopay);
       chartFunctions.drawChartMonthDoughnut(i, `report__month__card-in-howtopay-${i}`, howtopayInValues, howtopayInKeys);
     }
+
+    const yearJSON = JSON.stringify(yearObject);
+    localStorage.setItem('report_year', yearJSON);
   }
 }

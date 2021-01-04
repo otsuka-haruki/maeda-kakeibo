@@ -3,6 +3,7 @@ import * as chartFunction from '../charts/original_chart.js';
 export class WeekReport {
   constructor() {
     this.deleteAndDrawChart();
+    this.setWeekContent();
   }
   // test
 
@@ -19,19 +20,19 @@ export class WeekReport {
         })
       }
 
-      this.drawBarChart('this-week', 'out', chartFunction.drawChartThisWeekBarOut, 0);
-      this.drawDoughnutChart('this-week', 'out', 'category', chartFunction.drawChartThisWeekDoughnutOutCategory, 1);
-      this.drawDoughnutChart('this-week', 'out', 'howtopay', chartFunction.drawChartThisWeekDoughnutOutHowtopay, 2);
-      this.drawBarChart('this-week', 'in', chartFunction.drawChartThisWeekBarIn, 3);
-      this.drawDoughnutChart('this-week', 'in', 'category', chartFunction.drawChartThisWeekDoughnutInCategory, 4);
-      this.drawDoughnutChart('this-week', 'in', 'howtopay', chartFunction.drawChartThisWeekDoughnutInHowtopay, 5);
+      this.drawBarChart('this-week', 'out', chartFunction.drawChartThisWeekBarOut, 1);
+      this.drawDoughnutChart('this-week', 'out', 'category', chartFunction.drawChartThisWeekDoughnutOutCategory, 2);
+      this.drawDoughnutChart('this-week', 'out', 'howtopay', chartFunction.drawChartThisWeekDoughnutOutHowtopay, 3);
+      this.drawBarChart('this-week', 'in', chartFunction.drawChartThisWeekBarIn, 4);
+      this.drawDoughnutChart('this-week', 'in', 'category', chartFunction.drawChartThisWeekDoughnutInCategory, 5);
+      this.drawDoughnutChart('this-week', 'in', 'howtopay', chartFunction.drawChartThisWeekDoughnutInHowtopay, 6);
 
-      this.drawBarChart('last-week', 'out', chartFunction.drawChartLastWeekBarOut, 0);
-      this.drawDoughnutChart('last-week', 'out', 'category', chartFunction.drawChartLastWeekDoughnutOutCategory, 1);
-      this.drawDoughnutChart('last-week', 'out', 'howtopay', chartFunction.drawChartLastWeekDoughnutOutHowtopay, 2);
-      this.drawBarChart('last-week', 'in', chartFunction.drawChartLastWeekBarIn, 3);
-      this.drawDoughnutChart('last-week', 'in', 'category', chartFunction.drawChartLastWeekDoughnutInCategory, 4);
-      this.drawDoughnutChart('last-week', 'in', 'howtopay', chartFunction.drawChartLastWeekDoughnutInHowtopay, 5);
+      this.drawBarChart('last-week', 'out', chartFunction.drawChartLastWeekBarOut, 1);
+      this.drawDoughnutChart('last-week', 'out', 'category', chartFunction.drawChartLastWeekDoughnutOutCategory, 2);
+      this.drawDoughnutChart('last-week', 'out', 'howtopay', chartFunction.drawChartLastWeekDoughnutOutHowtopay, 3);
+      this.drawBarChart('last-week', 'in', chartFunction.drawChartLastWeekBarIn, 4);
+      this.drawDoughnutChart('last-week', 'in', 'category', chartFunction.drawChartLastWeekDoughnutInCategory, 5);
+      this.drawDoughnutChart('last-week', 'in', 'howtopay', chartFunction.drawChartLastWeekDoughnutInHowtopay, 6);
     });
   }
 
@@ -49,5 +50,34 @@ export class WeekReport {
     const clone = template.content.cloneNode(true);
     container.append(clone);
     functionName();
+  }
+
+  setWeekContent() {
+    const weekObject = JSON.parse(localStorage.getItem('report_week'));
+    const valuesOutThisWeek = Object.values(weekObject.thisWeek.out.category);
+    let sum = 0;
+    valuesOutThisWeek.forEach(element => {
+      sum = sum + +element;
+    });
+    document.getElementById('report__week__this-week__card-general__span-out').textContent = sum;
+    const valueInThisWeek = Object.values(weekObject.thisWeek.in.category);
+    sum = 0;
+    valueInThisWeek.forEach(element => {
+      sum = sum + +element;
+    });
+    document.getElementById('report__week__this-week__card-general__span-in').textContent = sum;
+    const valueOutLastWeek = Object.values(weekObject.lastWeek.out.category);
+    sum = 0;
+    valueOutLastWeek.forEach(element => {
+      sum = sum + +element;
+    });
+    document.getElementById('report__week__last-week__card-general__span-out').textContent = sum;
+    const valueInLastWeek = Object.values(weekObject.lastWeek.in.category);
+    sum = 0;
+    valueInLastWeek.forEach(element => {
+      sum = sum + +element;
+    });
+    document.getElementById('report__week__last-week__card-general__span-in').textContent = sum;
+
   }
 }
