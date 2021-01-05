@@ -44,6 +44,6 @@ new App();
 
 // TODO: things to do below
 
-// TODO: user can fix each record ?
+// TODO: 今日と昨日のレコードを修正・削除できるようにする
 
 // test below

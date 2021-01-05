@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.css">
-  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous"> -->
   <link rel="stylesheet" href="./assets/styles/stylesheet.min.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -56,11 +55,11 @@
               <label for="purpose">用途</label>
             </div>
             <div class="input-field">
-              <a class="modal-trigger" href="#modal__input-card__radio-buttons-category"><input id="input-card__input-category" type="text" class="validate"></a>
+              <a class="modal-trigger" href="#modal__input-card__radio-buttons-category"><input id="input-card__input-category" type="text" class="validate text--material-black"></a>
               <label for="input-card__input-category">カテゴリー</label>
             </div>
             <div class="input-field">
-              <a class="modal-trigger" href="#modal__input-card__radio-buttons-howtopay"><input id="input-card__input-howtopay" type="text" class="validate"></a>
+              <a class="modal-trigger" href="#modal__input-card__radio-buttons-howtopay"><input id="input-card__input-howtopay" type="text" class="validate text--material-black"></a>
               <label for="input-card__input-howtopay">支払い手段</label>
             </div>
             <a class="waves-effect waves-light btn" id="input-card__button-add">データを追加</a>
@@ -113,14 +112,14 @@
                 </tr>
               </thead>
               <template id="analysis__today__template-table-tbody">
-                <tbody>
-                  <tr>
-                    <td>--</td>
-                    <td>--</td>
-                    <td>--</td>
-                    <td>--</td>
-                  </tr>
-                </tbody>
+                  <tbody>
+                    <tr class="modal-trigger" href="#modal__report__day__fix-record">
+                      <td>--</td>
+                      <td>--</td>
+                      <td>--</td>
+                      <td>--</td>
+                    </tr>
+                  </tbody>
               </template>
             </table>
           </div>
@@ -587,6 +586,33 @@
     <div class="modal-footer">
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">取り消し</a>
       <a href="#!" class="modal-close waves-effect waves-green btn" id="input-card__setting-modal__button-decide">完了</a>
+    </div>
+  </div>
+
+  <div class="modal" id="modal__report__day__fix-record">
+    <div class="modal-content">
+      <h4>データを修正</h4>
+      <div class="input-field">
+        <input type="number" pattern="\d*">
+        <label>金額</label>
+      </div>
+      <div class="input-field">
+        <input type="text">
+        <label>用途</label>
+      </div>
+      <div class="input-field">
+        <a class="modal-trigger" href="#modal__input-card__radio-buttons-category"><input type="text" class="validate text--material-black"></a>
+        <label for="input-card__input-category">カテゴリー</label>
+      </div>
+      <div class="input-field">
+        <a class="modal-trigger" href="#modal__input-card__radio-buttons-howtopay"><input type="text" class="validate text--material-black"></a>
+        <label for="input-card__input-howtopay">支払い手段</label>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">取り消し</a>
+      <a href="#!" class="modal-close waves-effect waves-green btn red">削除</a>
+      <a href="#!" class="modal-close waves-effect waves-green btn">修正</a>
     </div>
   </div>
 

@@ -1,5 +1,4 @@
 html {
-  // font-family: fot-tsukuardgothic-std, sans-serif;
   overflow-x: hidden;
 }
 
@@ -11,9 +10,6 @@ body {
 canvas {
   max-width: 100%;
 }
-// .input-field input {
-//   font-family: 'fot-tsukuardgothic-std', sans-serif;
-// }
 
 .font-cute {
   font-family: 'fot-tsukuardgothic-std', sans-serif;
@@ -74,6 +70,10 @@ canvas {
 
 .border-radius-0 {
   border-radius: 0;
+}
+
+.text--material-black {
+  color: rgba(0,0,0,0.87);
 }
 
 .datepicker-table {
