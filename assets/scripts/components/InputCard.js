@@ -41,10 +41,16 @@ export class InputCard {
       clone.querySelector('span').textContent = userCategoryOptionsArray[i];
       clone.querySelector('input').setAttribute('value', userCategoryOptionsArray[i]);
       clone.querySelector('input').addEventListener('click', (event) => {
-        const inputCardInputCategory = document.getElementById('input-card__input-category');
-        console.log(inputCardInputCategory);
-        inputCardInputCategory.value = event.target.value;
-        inputCardInputCategory.parentElement.nextElementSibling.classList.add('active');
+        const isModalForModify = localStorage.getItem('is_modal_for_modify');
+        if (isModalForModify == 'false') {
+          const inputCardInputCategory = document.getElementById('input-card__input-category');
+          inputCardInputCategory.value = event.target.value;
+          inputCardInputCategory.parentElement.nextElementSibling.classList.add('active');
+        } else if (isModalForModify == 'true') {
+          const modifyModalInputCategory = document.getElementById('modal__report__day__modify-record__input-category');
+          modifyModalInputCategory.value = event.target.value;
+          modifyModalInputCategory.parentElement.nextElementSibling.classList.add('active');
+        }
       });
       container.append(clone);
     }
@@ -60,10 +66,16 @@ export class InputCard {
       clone.querySelector('span').textContent = userHowtopayOptionsArray[i];
       clone.querySelector('input').setAttribute('value', userHowtopayOptionsArray[i]);
       clone.querySelector('input').addEventListener('click', (event) => {
-        const inputCardInputCategory = document.getElementById('input-card__input-howtopay');
-        console.log(inputCardInputCategory);
-        inputCardInputCategory.value = event.target.value;
-        inputCardInputCategory.parentElement.nextElementSibling.classList.add('active');
+        const isModalForModify = localStorage.getItem('is_modal_for_modify');
+        if (isModalForModify == 'false') {
+          const inputCardInputCategory = document.getElementById('input-card__input-howtopay');
+          inputCardInputCategory.value = event.target.value;
+          inputCardInputCategory.parentElement.nextElementSibling.classList.add('active');
+        } else if (isModalForModify == 'true') {
+          const modifyModalInputHowtopay = document.getElementById('modal__report__day__modify-record__input-howtopay');
+          modifyModalInputHowtopay.value = event.target.value;
+          modifyModalInputHowtopay.parentElement.nextElementSibling.classList.add('active');
+        }
       });
       container.append(clone);
     }

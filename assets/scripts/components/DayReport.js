@@ -1,9 +1,14 @@
 'use strict';
 
+import {
+  setToastDataFunctions
+} from '../functions/setToastDataFunctions.js';
+
 export class DayReport {
   constructor() {
     this.setContentToReportToday();
     this.setContentToReportYesterday();
+    this.modifyDayRecord();
   }
 
   // TODO: distinguish in and out
@@ -26,6 +31,8 @@ export class DayReport {
       const template = document.getElementById('analysis__today__template-table-tbody');
       const clone = template.content.cloneNode(true);
       const tds = clone.querySelectorAll('td');
+      const tr = clone.querySelector('tr');
+      tr.setAttribute('id', `today_record_${i}`);
       tds[0].textContent = todayRecordObject.category;
       tds[1].textContent = todayRecordObject.things;
       tds[2].textContent = `¥${todayRecordObject.howMuch}`;
@@ -91,5 +98,52 @@ export class DayReport {
     const yesterdayReportSpanIn = document.getElementById('report__day__yesterday__span-in');
     yesterdayReportSpanOut.textContent = yesterdaySumOut;
     yesterdayReportSpanIn.textContent = yesterdaySumIn;
+  }
+
+  modifyDayRecord() {
+    const modifyModal = document.getElementById('modal__report__day__modify-record');
+    const tbody = document.querySelectorAll('#analysis-today__table tbody');
+    let currentlySelectedRecord;
+    tbody.forEach(element => {
+      const tr = element.querySelector('tr');
+      tr.addEventListener('click', (event) => {
+        localStorage.setItem('is_modal_for_modify', true);
+        const id = event.target.closest('tr').id;
+        currentlySelectedRecord = id;
+        const recordDataObject = JSON.parse(localStorage.getItem(id));
+
+        modifyModal.querySelector('#modal__report__day__modify-record__input-howmuch').value = recordDataObject.howMuch;
+        modifyModal.querySelector('#modal__report__day__modify-record__input-things').value = recordDataObject.things;
+        if (recordDataObject.inOrOut == true) {
+          modifyModal.querySelector('#modal__report__day__modify-record__switch').setAttribute('checked', 'checked');
+        }
+        modifyModal.querySelector('#modal__report__day__modify-record__input-category').value = recordDataObject.category;
+        modifyModal.querySelector('#modal__report__day__modify-record__input-howtopay').value = recordDataObject.howtopay;
+
+        const labels = modifyModal.querySelectorAll('label');
+        labels.forEach(element => {
+          element.classList.add('active');
+        })
+      });
+    });
+
+    const cancelButton = document.getElementById('modal__report__day__modify-record__button-cancel');
+    cancelButton.addEventListener('click', () => {
+      localStorage.setItem('is_modal_for_modify', false);
+    });
+
+    const modifyButton = document.getElementById('modal__report__day__modify-record__button-modify');
+    modifyButton.addEventListener('click', () => {
+      const inputs = modifyModal.querySelectorAll('input');
+      // TODO: 週間・月間・年間を修正する
+      setToastDataFunctions('true', '１件のデータを修正しました', 'toast-success toast-pop');
+    });
+
+    const deleteButton = document.getElementById('modal__report__day__modify-record__button-delete');
+    deleteButton.addEventListener('click', () => {
+      localStorage.removeItem(currentlySelectedRecord);
+      // TODO: 週間・月間・年間を修正する
+      setToastDataFunctions('true', '１件のデータを削除しました', 'toast-success toast-pop');
+    });
   }
 }

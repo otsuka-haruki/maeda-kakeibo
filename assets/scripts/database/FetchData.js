@@ -182,6 +182,8 @@ export class FetchData {
       const initialJSON = JSON.stringify(initialObject);
       localStorage.setItem('report_year', initialJSON);
     }
+
+    localStorage.setItem('is_modal_for_modify', false);
   }
 
   showToast() {
