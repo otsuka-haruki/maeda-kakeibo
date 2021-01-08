@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>家計簿アプリの説明書</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@2.0.2/destyle.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+  <link rel="stylesheet" href="../assets/styles/stylesheet.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    (function(d) {
+      let config = {
+          kitId: 'vgv4dfw',
+          scriptTimeout: 3000,
+          async: true
+        },
+        h = d.documentElement,
+        t = setTimeout(function() {
+          h.className = `${h.className.replace(/\bwf-loading\b/g, '')} wf-inactive`;
+        }, config.scriptTimeout),
+        tk = d.createElement('script'),
+        f = false,
+        s = d.getElementsByTagName('script')[0],
+        a;
+      h.className += ' wf-loading';
+      tk.src = `https://use.typekit.net/${config.kitId}.js`;
+      tk.async = true;
+      tk.onload = tk.onreadystatechange = function() {
+        a = this.readyState;
+        if (f || a && a != 'complete' && a != 'loaded') return;
+        f = true;
+        clearTimeout(t);
+        try {
+          Typekit.load(config)
+        } catch (e) {}
+      };
+      s.parentNode.insertBefore(tk, s)
+    })(document);
+  </script>
+</head>
+
+<body class="font-cute amber lighten-4">
+  <nav>
+    <div class="nav-wrapper">
+      <ul>
+        <li><a href="../index.html" class="white-text text-lighten-4">アプリに戻る</a></li>
+      </ul>
+      <a href="#" class="brand-logo center">説明書</a>
+    </div>
+  </nav>
+  <div class="row">
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title"><i class="fab fa-leanpub"></i>このアプリの特徴</span>
+          <h6>概要</h6>
+          <p>この家計簿アプリは、Safari上で動くWEBアプリです。リンクにアクセスするだけですぐに使うことができます。</p>
+          <h6>使いやすいデザイン</h6>
+          <p>アプリのデザインはGoogle社が提唱するマテリアルデザイン理論に基づいて設計されています。普段使っているGoogleのサービスと同じようなデザイン原則なので、馴染みやすいと思います。文字は丸みのあるサンセリフフォントを選び、気軽に使えて目が疲れないようにしました。</p>
+          <h6>万全なセキュリティー</h6>
+          <p>またユーザーが入力する全てのデータはSafari内部にのみ保存され、開発者も含めて他の人は見ることができません。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="row">
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title"></span>
+          <p></p>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <div class="row">
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title"><i class="fas fa-exclamation-circle"></i>使用上の注意点</span>
+          <p>全てのデータはSafari内部に保存されます。このデータはSafariの履歴を削除すると付随して消えてしまうので、<b>このWEBアプリへアクセスした履歴は削除しないようにしてください。</b>データは一度消えると復元できません。</p>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title"><i class="fas fa-comment-dots"></i>さらなる問題は</span>
+          <p>開発者の大塚に直接ご連絡ください。パソコンとスマホを繋いでデータを一件単位で修正できます。</p>
+          <!-- <p></p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="page-footer">
+    <div class="container">
+      <a href="../index.html" class="white-text text-lighten-4"><i class="fas fa-arrow-left"></i>アプリに戻る</a>
+      <h5 class="white-text">About</h5>
+      <ul>
+        <li><a href="https://materializecss.com/" class="blue-grey-text text-lighten-4">デザインのフレームワーク</a></li>
+        <li><a href="https://www.chartjs.org/" class="blue-grey-text text-lighten-4">チャートのライブラリ</a></li>
+      </ul>
+    </div>
+    <div class="footer-copyright">
+      <div class="container white-text">
+        © 2021 Designed by Otsuka in Tokyo.
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
