@@ -11,14 +11,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
   <link rel="stylesheet" href="./assets/styles/stylesheet.min.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="./assets/scripts/libraries/official_easypiechart.js"></script>
-  <script src="./assets/scripts/libraries/MaterializeSelectFixed.js"></script>
-  <script src="./index.js" defer type="module"></script>
+  <script src="./assets/scripts/index.js" defer type="module"></script>
 </head>
 
 <body class="font-cute">
@@ -102,7 +102,7 @@
         <div class="card">
           <div class="card-content padding-side-little">
             <span class="card-title">今日の明細</span>
-            <table class="centered" id="analysis-today__table">
+            <table class="centered" id="report__day__today__table">
               <thead>
                 <tr>
                   <th>カテゴリー</th>
@@ -111,15 +111,15 @@
                   <th>支払い方法</th>
                 </tr>
               </thead>
-              <template id="analysis__today__template-table-tbody">
-                  <tbody>
-                    <tr class="modal-trigger" href="#modal__report__day__modify-record">
-                      <td>--</td>
-                      <td>--</td>
-                      <td>--</td>
-                      <td>--</td>
-                    </tr>
-                  </tbody>
+              <template id="report__day__today__template-table-tbody">
+                <tbody>
+                  <tr class="modal-trigger" href="#modal__report__day__modify-record">
+                    <td>--</td>
+                    <td>--</td>
+                    <td>--</td>
+                    <td>--</td>
+                  </tr>
+                </tbody>
               </template>
             </table>
           </div>
@@ -165,6 +165,12 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col s5 offset-s7">
+          <a class="waves-effect waves-light btn modal-trigger amber" href="#modal__modify-record">データを修正</a>
+        </div>
+      </div>
+
     </div>
 
     <!-- ここから上、１日のレポート -->
@@ -185,56 +191,44 @@
             <h5 class="center-align">収入 ￥<span id="report__week__this-week__card-general__span-in">0</span></h5>
           </div>
         </div>
-        <div class="card">
+        <div class="card" id="report__week__this-week__card-bar-out">
           <div class="card-content">
             <span class="card-title">今週使った金額</span>
-            <template id="report__week__this-week__template-canvas-week-bar-out">
-              <canvas id="this-week-bar-out" width="400" height="400"></canvas>
-            </template>
+            <canvas width="400" height="400"></canvas>
           </div>
         </div>
-        <div class="card">
+        <div class="card" id="report__week__this-week__card-category-out">
           <div class="card-content">
             <span class="card-title">カテゴリーごとに</span>
-            <template id="report__week__this-week__template-canvas-week-doughnut-out-category">
-              <canvas id="this-week-doughnut-out-category" width="400" height="400"></canvas>
-            </template>
+            <canvas width="400" height="400"></canvas>
           </div>
         </div>
-        <div class="card">
+        <div class="card" id="report__week__this-week__card-howtopay-out">
           <div class="card-content">
             <span class="card-title">支払い方法ごとに</span>
-            <template id="report__week__this-week__template-canvas-week-doughnut-out-howtopay">
-              <canvas id="this-week-doughnut-out-howtopay" width="400" height="400"></canvas>
-            </template>
+            <canvas width="400" height="400"></canvas>
           </div>
         </div>
         <ul class="collapsible border-0 box-shadow-0 font-bold">
           <li>
             <div class="collapsible-header border-0 collapsible-header--box-shadow active">収入</div>
             <div class="collapsible-body border-0 padding-0">
-              <div class="card">
+              <div class="card" id="report__week__this-week__card-bar-in">
                 <div class="card-content">
                   <span class="card-title">今週入った金額</span>
-                  <template id="report__week__this-week__template-canvas-week-bar-in">
-                    <canvas id="this-week-bar-in" width="400" height="400"></canvas>
-                  </template>
+                  <canvas width="400" height="400"></canvas>
                 </div>
               </div>
-              <div class="card">
+              <div class="card" id="report__week__this-week__card-category-in">
                 <div class="card-content">
                   <span class="card-title">カテゴリーごとに</span>
-                  <template id="report__week__this-week__template-canvas-week-doughnut-in-category">
-                    <canvas id="this-week-doughnut-in-category" width="400" height="400"></canvas>
-                  </template>
+                  <canvas width="400" height="400"></canvas>
                 </div>
               </div>
-              <div class="card">
+              <div class="card" id="report__week__this-week__card-howtopay-in">
                 <div class="card-content">
                   <span class="card-title">支払い方法ごとに</span>
-                  <template id="report__week__this-week__template-canvas-week-doughnut-in-howtopay">
-                    <canvas id="this-week-doughnut-in-howtopay" width="400" height="400"></canvas>
-                  </template>
+                  <canvas width="400" height="400"></canvas>
                 </div>
               </div>
             </div>
@@ -249,56 +243,44 @@
             <h5 class="center-align">収入 ￥<span id="report__week__last-week__card-general__span-in">0</span></h5>
           </div>
         </div>
-        <div class="card">
+        <div class="card" id="report__week__last-week__card-bar-out">
           <div class="card-content">
             <span class="card-title">先週使った金額</span>
-            <template id="report__week__last-week__template-canvas-week-bar-out">
-              <canvas id="last-week-bar-out" width="400" height="400"></canvas>
-            </template>
+            <canvas width="400" height="400"></canvas>
           </div>
         </div>
-        <div class="card">
+        <div class="card" id="report__week__last-week__card-category-out">
           <div class="card-content">
             <span class="card-title">カテゴリーごとに</span>
-            <template id="report__week__last-week__template-canvas-week-doughnut-out-category">
-              <canvas id="last-week-doughnut-out-category" width="400" height="400"></canvas>
-            </template>
+            <canvas width="400" height="400"></canvas>
           </div>
         </div>
-        <div class="card">
+        <div class="card" id="report__week__last-week__card-howtopay-out">
           <div class="card-content">
             <span class="card-title">支払い方法ごとに</span>
-            <template id="report__week__last-week__template-canvas-week-doughnut-out-howtopay">
-              <canvas id="last-week-doughnut-out-howtopay" width="400" height="400"></canvas>
-            </template>
+            <canvas width="400" height="400"></canvas>
           </div>
         </div>
         <ul class="collapsible border-0 box-shadow-0 font-bold">
           <li>
             <div class="collapsible-header border-0 collapsible-header--box-shadow">収入</div>
             <div class="collapsible-body border-0 padding-0">
-              <div class="card">
+              <div class="card" id="report__week__last-week__card-bar-in">
                 <div class="card-content">
                   <span class="card-title">先週入った金額</span>
-                  <template id="report__week__last-week__template-canvas-week-bar-in">
-                    <canvas id="last-week-bar-in" width="400" height="400"></canvas>
-                  </template>
+                  <canvas width="400" height="400"></canvas>
                 </div>
               </div>
-              <div class="card">
+              <div class="card" id="report__week__last-week__card-category-in">
                 <div class="card-content">
                   <span class="card-title">カテゴリーごとに</span>
-                  <template id="report__week__last-week__template-canvas-week-doughnut-in-category">
-                    <canvas id="last-week-doughnut-in-category" width="400" height="400"></canvas>
-                  </template>
+                  <canvas width="400" height="400"></canvas>
                 </div>
               </div>
-              <div class="card">
+              <div class="card" id="report__week__last-week__card-howtopay-in">
                 <div class="card-content">
                   <span class="card-title">支払い方法ごとに</span>
-                  <template id="report__week__last-week__template-canvas-week-doughnut-in-howtopay">
-                    <canvas id="last-week-doughnut-in-howtopay" width="400" height="400"></canvas>
-                  </template>
+                  <canvas width="400" height="400"></canvas>
                 </div>
               </div>
             </div>
@@ -478,9 +460,6 @@
 
   <!-- Report Year -->
 
-  <a class="waves-effect waves-light btn display-none" id="update">1日分更新する</a>
-
-
   <!-- footer -->
 
 
@@ -509,7 +488,7 @@
 
   <div class="modal" id="modal__input-card__radio-buttons-category">
     <div class="modal-content">
-      <h4>カテゴリーを選択</h4>
+      <h5>カテゴリーを選択</h5>
       <template id="modal__input-card__radio-buttons-category__template-radio">
         <p class="padding-top-bottom-10px">
           <label>
@@ -526,7 +505,7 @@
 
   <div class="modal" id="modal__input-card__radio-buttons-howtopay">
     <div class="modal-content">
-      <h4>支払い方法を選択</h4>
+      <h5>支払い方法を選択</h5>
       <template id="modal__input-card__radio-buttons-howtopay__template-radio">
         <p class="padding-top-bottom-10px">
           <label>
@@ -543,7 +522,7 @@
 
   <div id="modal__input-card__setting" class="modal modal-fixed-footer">
     <div class="modal-content">
-      <h4>設定</h4>
+      <h5>設定</h5>
       <p class="margin-top-bottom-10px">カテゴリーと支払い手段の設定ができます。</p>
       <form id="modal__input-card__setting__form-category">
         <h6 class="font-bold margin-top-30px">・カテゴリーのオプション</h6>
@@ -591,7 +570,7 @@
 
   <div class="modal" id="modal__report__day__modify-record">
     <div class="modal-content">
-      <h4>データを修正</h4>
+      <h5>データを修正</h5>
       <div class="switch">
         <label>
           支出
@@ -624,6 +603,40 @@
     </div>
   </div>
 
+  <div class="modal" id="modal__modify-record">
+    <div class="modal-content padding-side-little">
+      <h5>修正したいデータの日時を選択</h5>
+      <div class="input-field margin-top-30px" id="modal__modify-record__datepicker__datepicker__input-field">
+        <input type="text" class="datepicker" id="modal__modify-record__datepicker__datepicker__input">
+        <label>日付</label>
+      </div>
+      <h5 id="selected-date"></h5>
+      <table class="centered" id="modal__modify-record__table">
+        <thead>
+          <tr>
+            <th>カテゴリー</th>
+            <th>用途</th>
+            <th>金額</th>
+            <th>支払い方法</th>
+          </tr>
+        </thead>
+        <template>
+          <tbody>
+            <tr class="modal-trigger" href="#modal__report__day__modify-record">
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+            </tr>
+          </tbody>
+        </template>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="modal__modify-record__button-cancel"><i class="fas fa-times"></i></a>
+      <a href="#!" class="waves-effect waves-green btn" id="modal__modify-record__button-set-date">指定した日のデータを表示</a>
+    </div>
+  </div>
 
   <!-- Modals -->
 

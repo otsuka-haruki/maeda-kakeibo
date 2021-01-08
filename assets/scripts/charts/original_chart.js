@@ -7,7 +7,6 @@ export function chartInitialize() {
   Chart.defaults.global.elements.line.borderCapStyle = 'round';
 }
 
-// ここから下、年間のチャート
 let colorObject = JSON.parse(localStorage.getItem('color_palette'));
 if (!colorObject) {
    colorObject = {
@@ -47,10 +46,14 @@ function checkDoubleColorQuantity(dataArray) {
   }
 }
 
-export function drawChartYearBar(cardId, dataArray, inOrOut) {
+const yearLabels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+const weekLabels = ['月', '火', '水', '木', '金', '土', '日'];
+
+export function drawChartBar(cardId, dataArray, inOrOut, labelType) {
   const year_doughnut = document.getElementById(cardId).querySelector('canvas');
   let backgroundColor;
   let label;
+  let labels = null;
   if (inOrOut == 'in') {
     backgroundColor = '#4dd0e1';
     label = '収入';
@@ -58,10 +61,15 @@ export function drawChartYearBar(cardId, dataArray, inOrOut) {
     backgroundColor = '#ffd54f';
     label = '支出';
   }
+  if (labelType == 'year') {
+    labels = yearLabels;
+  } else if (labelType == 'week') {
+    labels = weekLabels
+  }
   new Chart(year_doughnut, {
     type: 'bar',
     data: {
-      labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+      labels,
       datasets: [{
         label,
         data: dataArray,
@@ -81,26 +89,7 @@ export function drawChartYearBar(cardId, dataArray, inOrOut) {
   });
 }
 
-export function drawChartYearDoughnut(cardId, dataArray, labelArray) {
-  checkDoubleColorQuantity(dataArray);
-  const year_doughnut = document.getElementById(cardId).querySelector('canvas');
-  new Chart(year_doughnut, {
-    type: 'doughnut',
-    data: {
-      datasets: [{
-        data: dataArray,
-        backgroundColor: colorArray,
-      }],
-
-      labels: labelArray
-    },
-    // options: options
-  });
-}
-
-// ここから下、月間のチャート
-
-export function drawChartMonthDoughnut(monthNumber, cardId, dataArray, labelArray) {
+export function drawChartDoughnut(cardId, dataArray, labelArray) {
   checkDoubleColorQuantity(dataArray);
   const target = document.getElementById(cardId).querySelector('canvas');
   new Chart(target, {
@@ -120,43 +109,6 @@ export function drawChartMonthDoughnut(monthNumber, cardId, dataArray, labelArra
 // ここから下、週間のチャート
 
 // ここから下、週間支出のチャート
-
-export function drawChartThisWeekBarOut() {
-  const thisWeekObject = JSON.parse(localStorage.getItem('report_week'));
-  if (!thisWeekObject) {
-    return;
-  }
-  const values = Object.values(thisWeekObject.thisWeek.out.eachDay);
-  const valueArray = [];
-  for (let i = 0; i < values.length; i++) {
-    valueArray.push(values[i]);
-  }
-  const sundayValue = valueArray.shift();
-  valueArray.push(sundayValue);
-
-  const weekBarOut = document.getElementById('this-week-bar-out');
-  new Chart(weekBarOut, {
-    type: 'bar',
-    data: {
-      labels: ['月', '火', '水', '木', '金', '土', '日'],
-      datasets: [{
-        label: '支出',
-        data: valueArray,
-        backgroundColor: '#ffd54f',
-        hoverBackgroundColor: '#ff5252',
-      }]
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    }
-  });
-}
 
 export function drawChartThisWeekDoughnutOutCategory() {
   const thisWeekObject = JSON.parse(localStorage.getItem('report_week'));
@@ -224,43 +176,6 @@ export function drawChartThisWeekDoughnutOutHowtopay() {
 
 // ここから下、週間収入のチャート
 
-export function drawChartThisWeekBarIn() {
-  const thisWeekObject = JSON.parse(localStorage.getItem('report_week'));
-  if (!thisWeekObject) {
-    return;
-  }
-  const values = Object.values(thisWeekObject.thisWeek.in.eachDay);
-  const valueArray = [];
-  for (let i = 0; i < values.length; i++) {
-    valueArray.push(values[i]);
-  }
-  const sundayValue = valueArray.shift();
-  valueArray.push(sundayValue);
-
-  const weekBarOut = document.getElementById('this-week-bar-in');
-  new Chart(weekBarOut, {
-    type: 'bar',
-    data: {
-      labels: ['月', '火', '水', '木', '金', '土', '日'],
-      datasets: [{
-        label: '収入',
-        data: valueArray,
-        backgroundColor: '#4dd0e1',
-        hoverBackgroundColor: '#ff5252',
-      }]
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    }
-  });
-}
-
 export function drawChartThisWeekDoughnutInCategory() {
   const thisWeekObject = JSON.parse(localStorage.getItem('report_week'));
   if (!thisWeekObject) {
@@ -325,40 +240,6 @@ export function drawChartThisWeekDoughnutInHowtopay() {
   });
 }
 
-// ここから下、週間収入（先週）のチャート
-export function drawChartLastWeekBarOut() {
-  const lastWeekObject = JSON.parse(localStorage.getItem('report_week'));
-  const values = Object.values(lastWeekObject.lastWeek.out.eachDay);
-  const valueArray = [];
-  for (let i = 0; i < values.length; i++) {
-    valueArray.push(values[i]);
-  }
-  const sundayValue = valueArray.shift();
-  valueArray.push(sundayValue);
-
-  const weekBarOut = document.getElementById('last-week-bar-out');
-  new Chart(weekBarOut, {
-    type: 'bar',
-    data: {
-      labels: ['月', '火', '水', '木', '金', '土', '日'],
-      datasets: [{
-        label: '支出',
-        data: valueArray,
-        backgroundColor: '#ffd54f',
-        hoverBackgroundColor: '#ff5252',
-      }]
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    }
-  });
-}
 
 export function drawChartLastWeekDoughnutOutCategory() {
   const lastWeekObject = JSON.parse(localStorage.getItem('report_week'));
@@ -421,42 +302,6 @@ export function drawChartLastWeekDoughnutOutHowtopay() {
       labels: keyArray,
     },
     // options: options
-  });
-}
-
-// ここから下、週間収入のチャート
-
-export function drawChartLastWeekBarIn() {
-  const lastWeekObject = JSON.parse(localStorage.getItem('report_week'));
-  const values = Object.values(lastWeekObject.lastWeek.in.eachDay);
-  const valueArray = [];
-  for (let i = 0; i < values.length; i++) {
-    valueArray.push(values[i]);
-  }
-  const sundayValue = valueArray.shift();
-  valueArray.push(sundayValue);
-
-  const weekBarOut = document.getElementById('last-week-bar-in');
-  new Chart(weekBarOut, {
-    type: 'bar',
-    data: {
-      labels: ['月', '火', '水', '木', '金', '土', '日'],
-      datasets: [{
-        label: '収入',
-        data: valueArray,
-        backgroundColor: '#4dd0e1',
-        hoverBackgroundColor: '#ff5252',
-      }]
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    }
   });
 }
 

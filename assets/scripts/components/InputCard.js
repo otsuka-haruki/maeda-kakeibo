@@ -33,7 +33,10 @@ export class InputCard {
 
   initializeCategoryModal() {
     const userCategoryOptionsArray = localStorage.getItem('user_category_options').split(',');
-
+    const inputCardInputCategory = document.getElementById('input-card__input-category');
+    inputCardInputCategory.addEventListener('click', () => {
+      sessionStorage.is_modal_for_modify = false;
+    });
     const container = document.querySelector('#modal__input-card__radio-buttons-category .modal-content');
     for (let i = 0; i < userCategoryOptionsArray.length; i++) {
       const template = document.getElementById('modal__input-card__radio-buttons-category__template-radio');
@@ -41,7 +44,7 @@ export class InputCard {
       clone.querySelector('span').textContent = userCategoryOptionsArray[i];
       clone.querySelector('input').setAttribute('value', userCategoryOptionsArray[i]);
       clone.querySelector('input').addEventListener('click', (event) => {
-        const isModalForModify = localStorage.getItem('is_modal_for_modify');
+        const isModalForModify = sessionStorage.getItem('is_modal_for_modify');
         if (isModalForModify == 'false') {
           const inputCardInputCategory = document.getElementById('input-card__input-category');
           inputCardInputCategory.value = event.target.value;
@@ -58,7 +61,10 @@ export class InputCard {
 
   initializeHowtopayModal() {
     const userHowtopayOptionsArray = localStorage.getItem('user_howtopay_options').split(',');
-
+    const inputCardInputCategory = document.getElementById('input-card__input-howtopay');
+    inputCardInputCategory.addEventListener('click', () => {
+      sessionStorage.is_modal_for_modify = false;
+    });
     const container = document.querySelector('#modal__input-card__radio-buttons-howtopay .modal-content');
     for (let i = 0; i < userHowtopayOptionsArray.length; i++) {
       const template = document.getElementById('modal__input-card__radio-buttons-howtopay__template-radio');
@@ -66,7 +72,7 @@ export class InputCard {
       clone.querySelector('span').textContent = userHowtopayOptionsArray[i];
       clone.querySelector('input').setAttribute('value', userHowtopayOptionsArray[i]);
       clone.querySelector('input').addEventListener('click', (event) => {
-        const isModalForModify = localStorage.getItem('is_modal_for_modify');
+        const isModalForModify = sessionStorage.getItem('is_modal_for_modify');
         if (isModalForModify == 'false') {
           const inputCardInputCategory = document.getElementById('input-card__input-howtopay');
           inputCardInputCategory.value = event.target.value;
@@ -82,9 +88,8 @@ export class InputCard {
   }
 
   addEventListenerToCardAddBtn() {
-    const addBtn = document.getElementById('input-card__button-add');
-
-    addBtn.addEventListener('click', () => {
+    const addButton = document.getElementById('input-card__button-add');
+    addButton.addEventListener('click', () => {
       let isSwitchChecked = false;
       const switchBtnInput = document.querySelector('.switch input');
       if (switchBtnInput.checked) {
@@ -108,139 +113,26 @@ export class InputCard {
         howMuch: howMuchValue,
         things: thingsValue,
         category: categoryValue,
-        howtopay: howToPayValue,
+        howToPay: howToPayValue,
       };
-      const todayRecordJSON = JSON.stringify(todayRecordObject);
 
-      let todayRecordNumber = localStorage.getItem('today_record_number');
-      localStorage.setItem(`today_record_${todayRecordNumber}`, todayRecordJSON);
-      localStorage.setItem('today_record_number', ++todayRecordNumber);
-
-      // ここまでそのレコード１つを新たに追加
-
-      // ここから週間、月間、年間を更新
-
-      const thisWeekObject = JSON.parse(localStorage.getItem('report_week'));
-      const monthObject = JSON.parse(localStorage.getItem('report_month'));
-      const yearObject = JSON.parse(localStorage.getItem('report_year'));
-      const today = new Date();
-      // 支出だった場合
-      if (!isSwitchChecked) {
-        // week
-        // category
-        let oldThisWeekCategory = thisWeekObject.thisWeek.out.category[todayRecordObject.category];
-        if (!oldThisWeekCategory) {
-          oldThisWeekCategory = 0;
+      const recordDataObject = JSON.parse(localStorage.getItem('record_data'));
+      const yearNumber = dateValue.split('/')[0];
+      const monthNumber = +dateValue.split('/')[1] - 1;
+      const dateNumber = +dateValue.split('/')[2];
+      if (!recordDataObject[yearNumber]) {
+        recordDataObject[yearNumber] = {};
+        for (let i = 0; i < 12; i++) {
+          recordDataObject[yearNumber][i] = {};
+          for (let j = 1; j < 32; j++) {
+            recordDataObject[yearNumber][i][j] = {};
+          }
         }
-        const newThisWeekCategory = +oldThisWeekCategory + +todayRecordObject.howMuch;
-        thisWeekObject.thisWeek.out.category[todayRecordObject.category] = newThisWeekCategory;
-
-        // howtopay
-        let oldThisWeekHowtopay = thisWeekObject.thisWeek.out.howtopay[todayRecordObject.howtopay];
-        if (!oldThisWeekHowtopay) {
-          oldThisWeekHowtopay = 0;
-        }
-        const newThisWeekHowtopay = +oldThisWeekHowtopay + +todayRecordObject.howMuch;
-        thisWeekObject.thisWeek.out.howtopay[todayRecordObject.howtopay] = newThisWeekHowtopay;
-
-        // month
-        // category
-        let oldThisMonthCategory = monthObject[today.getMonth()].out.category[todayRecordObject.category];
-        if (!oldThisMonthCategory) {
-          oldThisMonthCategory = 0;
-        }
-        const newThisMonthCategory = +oldThisMonthCategory + +todayRecordObject.howMuch;
-        monthObject[today.getMonth()].out.category[todayRecordObject.category] = newThisMonthCategory;
-
-        // month
-        // howtopay
-        let oldThisMonthHowtopay = monthObject[today.getMonth()].out.howtopay[todayRecordObject.howtopay];
-        if (!oldThisMonthHowtopay) {
-          oldThisMonthHowtopay = 0;
-        }
-        const newThisMonthHowtopay = +oldThisMonthHowtopay + +todayRecordObject.howMuch;
-        monthObject[today.getMonth()].out.howtopay[todayRecordObject.howtopay] = newThisMonthHowtopay;
-
-        // year
-        // category
-        let oldThisYearCategory = yearObject[today.getFullYear()].out.category[todayRecordObject.category];
-        if (!oldThisYearCategory) {
-          oldThisYearCategory = 0;
-        }
-        const newThisYearCategory = +oldThisYearCategory + +todayRecordObject.howMuch;
-        yearObject[today.getFullYear()].out.category[todayRecordObject.category] = newThisYearCategory;
-
-        // year
-        // howtopay
-        let oldThisYearHowtopay = yearObject[today.getFullYear()].out.howtopay[todayRecordObject.howtopay];
-        if (!oldThisYearHowtopay) {
-          oldThisYearHowtopay = 0;
-        }
-        const newThisYearHowtopay = +oldThisYearHowtopay + +todayRecordObject.howMuch;
-        yearObject[today.getFullYear()].out.howtopay[todayRecordObject.howtopay] = newThisYearHowtopay;
       }
-
-      // 収入だった場合
-      else {
-        let oldThisWeekCategory = thisWeekObject.thisWeek.in.category[todayRecordObject.category];
-        if (!oldThisWeekCategory) {
-          oldThisWeekCategory = 0;
-        }
-        const newThisWeekCategory = +oldThisWeekCategory + +todayRecordObject.howMuch;
-        thisWeekObject.thisWeek.in.category[todayRecordObject.category] = newThisWeekCategory;
-
-        let oldThisWeekHowtopay = thisWeekObject.thisWeek.in.howtopay[todayRecordObject.howtopay];
-        if (!oldThisWeekHowtopay) {
-          oldThisWeekHowtopay = 0;
-        }
-        const newThisWeekHowtopay = +oldThisWeekHowtopay + +todayRecordObject.howMuch;
-        thisWeekObject.thisWeek.in.howtopay[todayRecordObject.howtopay] = newThisWeekHowtopay;
-
-        // month
-        // category
-        let oldThisMonthCategory = monthObject[today.getMonth()].in.category[todayRecordObject.category];
-        if (!oldThisMonthCategory) {
-          oldThisMonthCategory = 0;
-        }
-        const newThisMonthCategory = +oldThisMonthCategory + +todayRecordObject.howMuch;
-        monthObject[today.getMonth()].in.category[todayRecordObject.category] = newThisMonthCategory;
-
-        // month
-        // howtopay
-        let oldThisMonthHowtopay = monthObject[today.getMonth()].in.howtopay[todayRecordObject.howtopay];
-        if (!oldThisMonthHowtopay) {
-          oldThisMonthHowtopay = 0;
-        }
-        const newThisMonthHowtopay = +oldThisMonthHowtopay + +todayRecordObject.howMuch;
-        monthObject[today.getMonth()].in.howtopay[todayRecordObject.howtopay] = newThisMonthHowtopay;
-
-        // year
-        // category
-        let oldThisYearCategory = yearObject[today.getFullYear()].in.category[todayRecordObject.category];
-        if (!oldThisYearCategory) {
-          oldThisYearCategory = 0;
-        }
-        const newThisYearCategory = +oldThisYearCategory + +todayRecordObject.howMuch;
-        yearObject[today.getFullYear()].in.category[todayRecordObject.category] = newThisYearCategory;
-
-        // year
-        // howtopay
-        let oldThisYearHowtopay = yearObject[today.getFullYear()].in.howtopay[todayRecordObject.howtopay];
-        if (!oldThisYearHowtopay) {
-          oldThisYearHowtopay = 0;
-        }
-        const newThisYearHowtopay = +oldThisYearHowtopay + +todayRecordObject.howMuch;
-        yearObject[today.getFullYear()].in.howtopay[todayRecordObject.howtopay] = newThisYearHowtopay;
-      }
-
-      const thisWeekJSON = JSON.stringify(thisWeekObject);
-      localStorage.setItem('report_week', thisWeekJSON);
-
-      const monthJSON = JSON.stringify(monthObject);
-      localStorage.setItem('report_month', monthJSON);
-
-      const yearJSON = JSON.stringify(yearObject);
-      localStorage.setItem('report_year', yearJSON);
+      const dayRecordNumber = Object.keys(recordDataObject[yearNumber][monthNumber][dateNumber]).length;
+      recordDataObject[yearNumber][monthNumber][dateNumber][`record_${dayRecordNumber}`] = todayRecordObject;
+      const recordDataJSON = JSON.stringify(recordDataObject);
+      localStorage.setItem('record_data', recordDataJSON);
 
       setToastDataFunctions('true', 'データを追加しました！', 'toast-success toast-pop');
     });
@@ -408,14 +300,14 @@ export class InputCard {
     }
   }
 
-  clearInputValue() {
-    $('#input-card__how-much').val('');
-    $('#input-card__how-much').next().removeClass('active');
-    $('#input-card__things').val('');
-    $('#input-card__things').next().removeClass('active');
-    $('#input-card__select-category').prop('selectedIndex', 0);
-    $('#input-card__select-category').formSelect();
-    $('#input-card__select-how-to-pay').prop('selectedIndex', 0);
-    $('#input-card__select-how-to-pay').formSelect();
-  }
+  // clearInputValue() {
+  //   $('#input-card__how-much').val('');
+  //   $('#input-card__how-much').next().removeClass('active');
+  //   $('#input-card__things').val('');
+  //   $('#input-card__things').next().removeClass('active');
+  //   $('#input-card__select-category').prop('selectedIndex', 0);
+  //   $('#input-card__select-category').formSelect();
+  //   $('#input-card__select-how-to-pay').prop('selectedIndex', 0);
+  //   $('#input-card__select-how-to-pay').formSelect();
+  // }
 }

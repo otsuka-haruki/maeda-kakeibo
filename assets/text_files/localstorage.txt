@@ -5,102 +5,28 @@ general
   options of category added by user = ['食費', '日用品', '交際費', '交通費'...];
   options of way of paying added by user = ['現金', 'クレカ', 'Suica', 'LinePay'...];
 
-today
+record_data
 
-  each amount of input categories today = [{
-  '食費': 1200,
-  '日用品': 3100,
-  '交通費': 540,
-  ...
-  }];
-
-  each amount of input howtopay today = [{
-  '現金': 1200,
-  'クレカ': 3100,
-  'Suica': 540,
-  ...
-  }];
-
-  recordNum = [{
-  inOrOut: false,
-  date: 2021/2/14,
-  howmuch: 1200,
-  thigns: '夜ごはん',
-  category: '食費',
-  howtopay: 'クレカ',
-  }];
-
-week
-  this_week
-    out
-      eachDay
-        1
-        2
-        3
-        ...
-      category
-      howtopay
-    in
-      eachDay
-        1
-        2
-        3
-        ...
-      category
-      howtopay
-
-  last_week
-    out
-      day_spent
-        1
-        2
-        3
-        ...
-      category
-      howtopay
-    in
-      day_spent
-        1
-        2
-        3
-        ...
-      category
-      howtopay
-
-
-month
-  0
-    in
-      category
-      howtopay
-    out
-      category
-      howtopay
-  1
-    in
-      category
-      howtopay
-    out
-      category
-      howtopay
-  ...
-
-year
+top
   2021
-    in
-     each_month
-     category
-     howtopay
-    out
-     each_month
-     category
-     howtopay
-   2022
-     in
-      each_month
-      category
-      howtopay
-     out
-      each_month
-      category
-      howtopay
+    0
+      1
+        record_1
+        record_2
+      2
+        record_1
+        record_2
+      3
+      4
+      ...
+    1
+      1
+      2
+      3
+      ...
+    2
+    3
+    4
+    ...
+  2022
+  ...

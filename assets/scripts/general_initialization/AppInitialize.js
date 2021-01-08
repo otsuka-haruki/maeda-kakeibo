@@ -9,7 +9,6 @@ export class AppInitialize {
   materializeInitialize() {
     $(document).ready(function() {
       $('.modal').modal();
-      $('.tabs').tabs();
       $('.datepicker').datepicker({
         'autoClose': true,
         'format': 'yyyy/mm/dd',
@@ -26,6 +25,7 @@ export class AppInitialize {
         'coverTrigger': false,
       });
       $('.collapsible').collapsible();
+      $('.tabs').tabs();
     });
   }
 }
