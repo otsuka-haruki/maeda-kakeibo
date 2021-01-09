@@ -35,7 +35,7 @@ export class WeekReport {
 
     let sumIn = 0;
     let sumOut = 0;
-    for (let i = 1; i <= day; i++) {
+    for (let i = 0; i < day; i++) {
       let sumInDaily = 0;
       let sumOutDaily = 0;
       const keys = Object.keys(thisWeekDataTemporaryObject[i]);
@@ -159,8 +159,15 @@ export class WeekReport {
       if (isNaN(thisWeekKeys[i])) {
         continue;
       }
+      if (i == 0) {
+        continue;
+      }
       thisWeekOutValues.push(weekDataTemporaryObject.thisWeek[thisWeekKeys[i]].out);
       thisWeekInValues.push(weekDataTemporaryObject.thisWeek[thisWeekKeys[i]].in);
+      if (i == 6) {
+        thisWeekOutValues.push(weekDataTemporaryObject.thisWeek[thisWeekKeys[0]].out);
+        thisWeekInValues.push(weekDataTemporaryObject.thisWeek[thisWeekKeys[0]].in);
+      }
     }
     chartFunction.drawChartBar('report__week__this-week__card-bar-out', thisWeekOutValues, 'out', 'week');
     chartFunction.drawChartBar('report__week__this-week__card-bar-in', thisWeekInValues, 'in', 'week');
