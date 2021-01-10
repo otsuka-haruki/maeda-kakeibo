@@ -36,6 +36,9 @@ export class WeekReport {
     let sumIn = 0;
     let sumOut = 0;
     for (let i = 0; i < day; i++) {
+      if (day != 0) {
+        i = 1;
+      }
       let sumInDaily = 0;
       let sumOutDaily = 0;
       const keys = Object.keys(thisWeekDataTemporaryObject[i]);
@@ -152,21 +155,20 @@ export class WeekReport {
       chartFunction.drawChartDoughnut(`report__week__${whichWeek}-week__card-${categoryOrHowtopayHTMLId}-${inOrOut}`, dataArray,labelArray);
     }
     // this week
+
     const thisWeekKeys = Object.keys(weekDataTemporaryObject.thisWeek);
     const thisWeekOutValues = [];
     const thisWeekInValues = [];
-    for (let i = 0; i < thisWeekKeys.length; i++) {
-      if (isNaN(thisWeekKeys[i])) {
-        continue;
-      }
+    for (let i = 1; i <= thisWeekKeys.length - 2; i++) {
       if (i == 0) {
         continue;
       }
-      thisWeekOutValues.push(weekDataTemporaryObject.thisWeek[thisWeekKeys[i]].out);
-      thisWeekInValues.push(weekDataTemporaryObject.thisWeek[thisWeekKeys[i]].in);
+      thisWeekOutValues.push(weekDataTemporaryObject.thisWeek[i].out);
+      thisWeekInValues.push(weekDataTemporaryObject.thisWeek[i].in);
+      console.log(i, thisWeekOutValues);
       if (i == 6) {
-        thisWeekOutValues.push(weekDataTemporaryObject.thisWeek[thisWeekKeys[0]].out);
-        thisWeekInValues.push(weekDataTemporaryObject.thisWeek[thisWeekKeys[0]].in);
+        thisWeekOutValues.push(weekDataTemporaryObject.thisWeek[0].out);
+        thisWeekInValues.push(weekDataTemporaryObject.thisWeek[0].in);
       }
     }
     chartFunction.drawChartBar('report__week__this-week__card-bar-out', thisWeekOutValues, 'out', 'week');
