@@ -1,11 +1,12 @@
 import * as chartFunction from '../charts/original_chart.js';
 
+// 今週来週のエラー多いなあ 早く直そう
+
 export class WeekReport {
   constructor() {
     this.calcWeekData();
     this.drawChart();
   }
-  // test
 
   calcWeekData() {
     const recordDataObject = JSON.parse(localStorage.getItem('record_data'));
@@ -20,12 +21,12 @@ export class WeekReport {
     const thisWeekDataTemporaryObject = {
       in: {
         category: {},
-        howToPay: {}
+        howToPay: {},
       },
       out: {
         category: {},
-        howToPay: {}
-      }
+        howToPay: {},
+      },
     };
     thisWeekDataTemporaryObject[date.getDay()] = recordDataObject[date.getFullYear()][date.getMonth()][date.getDate()];
     for (let i = 1; i < day; i++) {
@@ -36,9 +37,9 @@ export class WeekReport {
     let sumIn = 0;
     let sumOut = 0;
     for (let i = 0; i < day; i++) {
-      if (day != 0) {
-        i = 1;
-      }
+      // if (day != 0) {
+      //   i = 1;
+      // }
       let sumInDaily = 0;
       let sumOutDaily = 0;
       const keys = Object.keys(thisWeekDataTemporaryObject[i]);
@@ -154,18 +155,13 @@ export class WeekReport {
       const dataArray = Object.values(weekDataTemporaryObject[`${whichWeek}Week`][inOrOut][categoryOrHowtopay]);
       chartFunction.drawChartDoughnut(`report__week__${whichWeek}-week__card-${categoryOrHowtopayHTMLId}-${inOrOut}`, dataArray,labelArray);
     }
-    // this week
 
-    const thisWeekKeys = Object.keys(weekDataTemporaryObject.thisWeek);
+    // this week
     const thisWeekOutValues = [];
     const thisWeekInValues = [];
-    for (let i = 1; i <= thisWeekKeys.length - 2; i++) {
-      if (i == 0) {
-        continue;
-      }
+    for (let i = 1; i <= 6; i++) {
       thisWeekOutValues.push(weekDataTemporaryObject.thisWeek[i].out);
       thisWeekInValues.push(weekDataTemporaryObject.thisWeek[i].in);
-      console.log(i, thisWeekOutValues);
       if (i == 6) {
         thisWeekOutValues.push(weekDataTemporaryObject.thisWeek[0].out);
         thisWeekInValues.push(weekDataTemporaryObject.thisWeek[0].in);

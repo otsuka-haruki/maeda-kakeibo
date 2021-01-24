@@ -151,6 +151,11 @@ export class YearReport {
       const clone = template.content.cloneNode(true);
       clone.querySelector('li a').setAttribute('href', `#report__year__container-${yearKeys[i]}`);
       clone.querySelector('li a').textContent = yearKeys[i];
+      if (yearKeys[i] == new Date().getFullYear()) {
+        clone.querySelector('li a').classList.add('active');
+      } else {
+        clone.querySelector('li a').classList.remove('active');
+      }
       container.append(clone);
     }
   }

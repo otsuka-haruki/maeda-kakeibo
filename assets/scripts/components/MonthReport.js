@@ -13,6 +13,7 @@ export class MonthReport {
 
     const container = document.getElementById('report__month');
     const template = container.querySelector('#report__month__template-wrapper');
+    const tabs = document.querySelectorAll('#report__month ul li a');
 
     const monthDataForYearObject = {};
     let monthDataTemporaryObject = {};
@@ -35,6 +36,11 @@ export class MonthReport {
             howToPay: {}
           }
         };
+        if (i == today.getMonth()) {
+          tabs[i].classList.add('active');
+        } else {
+          tabs[i].classList.remove('active');
+        }
         const clone = template.content.cloneNode(true);
         clone.querySelector('div').setAttribute('id', `report__month__container-${i}`);
         const monthRecord = recordDataObject[yearKeys[h]][i];
