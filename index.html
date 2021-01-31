@@ -1,12 +1,14 @@
-<!-- 1610 1/2 -->
-
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>前田の家計簿アプリ</title>
+  <title>家計簿アプリ</title>
+
+  <link rel="icon" type="image/png" href="./assets/images/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon.png">
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@2.0.2/destyle.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -17,14 +19,14 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="./assets/scripts/libraries/official_easypiechart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/easypiechart.min.js"></script>
   <script src="./assets/scripts/index.js" defer type="module"></script>
 </head>
 
-<body class="font-cute">
+<body>
   <nav>
-    <div class="nav-wrapper animate__animated animate__rubberBand">
-      <a href="#" class="brand-logo">家計簿</a>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center">家計簿</a>
     </div>
   </nav>
 
@@ -63,7 +65,7 @@
               <label for="input-card__input-howtopay">支払い手段</label>
             </div>
             <a class="waves-effect waves-light btn" id="input-card__button-add">データを追加</a>
-            <a class="waves-effect waves-light btn modal-trigger" href="#modal__input-card__setting">設定</a>
+            <a class="waves-effect waves-light btn modal-trigger blue-grey darken-2" href="#modal__input-card__setting">設定</a>
           </div>
         </div>
       </div>
@@ -87,8 +89,8 @@
 
       <div class="center-align">
         <ul class="tabs">
-          <li class="tab col s3"><a href="#report__day__today">今日</a></li>
-          <li class="tab col s3"><a href="#report__day__yesterday">昨日</a></li>
+          <li class="tab col s6"><a href="#report__day__today">今日</a></li>
+          <li class="tab col s6"><a href="#report__day__yesterday">昨日</a></li>
         </ul>
       </div>
 
@@ -122,15 +124,25 @@
                 </tbody>
               </template>
             </table>
+            <p class="padding-top-20px right-align amber-text text-darken-3" id="report__day__today__desription-phrase--modify">データをタップすると修正できます</p>
           </div>
         </div>
+        <!-- <div class="card modal-trigger" href="#modal__chart-limit-progress">
+          <div class="card-content">
+            <span class="card-title">今月の支出目標</span>
+            <div class="chart center-align relative" data-percent="79" id="report__day__today__chart-limit-progress">
+              <p class="font-bold" id="report__day__today__chart-limit-progress__p-percentage">120%</p>
+              <span class="span--sub"><span id="report__day__today__chart-limit-progress__span-spent-so-far">12000</span> / <span id="report__day__today__chart-limit-progress__span-limit">50000</span>
+            </div>
+          </div>
+        </div> -->
       </div>
 
       <div id="report__day__yesterday" class="display-none">
         <div class="card">
           <div class="card-content">
-            <h5 class="center-align">収入 ￥<span id="report__day__yesterday__span-out">0</span></h5>
-            <h5 class="center-align">支出 ￥<span id="report__day__yesterday__span-in">0</span></h5>
+            <h5 class="center-align">支出 ￥<span id="report__day__yesterday__span-out">0</span></h5>
+            <h5 class="center-align">収入 ￥<span id="report__day__yesterday__span-in">0</span></h5>
           </div>
         </div>
         <div class="card">
@@ -166,11 +178,10 @@
         </div>
       </div>
       <div class="row">
-        <div class="col s5 offset-s7">
-          <a class="waves-effect waves-light btn modal-trigger amber" href="#modal__modify-record">データを修正</a>
+        <div class="col s7 offset-s5">
+          <a class="waves-effect waves-light btn modal-trigger amber" href="#modal__modify-record">過去の明細・データ修正</a>
         </div>
       </div>
-
     </div>
 
     <!-- ここから上、１日のレポート -->
@@ -180,8 +191,8 @@
     <div id="report__week" class="col s12 teal lighten-3">
       <div class="center-align">
         <ul class="tabs">
-          <li class="tab col s3"><a href="#report__week__this-week" class="active">今週</a></li>
-          <li class="tab col s3"><a href="#report__week__last-week">先週</a></li>
+          <li class="tab col s6"><a href="#report__week__this-week" class="active">今週</a></li>
+          <li class="tab col s6"><a href="#report__week__last-week">先週</a></li>
         </ul>
       </div>
       <div id="report__week__this-week">
@@ -457,20 +468,23 @@
       </template>
     </div>
   </div>
-
   <!-- Report Year -->
 
   <!-- footer -->
-
-
   <footer class="page-footer">
     <div class="container">
-      <h5 class="white-text">About</h5>
-      <ul>
-        <li><a href="./documentation/index.html" class="blue-grey-text text-lighten-4">このアプリの説明書</a></li>
-        <li><a href="https://materializecss.com/" class="blue-grey-text text-lighten-4">デザインのフレームワーク</a></li>
-        <li><a href="https://www.chartjs.org/" class="blue-grey-text text-lighten-4">チャートのライブラリ</a></li>
-      </ul>
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">About</h5>
+          <p class="white-text">オリジナル家計簿アプリ</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li><a href="documentation/index.html" class="white-text footer-a-with-border-bottom">アプリの説明書</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="footer-copyright">
       <div class="container white-text">
@@ -479,12 +493,9 @@
     </div>
   </footer>
 
-
   <!-- footer -->
 
-
   <!-- Modals -->
-
 
   <div class="modal" id="modal__input-card__radio-buttons-category">
     <div class="modal-content">
@@ -537,7 +548,7 @@
         <template id="modal__input-card__setting__form-category__template-input">
           <div class="input-field" id="modal__input-card__setting__form-category__template-input__input-field">
             <input id="modal__input-card__setting__form-category__template-input__input-field-__input" type="text" class="validate">
-            <label for="modal__input-card__setting__form-category__template-input__input-field-__input">新しいカテゴリー</label>
+            <label for="modal__input-card__setting__form-category__template-input__input-field-__input">新しいカテゴリーを入力</label>
           </div>
         </template>
       </form>
@@ -556,7 +567,7 @@
         <template id="input-card__setting-modal__template-input-howtopay">
           <div class="input-field" id="input-card__setting-modal__div-input-howtopay">
             <input id="input-card__setting-modal__input-add-howtopay" type="text" class="validate">
-            <label for="input-card__setting-modal__input-add-howtopay">新しいカテゴリー</label>
+            <label for="input-card__setting-modal__input-add-howtopay">新しい支払い方法を入力</label>
           </div>
         </template>
       </form>
@@ -565,6 +576,41 @@
     <div class="modal-footer">
       <a href="#!" class="modal-close waves-effect waves-green btn-flat">取り消し</a>
       <a href="#!" class="modal-close waves-effect waves-green btn" id="input-card__setting-modal__button-decide">完了</a>
+    </div>
+  </div>
+
+  <div class="modal" id="modal__modify-record">
+    <div class="modal-content padding-side-little">
+      <h5>参照したい日付を選択</h5>
+      <div class="input-field margin-top-30px" id="modal__modify-record__datepicker__datepicker__input-field">
+        <input type="text" class="datepicker" id="modal__modify-record__datepicker__datepicker__input">
+        <label>日付</label>
+      </div>
+      <p class="amber-text text-darken-3" id="modal__modify-record__description-phrase">日付を選ぶと下に明細が表示されます。</p>
+      <table class="centered" id="modal__modify-record__table">
+        <thead>
+          <tr>
+            <th>カテゴリー</th>
+            <th>用途</th>
+            <th>金額</th>
+            <th>支払い方法</th>
+          </tr>
+        </thead>
+        <template>
+          <tbody>
+            <tr class="modal-trigger" href="#modal__report__day__modify-record">
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+            </tr>
+          </tbody>
+        </template>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="modal__modify-record__button-cancel"><i class="fas fa-times"></i></a>
+      <a href="#!" class="waves-effect waves-green btn" id="modal__modify-record__button-set-date">指定した日のデータを表示</a>
     </div>
   </div>
 
@@ -602,45 +648,6 @@
       <a href="#!" class="modal-close waves-effect waves-green btn" id="modal__report__day__modify-record__button-modify">修正</a>
     </div>
   </div>
-
-  <div class="modal" id="modal__modify-record">
-    <div class="modal-content padding-side-little">
-      <h5>修正したいデータの日時を選択</h5>
-      <div class="input-field margin-top-30px" id="modal__modify-record__datepicker__datepicker__input-field">
-        <input type="text" class="datepicker" id="modal__modify-record__datepicker__datepicker__input">
-        <label>日付</label>
-      </div>
-      <h5 id="selected-date"></h5>
-      <table class="centered" id="modal__modify-record__table">
-        <thead>
-          <tr>
-            <th>カテゴリー</th>
-            <th>用途</th>
-            <th>金額</th>
-            <th>支払い方法</th>
-          </tr>
-        </thead>
-        <template>
-          <tbody>
-            <tr class="modal-trigger" href="#modal__report__day__modify-record">
-              <td>--</td>
-              <td>--</td>
-              <td>--</td>
-              <td>--</td>
-            </tr>
-          </tbody>
-        </template>
-      </table>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="modal__modify-record__button-cancel"><i class="fas fa-times"></i></a>
-      <a href="#!" class="waves-effect waves-green btn" id="modal__modify-record__button-set-date">指定した日のデータを表示</a>
-    </div>
-  </div>
-
-  <!-- Modals -->
-
-
 </body>
 
 </html>

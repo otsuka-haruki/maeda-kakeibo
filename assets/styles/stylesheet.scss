@@ -1,3 +1,7 @@
+$materialBlack: rgba(0,0,0,0.87);
+$colorProblem: #ef6c00;
+$colorSuccess: #2196f3;
+
 html {
   overflow-x: hidden;
 }
@@ -5,14 +9,11 @@ html {
 body {
   width: 100vw;
   overflow-x: hidden;
+  font-family: 'fot-tsukuardgothic-std', sans-serif;
 }
 
 canvas {
   max-width: 100%;
-}
-
-.font-cute {
-  font-family: 'fot-tsukuardgothic-std', sans-serif;
 }
 
 .font-bold {
@@ -27,12 +28,13 @@ canvas {
   position: relative;
 }
 
-.flex {
-  display: flex;
-}
-
 .border-0 {
   border: 0;
+}
+
+.footer-a-with-border-bottom {
+  padding: 0px 4px 5px 0px;
+  border-bottom: 2px solid $colorSuccess;
 }
 
 .padding-0 {
@@ -47,8 +49,8 @@ canvas {
   padding: 10px 0;
 }
 
-.margin-center {
-  margin: 0 auto;
+.padding-top-20px {
+  padding-top: 20px;
 }
 
 .margin-bottom-0 {
@@ -59,21 +61,12 @@ canvas {
   margin: 10px 0;
 }
 
-
 .margin-top-30px {
   margin-top: 30px;
 }
 
-.width-40percent {
-  width: 40%;
-}
-
-.border-radius-0 {
-  border-radius: 0;
-}
-
 .text--material-black {
-  color: rgba(0,0,0,0.87);
+  color: $materialBlack;
 }
 
 .datepicker-table {
@@ -92,15 +85,11 @@ canvas {
 }
 
 .toast-problem {
-  background-color: #ef6c00;
+  background-color: $colorProblem;
 }
 
 .toast-success {
-  background-color: #2196f3;
-}
-
-.card-content__half {
-  width: 50%;
+  background-color: $colorSuccess;
 }
 
 .card {
@@ -120,13 +109,34 @@ canvas {
 }
 
 .collapsible-header--box-shadow {
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
-              0 3px 1px -2px rgba(0,0,0,0.12),
-              0 1px 5px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
 }
 
 .fab,
 .fas {
   margin-right: 7px;
 }
-// test below
+
+#modal__modify-record {
+  min-height: 60vh;
+}
+
+// .chart {
+//   p {
+//     position: absolute;
+//     top: 45%;
+//     left: 50%;
+//     transform: translate(-50%, -55%);
+//     font-size: 150%;
+//     text-align: center;
+//   }
+//
+//   .span--sub {
+//     position: absolute;
+//     top: 65%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     font-size: 100%;
+//     text-align: center;
+//   }
+// }
